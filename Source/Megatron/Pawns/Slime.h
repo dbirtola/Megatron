@@ -8,6 +8,7 @@ class ASlime : public APawn
 {
 	GENERATED_BODY()
 
+	int32 FactionID = 0;
 public:
 	ASlime(const FObjectInitializer& ObjectInitializer);
 
