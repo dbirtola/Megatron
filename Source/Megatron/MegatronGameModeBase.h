@@ -10,6 +10,14 @@
 
 class ASpawner;
 
+UENUM(BlueprintType)
+enum class EGameState : uint8
+{
+	MAIN_MENU,
+	COMBAT,
+	INTERMISSION,
+	GAME_OVER
+};
 
 UENUM(BlueprintType)
 enum class ERoundState : uint8
@@ -21,6 +29,7 @@ enum class ERoundState : uint8
 	FORGET_ABILITIES,
 	FINISHED
 };
+
 
 
 /**
@@ -45,6 +54,8 @@ private:
 	void StartCombat();
 	void FinishCombat();
 
+	void GameOver();
+
 	// Polls current combat state to determine whether or not we should move to the next state. Might change this to be more event driven
 	void TickCombat();
 
@@ -63,11 +74,29 @@ private:
 
 	bool SideHasTurnsPending();
 	void ResetSlimesTurns(TArray<ASlime*> Slimes);
+	bool PlayerHasSlimesAlive();
+	bool EnemyHasSlimesAlive();
+
+	void ChangeGameState(EGameState NewGameState);
+	void ChangeRoundState(ERoundState NewRoundState);
+
 
 public:
+	FTeam GetNextEnemyTeam();
+
+	// Called when the player presses Play. Starts our first intermission, which will go into combat.
+	UFUNCTION(BlueprintCallable)
+	void StartGame();
+
 	// Blueprint driven logic to determine which slime forgets things
 	UFUNCTION(BlueprintCallable)
 	virtual ASlime* DetermineSlimeToForgetAbility(TArray<ASlime*> CandidateSlimes);
+
+	UFUNCTION(BlueprintPure)
+	TArray<ASlime*> GetSpawnedPlayerSlimes();
+	UFUNCTION(BlueprintPure)
+	TArray<ASlime*> GetSpawnedEnemySlimes();
+
 
 	// Functions for blueprints to respond to round state changes. Mostly for updating visuals and UI. Easier for BP to read than having blueprints switch on an enum.
 	UFUNCTION(BlueprintImplementableEvent)
@@ -85,14 +114,10 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnCombatEnd();
 
-	FTeam GetNextEnemyTeam();
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnGameOver();
 
-	UFUNCTION(BlueprintPure)
-	TArray<ASlime*> GetSpawnedPlayerSlimes();
-	UFUNCTION(BlueprintPure)
-	TArray<ASlime*> GetSpawnedEnemySlimes();
-
-	// Debug only! Use this 
+	// Debug only! Use this to force the next round state. Aka player turn->enemy turn->learn abilities->forget abilities
 	UFUNCTION(BlueprintCallable)
 	void DEBUG_ForceNextRoundState();
 
@@ -105,6 +130,9 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)
 	TSubclassOf<ASlime> DefaultEnemySlimeClass;
+
+	UPROPERTY(BlueprintReadOnly)
+	EGameState MegatronGameState;
 
 	UPROPERTY(BlueprintReadOnly)
 	ERoundState RoundState;

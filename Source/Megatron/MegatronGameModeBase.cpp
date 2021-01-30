@@ -6,6 +6,48 @@
 #include "Spawner/Spawner.h"
 #include "FunctionLibraries/MegatronFunctionLibrary.h"
 #include "Kismet/GameplayStatics.h"
+#include "Pawns/Slime.h"
+#include "Components/HealthComponent.h"
+
+FString GetGameStateString(EGameState GameState)
+{
+	switch (GameState)
+	{
+	case EGameState::MAIN_MENU:
+		return FString("Main Menu");
+	case EGameState::COMBAT:
+		return FString("Combat");
+	case EGameState::INTERMISSION:
+		return FString("Intermission");
+	case EGameState::GAME_OVER:
+		return FString("Game Over");
+	default:
+		return FString("None");
+	}
+}
+
+FString GetRoundStateString(ERoundState RoundState)
+{
+	switch (RoundState)
+	{
+	case ERoundState::NOT_STARTED:
+		return FString("Not Started");
+	case ERoundState::PLAYER_TURN:
+		return FString("Player Turn");
+	case ERoundState::ENEMY_TURN:
+		return FString("Enemy Turn");
+	case ERoundState::LEARN_ABILITIES:
+		return FString("Learn Abilities");
+	case ERoundState::FORGET_ABILITIES:
+		return FString("Forget Abilities");
+	case ERoundState::FINISHED:
+		return FString("Finished");
+	default:
+		return FString("None");
+	}
+}
+
+
 
 void AMegatronGameModeBase::PrepareCombat()
 {
@@ -44,20 +86,24 @@ void AMegatronGameModeBase::PrepareCombat()
 	FTeam EnemyTeam = GetNextEnemyTeam();
 	EnemySpawner->SetTeam(EnemyTeam);
 	EnemySpawner->SpawnTeam();
-
-
-	// Spawn enemy slimes
-
 }
 
 void AMegatronGameModeBase::StartCombat()
 {
+	ChangeGameState(EGameState::COMBAT);
 	RoundState = ERoundState::PLAYER_TURN;
 }
 
 void AMegatronGameModeBase::FinishCombat()
 {
+	ChangeGameState(EGameState::INTERMISSION);
 	RoundState = ERoundState::NOT_STARTED;
+}
+
+void AMegatronGameModeBase::GameOver()
+{
+	ChangeGameState(EGameState::GAME_OVER);
+	OnGameOver();
 }
 
 void AMegatronGameModeBase::TickCombat()
@@ -65,6 +111,7 @@ void AMegatronGameModeBase::TickCombat()
 	switch (RoundState)
 	{
 	case ERoundState::NOT_STARTED:
+		ensureMsgf(true, TEXT("Combat should never be ticked if a round is not started"));
 		break;
 	case ERoundState::PLAYER_TURN:
 		if (!SideHasTurnsPending())
@@ -98,6 +145,16 @@ void AMegatronGameModeBase::TickCombat()
 		checkNoEntry();
 		StartNextRound();
 		break;
+	}
+
+	// Check if the player or enemy has died
+	if (!PlayerHasSlimesAlive())
+	{
+		GameOver();
+	}
+	if (!EnemyHasSlimesAlive())
+	{
+		FinishCombat();
 	}
 }
 
@@ -196,11 +253,65 @@ void AMegatronGameModeBase::ResetSlimesTurns(TArray<ASlime*> Slimes)
 	}
 }
 
+bool AMegatronGameModeBase::PlayerHasSlimesAlive()
+{
+	TArray<ASlime*> PlayerSlimes = GetSpawnedPlayerSlimes();
+	for (ASlime* Slime : PlayerSlimes)
+	{
+		if (Slime->HealthComponent->CurrentHealth > 0)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+bool AMegatronGameModeBase::EnemyHasSlimesAlive()
+{
+	TArray<ASlime*> EnemySlimes = GetSpawnedEnemySlimes();
+	for (ASlime* Slime : EnemySlimes)
+	{
+		if (Slime->HealthComponent->CurrentHealth > 0)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+void AMegatronGameModeBase::ChangeGameState(EGameState NewGameState)
+{
+	UE_LOG(LogTemp, Log, TEXT("Changing Game State from %s to %s"), *GetGameStateString(MegatronGameState), *GetGameStateString(NewGameState));
+	MegatronGameState = NewGameState;
+}
+
+void AMegatronGameModeBase::ChangeRoundState(ERoundState NewRoundState)
+{
+	UE_LOG(LogTemp, Log, TEXT("Changing Round State from %s to %s"), *GetRoundStateString(RoundState), *GetRoundStateString(NewRoundState));
+	RoundState = NewRoundState;
+}
+
 void AMegatronGameModeBase::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 
-	TickCombat();
+	switch (MegatronGameState)
+	{
+	case EGameState::MAIN_MENU:
+		break;
+	case EGameState::INTERMISSION:
+		// TODO: Rewards and junk. For now, we go straight into the next combat!
+		PrepareCombat();
+		StartCombat();
+	case EGameState::COMBAT:
+		TickCombat();
+		break;
+	case EGameState::GAME_OVER:
+		// TODO: Display restart screen. Or display give us lots of money to keep going screen. idk i'm not a scientist.
+		break;
+	default:
+		break;
+	}
 }
 
 
@@ -208,6 +319,7 @@ void AMegatronGameModeBase::Tick(float DeltaSeconds)
 ASlime* AMegatronGameModeBase::DetermineSlimeToForgetAbility(TArray<ASlime*> CandidateSlimes)
 {
 	ASlime* SelectedSlime = nullptr;
+
 	return nullptr;
 }
 
@@ -224,6 +336,11 @@ FTeam AMegatronGameModeBase::GetNextEnemyTeam()
 	}
 
 	return EnemyTeam;
+}
+
+void AMegatronGameModeBase::StartGame()
+{
+	MegatronGameState = EGameState::INTERMISSION;
 }
 
 TArray<ASlime*> AMegatronGameModeBase::GetSpawnedPlayerSlimes()
