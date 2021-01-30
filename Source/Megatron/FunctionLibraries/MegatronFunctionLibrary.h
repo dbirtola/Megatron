@@ -2,7 +2,7 @@
 #include "MegatronFunctionLibrary.generated.h"
 
 UCLASS()
-class UMegatronFunctionLibrary : public UBlueprintFunctionLibrary
+class MEGATRON_API UMegatronFunctionLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 
