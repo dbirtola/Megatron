@@ -36,4 +36,13 @@ ASlime::ASlime(const FObjectInitializer& ObjectInitializer)
 void ASlime::BeginPlay()
 {
 	Super::BeginPlay();
+
+	OnAbilityUsed.AddDynamic(this, &ASlime::OnAbilityUsedCallback);
+}
+
+
+void ASlime::OnAbilityUsedCallback(ASlime* User, UAbilityBase* Ability, ASlime* Target)
+{
+	bHasTurnAvailable = false;
+	return;
 }

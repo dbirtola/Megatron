@@ -116,6 +116,7 @@ void AMegatronGameModeBase::StartPlayerTurn()
 	RoundState = ERoundState::PLAYER_TURN;
 	// All player slimes spawned will get a chance to take their turn
 	SlimesWithTurnPending = PlayerSpawner->GetSpawnedSlimeActors();
+	ResetSlimesTurns(SlimesWithTurnPending);
 	OnTurnStart(true);
 }
 
@@ -130,6 +131,7 @@ void AMegatronGameModeBase::StartEnemyTurn()
 	RoundState = ERoundState::ENEMY_TURN;
 	// All enemy slimes spawned will get a chance to take their turn
 	SlimesWithTurnPending = EnemySpawner->GetSpawnedSlimeActors();
+	ResetSlimesTurns(SlimesWithTurnPending);
 	OnTurnStart(false);
 }
 
@@ -163,7 +165,22 @@ void AMegatronGameModeBase::FinishForgetAbilitySegment()
 
 bool AMegatronGameModeBase::SideHasTurnsPending()
 {
-	return SlimesWithTurnPending.Num() > 0;
+	for (ASlime* Slime : SlimesWithTurnPending)
+	{
+		if (Slime->bHasTurnAvailable)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+void AMegatronGameModeBase::ResetSlimesTurns(TArray<ASlime*> Slimes)
+{
+	for (ASlime* Slime : SlimesWithTurnPending)
+	{
+		Slime->bHasTurnAvailable = true;
+	}
 }
 
 void AMegatronGameModeBase::Tick(float DeltaSeconds)

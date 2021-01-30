@@ -62,6 +62,7 @@ private:
 	void FinishForgetAbilitySegment();
 
 	bool SideHasTurnsPending();
+	void ResetSlimesTurns(TArray<ASlime*> Slimes);
 
 public:
 	// Functions for blueprints to respond to round state changes. Mostly for updating visuals and UI. Easier for BP to read than having blueprints switch on an enum.

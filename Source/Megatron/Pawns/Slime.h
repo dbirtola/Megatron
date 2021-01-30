@@ -3,7 +3,12 @@
 
 #include "Slime.generated.h"
 
+class UAbilityBase;
 class UHealthComponent;
+
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_ThreeParams(FAbilityUsedSignature, ASlime, OnAbilityUsed, ASlime*, User, UAbilityBase*, Ability, ASlime*, Target);
+
+
 
 UCLASS(Blueprintable, BlueprintType)
 class ASlime : public APawn, public IHealthInterface
@@ -23,11 +28,19 @@ protected:
 
 	virtual float OnGetHealthRatio_Implementation() override;
 
+	virtual void OnAbilityUsedCallback(ASlime* User, UAbilityBase* Ability, ASlime* Target);
+
 public:
 	ASlime(const FObjectInitializer& ObjectInitializer);
 
 	void BeginPlay() override;
 
+	UPROPERTY(BlueprintReadOnly)
+	bool bHasTurnAvailable;
+
 	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)
 	UHealthComponent* HealthComponent;
+
+	UPROPERTY(BlueprintAssignable)
+	FAbilityUsedSignature OnAbilityUsed;
 };
