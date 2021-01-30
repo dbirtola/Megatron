@@ -30,6 +30,7 @@ ASlime::ASlime(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
 	HealthComponent = CreateDefaultSubobject<UHealthComponent>("Health");
+	AbilityComponent = CreateDefaultSubobject<UAbilitiesComponent>("Abilities");
 }
 
 

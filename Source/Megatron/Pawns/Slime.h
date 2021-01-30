@@ -1,5 +1,6 @@
 #include "GameFramework/Pawn.h"
 #include "Interfaces/HealthInterface.h"
+#include "Components/AbilitiesComponent.h"
 
 #include "Slime.generated.h"
 
@@ -30,4 +31,7 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)
 	UHealthComponent* HealthComponent;
+
+	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)
+	UAbilitiesComponent* AbilityComponent;
 };
