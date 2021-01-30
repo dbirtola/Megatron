@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Components/ActorComponent.h"
 #include "Framework/MegatronTypes.h"
 #include "HealthComponent.generated.h"

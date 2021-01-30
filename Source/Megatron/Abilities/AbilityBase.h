@@ -41,6 +41,12 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	EAttribute GetAbilityAttribute();
 
+	bool CanExecuteAbility() const;
+
+	// Checks if the owning slime still has a turn available and executes the ability if possible.
+	UFUNCTION(BlueprintCallable)
+	bool TryExecuteAbility(ASlime* Target);
+
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	bool ExecuteAbility(ASlime* Target);
 };
