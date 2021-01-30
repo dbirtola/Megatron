@@ -43,7 +43,7 @@ TSubclassOf<UAbilityBase> UAbilitiesComponent::GetAbilityClassAtIndex(int index)
 {
 	if (0 <= index && index < Abilities.Num())
 	{
-		return AbilityClasses[index]->StaticClass();
+		return *AbilityClasses[index];
 	}
 	else
 	{
@@ -102,8 +102,8 @@ UAbilityBase* UAbilitiesComponent::LearnNewAbility(int index, TSubclassOf<UAbili
 	{
 		if (AbilityClasses[i] != UAbilityEmpty::StaticClass())
 		{
-			AbilityClasses[i] = AbilityClass->StaticClass();
-			Abilities[i] = UAbilityBase::InstantiateAbility(AbilityClass->StaticClass(), Owner);
+			AbilityClasses[i] = *AbilityClass;
+			Abilities[i] = UAbilityBase::InstantiateAbility(*AbilityClass, Owner);
 			return Abilities[i];
 		}	
 	}

@@ -19,6 +19,8 @@ private:
 
 	TArray<UAbilityBase*> Abilities;
 
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<TSubclassOf<UAbilityBase>> AbilityClasses;
 
 public:

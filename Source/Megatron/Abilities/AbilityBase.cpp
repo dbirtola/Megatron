@@ -48,7 +48,8 @@ bool UAbilityBase::TryExecuteAbility(ASlime* Target)
 
 UAbilityBase * UAbilityBase::InstantiateAbility(TSubclassOf<UAbilityBase> AbilityClass, ASlime* InOwner)
 {
-	UAbilityBase* out = NewObject<UAbilityBase>(InOwner, AbilityClass->StaticClass());
+	
+	UAbilityBase* out = NewObject<UAbilityBase>(InOwner, *AbilityClass);
 	out->SetOwner(InOwner);
 	return out; //later
 }
