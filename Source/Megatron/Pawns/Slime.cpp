@@ -68,3 +68,8 @@ TSubclassOf<UAbilityBase> ASlime::GetAbilityClassAtIndex(int index)
 {
 	return AbilityComponent->GetAbilityClassAtIndex(index);
 }
+
+void ASlime::ForgetRandomAbility()
+{
+	AbilityComponent->ForgetRandomAbility();
+}
