@@ -1,8 +1,9 @@
 #pragma once
 
 #include "Components/ActorComponent.h"
-#include "Abilities/AbilityBase.h"
 #include "AbilitiesComponent.generated.h"
+
+class UAbilityBase;
 
 UCLASS(Blueprintable, BlueprintType, meta = (BlueprintSpawnableComponent))
 class UAbilitiesComponent : public UActorComponent
