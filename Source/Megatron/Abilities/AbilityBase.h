@@ -54,6 +54,6 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	bool ExecuteAbility(ASlime* Target);
 
-	//UFUNCTION(BlueprintCallable)
-	//static UAbilityBase* InstantiateAbility(TSubClassOf<UAbilityBase> AbilityClass,)
+	UFUNCTION(BlueprintCallable)
+	static UAbilityBase* InstantiateAbility(TSubclassOf<UAbilityBase> AbilityClass, ASlime* Owner);
 };

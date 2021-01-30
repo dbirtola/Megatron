@@ -46,6 +46,11 @@ bool UAbilityBase::TryExecuteAbility(ASlime* Target)
 	return false;
 }
 
+UAbilityBase * UAbilityBase::InstantiateAbility(TSubclassOf<UAbilityBase> AbilityClass, ASlime * Owner)
+{
+	return nullptr; //later
+}
+
 bool UAbilityBase::ExecuteAbility_Implementation(ASlime* Target)
 {
 	return true;
