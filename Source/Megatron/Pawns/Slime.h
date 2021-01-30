@@ -1,3 +1,5 @@
+#pragma once
+
 #include "GameFramework/Pawn.h"
 #include "Interfaces/HealthInterface.h"
 #include "Components/AbilitiesComponent.h"
