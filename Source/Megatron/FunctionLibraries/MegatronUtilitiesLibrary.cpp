@@ -153,14 +153,14 @@ void UMegatronUtilitiesLibrary::PrintStringToChannel(UObject * WorldContextObjec
 #endif
 }
 
-BuildConfig UMegatronUtilitiesLibrary::GetBuildConfiguration()
+EBuildConfig UMegatronUtilitiesLibrary::GetBuildConfiguration()
 {
 #if UE_BUILD_SHIPPING
-	return BuildConfig::SHIPPING;
+	return EBuildConfig::SHIPPING;
 #elif WITH_EDITOR
-	return BuildConfig::EDITOR;
+	return EBuildConfig::EDITOR;
 #else
-	return BuildConfig::DEVELOPMENT;
+	return EBuildConfig::DEVELOPMENT;
 #endif
 }
 

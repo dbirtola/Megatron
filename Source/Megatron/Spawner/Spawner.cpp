@@ -35,6 +35,19 @@ void ASpawner::RespawnTeam()
 	return;
 }
 
+TArray<ASlime*> ASpawner::GetSpawnedSlimeActors()
+{
+	TArray<ASlime*> SpawnedSlimes;
+	for (FSlimeInfo SlimeInfo : Team.SlimeInfos)
+	{
+		if (SlimeInfo.Slime)
+		{
+			SpawnedSlimes.Add(SlimeInfo.Slime);
+		}
+	}
+	return SpawnedSlimes;
+}
+
 ASlime* ASpawner::SpawnSlime(FSlimeInfo& SlimeInfo, const FVector& Location)
 {
 	ASlime* Slime = nullptr;

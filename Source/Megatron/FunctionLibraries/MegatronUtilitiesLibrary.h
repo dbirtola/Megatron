@@ -35,7 +35,7 @@ public:
 	static void PrintStringToChannel(UObject* WorldContextObject, const FString& InString = FString(TEXT("Hello")), const int channel = 7777, bool bPrintToScreen = true, bool bPrintToLog = true, FLinearColor TextColor = FLinearColor(0.0, 0.33, 1.0), float Duration = 2.f);
 
 	UFUNCTION(BlueprintPure, Category = "Utility")
-	static BuildConfig GetBuildConfiguration();
+	static EBuildConfig GetBuildConfiguration();
 
 	UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"))
     static AActor* SpawnFromWorld(UObject* WorldContextObject, UClass* InClass, const FVector& Position, const FRotator& Rotation);

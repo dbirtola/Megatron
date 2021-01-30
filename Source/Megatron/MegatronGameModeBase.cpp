@@ -67,13 +67,13 @@ void AMegatronGameModeBase::TickCombat()
 	case ERoundState::NOT_STARTED:
 		break;
 	case ERoundState::PLAYER_TURN:
-		if (false /*Check if player turn is over*/)
+		if (!SideHasTurnsPending())
 		{
 			FinishPlayerTurn();
 		}
 		break;
 	case ERoundState::ENEMY_TURN:
-		if (false /*Check if enemy turn is over*/)
+		if (!SideHasTurnsPending())
 		{
 			FinishEnemyTurn();
 		}
@@ -114,6 +114,9 @@ void AMegatronGameModeBase::StartNextRound()
 void AMegatronGameModeBase::StartPlayerTurn()
 {
 	RoundState = ERoundState::PLAYER_TURN;
+	// All player slimes spawned will get a chance to take their turn
+	SlimesWithTurnPending = PlayerSpawner->GetSpawnedSlimeActors();
+	ResetSlimesTurns(SlimesWithTurnPending);
 	OnTurnStart(true);
 }
 
@@ -126,6 +129,9 @@ void AMegatronGameModeBase::FinishPlayerTurn()
 void AMegatronGameModeBase::StartEnemyTurn()
 {
 	RoundState = ERoundState::ENEMY_TURN;
+	// All enemy slimes spawned will get a chance to take their turn
+	SlimesWithTurnPending = EnemySpawner->GetSpawnedSlimeActors();
+	ResetSlimesTurns(SlimesWithTurnPending);
 	OnTurnStart(false);
 }
 
@@ -157,14 +163,32 @@ void AMegatronGameModeBase::FinishForgetAbilitySegment()
 	RoundState = ERoundState::FINISHED;
 }
 
+bool AMegatronGameModeBase::SideHasTurnsPending()
+{
+	for (ASlime* Slime : SlimesWithTurnPending)
+	{
+		if (Slime->bHasTurnAvailable)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+void AMegatronGameModeBase::ResetSlimesTurns(TArray<ASlime*> Slimes)
+{
+	for (ASlime* Slime : SlimesWithTurnPending)
+	{
+		Slime->bHasTurnAvailable = true;
+	}
+}
+
 void AMegatronGameModeBase::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 
 	TickCombat();
 }
-
-
 
 
 FTeam AMegatronGameModeBase::GetNextEnemyTeam()
