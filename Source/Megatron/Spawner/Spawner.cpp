@@ -6,8 +6,9 @@ void ASpawner::BeginPlay()
 {
 	Super::BeginPlay();
 
+/*
 	SetTeam(DebugTeam);
-	SpawnTeam();
+	SpawnTeam();*/
 }
 
 void ASpawner::SetTeam(FTeam InTeam)

@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Components/ActorComponent.h"
 #include "HealthComponent.generated.h"
 

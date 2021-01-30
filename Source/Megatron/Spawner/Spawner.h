@@ -1,3 +1,4 @@
+#pragma once
 
 #include "GameFramework/Actor.h"
 #include "Spawner.generated.h"
@@ -25,6 +26,9 @@ struct FTeam
 {
 	GENERATED_BODY()
 
+	UPROPERTY(BlueprintReadWrite)
+	AController* OwningController;
+
 	// Spawn info's used to spawn or respawn this team at the start of combat.
 	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly)
 	TArray<FSlimeInfo> SlimeInfos;
@@ -35,7 +39,7 @@ struct FSpawnLocation
 {
 	GENERATED_BODY()
 
-	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	FVector Location = FVector::ZeroVector;
 	UPROPERTY(BlueprintReadOnly)
 	AActor* OccupyingActor;
@@ -68,6 +72,6 @@ public:
 
 public:
 	// Locations, in order, in which the team will be spawned. TODO: STRETCH: Any team members that do not fit should be queued for when a team member dies.
-	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	TArray<FSpawnLocation> SpawnLocations;
 };
