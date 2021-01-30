@@ -53,7 +53,10 @@ UAbilityBase * UAbilityBase::InstantiateAbility(TSubclassOf<UAbilityBase> Abilit
 	return out; //later
 }
 
-bool UAbilityBase::ExecuteAbility_Implementation(ASlime* Target)
+void UAbilityBase::ExecuteAbility_Implementation(ASlime* Target)
 {
-	return true;
+}
+
+void UAbilityBase::OnAbilityFinished()
+{
 }
