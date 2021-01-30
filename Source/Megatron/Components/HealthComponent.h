@@ -1,15 +1,8 @@
 #include "Components/ActorComponent.h"
+#include "Framework/MegatronTypes.h"
 #include "HealthComponent.generated.h"
 
 
-USTRUCT(BlueprintType)
-struct FDamage
-{
-	GENERATED_BODY()
-
-	UPROPERTY(BlueprintReadWrite)
-	int32 BaseDamage;
-};
 
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_ThreeParams(FTakeDamageSignature, UHealthComponent, OnTakeDamage, AActor*, DamagedActor, AActor*, DamageCauser, FDamage, Damage);
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_TwoParams(FDeathSignature, UHealthComponent, OnDeath, AActor*, DyingActor, AActor*, DamageCauser);
@@ -26,7 +19,10 @@ public:
 
 	// Deals a set amount of damage to the entity. Negative damage will heal the entity instead.
 	UFUNCTION(BlueprintCallable)
-	void TakeDamage(AActor* DamageCauser, FDamage Damage);
+	void TakeDamage(FDamage Damage);
+
+	UFUNCTION(BlueprintCallable)
+	void TakeHealing(FDamage Damage);
 
 
 private:
