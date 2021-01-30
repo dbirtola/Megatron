@@ -40,6 +40,10 @@ class MEGATRON_API AMegatronGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
 
+private:
+	FTimerHandle LearnAbilityTimerHandle;
+	FTimerHandle ForgetAbilityTimerHandle;
+
 protected:
 	// Begin AGameModeBase implementation
 	void Tick(float DeltaSeconds) override;
@@ -77,9 +81,8 @@ private:
 	bool PlayerHasSlimesAlive();
 	bool EnemyHasSlimesAlive();
 
-	void ChangeGameState(EGameState NewGameState);
-	void ChangeRoundState(ERoundState NewRoundState);
-
+	void EnterGameState(EGameState NewGameState);
+	void EnterRoundState(ERoundState NewRoundState);
 
 public:
 	FTeam GetNextEnemyTeam();
@@ -121,9 +124,22 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void DEBUG_ForceNextRoundState();
 
+	// Debug only! Use this to force the next game state. Aka player turn->enemy turn->learn abilities->forget abilities
+	UFUNCTION(BlueprintCallable)
+	void DEBUG_ForceNextGameState();
+
+	UFUNCTION(BlueprintCallable)
+	void DEBUG_ForceGameOver();
+
 public:
 	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)
 	int32 EnemyTeamSize = 3;
+
+	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)
+	float LearnAbilitySegmentSeconds = 3.0f;
+
+	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)
+	float ForgetAbilitySegmentSeconds = 3.0f;
 
 	// Array of all slimes that still need to act before this turn is over.
 	TArray<ASlime*> SlimesWithTurnPending;

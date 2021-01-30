@@ -90,19 +90,21 @@ void AMegatronGameModeBase::PrepareCombat()
 
 void AMegatronGameModeBase::StartCombat()
 {
-	ChangeGameState(EGameState::COMBAT);
-	RoundState = ERoundState::PLAYER_TURN;
+	EnterGameState(EGameState::COMBAT);
+	StartPlayerTurn();
+	OnCombatStart();
 }
 
 void AMegatronGameModeBase::FinishCombat()
 {
-	ChangeGameState(EGameState::INTERMISSION);
-	RoundState = ERoundState::NOT_STARTED;
+	EnterGameState(EGameState::INTERMISSION);
+	EnterRoundState(ERoundState::NOT_STARTED);
+	OnCombatEnd();
 }
 
 void AMegatronGameModeBase::GameOver()
 {
-	ChangeGameState(EGameState::GAME_OVER);
+	EnterGameState(EGameState::GAME_OVER);
 	OnGameOver();
 }
 
@@ -114,30 +116,25 @@ void AMegatronGameModeBase::TickCombat()
 		ensureMsgf(true, TEXT("Combat should never be ticked if a round is not started"));
 		break;
 	case ERoundState::PLAYER_TURN:
-		if (!SideHasTurnsPending())
+		// Only check for finish this way if the player spawner exists, so we don't skip this segment on debug maps.
+		if (PlayerSpawner && !SideHasTurnsPending())
 		{
 			FinishPlayerTurn();
 		}
 		break;
 	case ERoundState::ENEMY_TURN:
-		if (!SideHasTurnsPending())
+		// Only check for finish this way if the enemy spawner exists, so we don't skip this segment on debug maps.
+		if (EnemySpawner && !SideHasTurnsPending())
 		{
 			FinishEnemyTurn();
 		}
  		break;
 	case ERoundState::LEARN_ABILITIES:
-		if (false /*Check if enemy turn is over*/)
-		{
-			FinishLearnAbilitySegment();
-		}
-
+		// End of this segment is controlled by a timer. See StartLearnAbilitySegment
 		break;
 	case ERoundState::FORGET_ABILITIES:
-		if (false /*Check if enemy turn is over*/)
-		{
-			FinishForgetAbilitySegment();
-		}
-
+		// End of this segment is controlled by a timer. See StartForgetAbilitySegment
+		break;
 	case ERoundState::FINISHED:
 		StartNextRound();
 		break;
@@ -147,33 +144,40 @@ void AMegatronGameModeBase::TickCombat()
 		break;
 	}
 
-	// Check if the player or enemy has died
-	if (!PlayerHasSlimesAlive())
+	// If we don't have these, its probably a test map.
+	if (PlayerSpawner && EnemySpawner)
 	{
-		GameOver();
-	}
-	if (!EnemyHasSlimesAlive())
-	{
-		FinishCombat();
+		// Check if the player or enemy has died
+		if (!PlayerHasSlimesAlive())
+		{
+			GameOver();
+		}
+		if (!EnemyHasSlimesAlive())
+		{
+			FinishCombat();
+		}
 	}
 }
 
 void AMegatronGameModeBase::FinishRound()
 {
-	RoundState = ERoundState::FINISHED;
+	EnterRoundState(ERoundState::FINISHED);
 }
 
 void AMegatronGameModeBase::StartNextRound()
 {
-	RoundState = ERoundState::PLAYER_TURN;
+	EnterRoundState(ERoundState::PLAYER_TURN);
 }
 
 void AMegatronGameModeBase::StartPlayerTurn()
 {
-	RoundState = ERoundState::PLAYER_TURN;
-	// All player slimes spawned will get a chance to take their turn
-	SlimesWithTurnPending = GetSpawnedPlayerSlimes();
-	ResetSlimesTurns(SlimesWithTurnPending);
+	EnterRoundState(ERoundState::PLAYER_TURN);
+	if (PlayerSpawner)
+	{
+		// All player slimes spawned will get a chance to take their turn
+		SlimesWithTurnPending = GetSpawnedPlayerSlimes();
+		ResetSlimesTurns(SlimesWithTurnPending);
+	}
 	OnTurnStart(true);
 }
 
@@ -185,10 +189,13 @@ void AMegatronGameModeBase::FinishPlayerTurn()
 
 void AMegatronGameModeBase::StartEnemyTurn()
 {
-	RoundState = ERoundState::ENEMY_TURN;
-	// All enemy slimes spawned will get a chance to take their turn
-	SlimesWithTurnPending = GetSpawnedEnemySlimes();
-	ResetSlimesTurns(SlimesWithTurnPending);
+	EnterRoundState(ERoundState::ENEMY_TURN);
+	if (EnemySpawner)
+	{
+		// All enemy slimes spawned will get a chance to take their turn
+		SlimesWithTurnPending = GetSpawnedEnemySlimes();
+		ResetSlimesTurns(SlimesWithTurnPending);
+	}
 	OnTurnStart(false);
 }
 
@@ -201,18 +208,20 @@ void AMegatronGameModeBase::FinishEnemyTurn()
 
 void AMegatronGameModeBase::StartLearnAbilitySegment()
 {
-	RoundState = ERoundState::LEARN_ABILITIES;
+	EnterRoundState(ERoundState::LEARN_ABILITIES);
+
+	GetWorld()->GetTimerManager().SetTimer(LearnAbilityTimerHandle, this, &AMegatronGameModeBase::FinishLearnAbilitySegment, LearnAbilitySegmentSeconds, false);
 }
 
 void AMegatronGameModeBase::FinishLearnAbilitySegment()
 {
-
+	GetWorld()->GetTimerManager().ClearTimer(LearnAbilityTimerHandle);
 	StartForgetAbilitySegment();
 }
 
 void AMegatronGameModeBase::StartForgetAbilitySegment()
 {
-	RoundState = ERoundState::FORGET_ABILITIES;
+	EnterRoundState(ERoundState::FORGET_ABILITIES);
 
 	TArray<ASlime*> CandidateSlimes;
 	CandidateSlimes.Append(GetSpawnedPlayerSlimes());
@@ -224,13 +233,14 @@ void AMegatronGameModeBase::StartForgetAbilitySegment()
 		ForgettingSlime->ForgetRandomAbility();
 		UE_LOG(LogTemp, Log, TEXT("Selected %s to forget an ability"), *ForgettingSlime->GetName());
 	}
-	// TODO: Blueprints should probably call this after the proper effects. Alternatively, set up timers for each of the "non-gameplay segments" and blueprints can control game pace that way
-	FinishForgetAbilitySegment();
+
+	GetWorld()->GetTimerManager().SetTimer(ForgetAbilityTimerHandle, this, &AMegatronGameModeBase::FinishForgetAbilitySegment, ForgetAbilitySegmentSeconds, false);
 }
 
 void AMegatronGameModeBase::FinishForgetAbilitySegment()
 {
-	RoundState = ERoundState::FINISHED;
+	GetWorld()->GetTimerManager().ClearTimer(ForgetAbilityTimerHandle);
+	EnterRoundState(ERoundState::FINISHED);
 }
 
 bool AMegatronGameModeBase::SideHasTurnsPending()
@@ -279,13 +289,13 @@ bool AMegatronGameModeBase::EnemyHasSlimesAlive()
 	return false;
 }
 
-void AMegatronGameModeBase::ChangeGameState(EGameState NewGameState)
+void AMegatronGameModeBase::EnterGameState(EGameState NewGameState)
 {
 	UE_LOG(LogTemp, Log, TEXT("Changing Game State from %s to %s"), *GetGameStateString(MegatronGameState), *GetGameStateString(NewGameState));
 	MegatronGameState = NewGameState;
 }
 
-void AMegatronGameModeBase::ChangeRoundState(ERoundState NewRoundState)
+void AMegatronGameModeBase::EnterRoundState(ERoundState NewRoundState)
 {
 	UE_LOG(LogTemp, Log, TEXT("Changing Round State from %s to %s"), *GetRoundStateString(RoundState), *GetRoundStateString(NewRoundState));
 	RoundState = NewRoundState;
@@ -345,12 +355,12 @@ void AMegatronGameModeBase::StartGame()
 
 TArray<ASlime*> AMegatronGameModeBase::GetSpawnedPlayerSlimes()
 {
-	return PlayerSpawner->GetSpawnedSlimeActors();
+	return PlayerSpawner ? PlayerSpawner->GetSpawnedSlimeActors() : TArray<ASlime*>();
 }
 
 TArray<ASlime*> AMegatronGameModeBase::GetSpawnedEnemySlimes()
 {
-	return EnemySpawner->GetSpawnedSlimeActors();
+	return EnemySpawner ? EnemySpawner->GetSpawnedSlimeActors() : TArray<ASlime*>();
 }
 
 void AMegatronGameModeBase::DEBUG_ForceNextRoundState()
@@ -380,8 +390,34 @@ void AMegatronGameModeBase::DEBUG_ForceNextRoundState()
 	}
 }
 
+void AMegatronGameModeBase::DEBUG_ForceNextGameState()
+{
+	switch (MegatronGameState)
+	{
+	case EGameState::MAIN_MENU:
+		EnterGameState(EGameState::INTERMISSION);
+		break;
+	case EGameState::COMBAT:
+		EnterGameState(EGameState::INTERMISSION);
+		break;
+	case EGameState::INTERMISSION:
+		EnterGameState(EGameState::COMBAT);
+		break;
+	case EGameState::GAME_OVER:
+		EnterGameState(EGameState::MAIN_MENU);
+		break;
+	default:
+		break;
+
+	}
+}
+
+void AMegatronGameModeBase::DEBUG_ForceGameOver()
+{
+	GameOver();
+}
+
 void AMegatronGameModeBase::BeginPlay()
 {
 	Super::BeginPlay();
-	PrepareCombat();
 }
