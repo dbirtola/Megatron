@@ -11,7 +11,7 @@
 /**
  * 
  */
-UCLASS(Blueprintable)
+UCLASS(Blueprintable, BlueprintType)
 class MEGATRON_API UAbilityBase : public UObject
 {
 	GENERATED_BODY()
@@ -32,6 +32,7 @@ protected:
 	EAttribute Attribute = EAttribute::SLIME;
 
 public:
+
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	FName GetAbilityName();
 
@@ -41,6 +42,9 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	EAttribute GetAbilityAttribute();
 
+	UFUNCTION(BlueprintCallable)
+	void SetOwner(ASlime* NewOwner);
+
 	bool CanExecuteAbility() const;
 
 	// Checks if the owning slime still has a turn available and executes the ability if possible.
@@ -49,4 +53,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	bool ExecuteAbility(ASlime* Target);
+
+	//UFUNCTION(BlueprintCallable)
+	//static UAbilityBase* InstantiateAbility(TSubClassOf<UAbilityBase> AbilityClass,)
 };

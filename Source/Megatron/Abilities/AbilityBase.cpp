@@ -18,6 +18,11 @@ EAttribute UAbilityBase::GetAbilityAttribute()
 	return Attribute;
 }
 
+void UAbilityBase::SetOwner(ASlime * NewOwner)
+{
+	Owner = NewOwner;
+}
+
 bool UAbilityBase::CanExecuteAbility() const
 {
 	if (ensure(Owner))
