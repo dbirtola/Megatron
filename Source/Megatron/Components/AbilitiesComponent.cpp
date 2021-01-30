@@ -5,6 +5,12 @@
 
 
 
+
+UAbilitiesComponent::UAbilitiesComponent()
+{
+	Owner = Cast<ASlime>(GetOwner());
+}
+
 void UAbilitiesComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
@@ -47,10 +53,6 @@ TSubclassOf<UAbilityBase> UAbilitiesComponent::GetAbilityClassAtIndex(int index)
 }
 
 
-UAbilitiesComponent::UAbilitiesComponent()
-{
-	Owner = Cast<ASlime>(GetOwner());
-}
 
 void UAbilitiesComponent::BeginPlay()
 {

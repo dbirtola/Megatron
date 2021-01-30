@@ -1,5 +1,6 @@
 #include "Slime.h"
-#include "../Components/HealthComponent.h"
+#include "Components/HealthComponent.h"
+#include "Components/AbilitiesComponent.h"
 
 void ASlime::OnDamage_Implementation(FDamage Damage)
 {
@@ -46,4 +47,24 @@ void ASlime::OnAbilityUsedCallback(ASlime* User, UAbilityBase* Ability, ASlime* 
 {
 	bHasTurnAvailable = false;
 	return;
+}
+
+TArray<UAbilityBase*> ASlime::GetAbilities()
+{
+	return AbilityComponent->GetAbilities();
+}
+
+TArray<TSubclassOf<UAbilityBase>> ASlime::GetAbilityClasses()
+{
+	return AbilityComponent->GetAbilityClasses();
+}
+
+UAbilityBase* ASlime::GetAbilityAtIndex(int index)
+{
+	return AbilityComponent->GetAbilityAtIndex(index);
+}
+
+TSubclassOf<UAbilityBase> ASlime::GetAbilityClassAtIndex(int index)
+{
+	return AbilityComponent->GetAbilityClassAtIndex(index);
 }

@@ -39,8 +39,6 @@ public:
 	TSubclassOf<UAbilityBase> GetAbilityClassAtIndex(int index);
 
 
-
-
 	UFUNCTION(BlueprintCallable)
 	TSubclassOf<UAbilityBase> ForgetAbilityAtIndex(int index);
 
