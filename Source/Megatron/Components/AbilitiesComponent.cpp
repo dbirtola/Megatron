@@ -1,4 +1,6 @@
 #include "AbilitiesComponent.h"
+#include "Abilities/AbilityBase.h"
+#include "Pawns/Slime.h"
 
 
 

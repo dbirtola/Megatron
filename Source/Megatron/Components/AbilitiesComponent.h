@@ -1,10 +1,10 @@
 #pragma once
 
 #include "Components/ActorComponent.h"
-#include "Abilities/AbilityBase.h"
 #include "AbilitiesComponent.generated.h"
 
 class UAbilityBase;
+class ASlime;
 
 UCLASS(Blueprintable, BlueprintType, meta = (BlueprintSpawnableComponent))
 class UAbilitiesComponent : public UActorComponent
