@@ -65,8 +65,11 @@ private:
 	void ResetSlimesTurns(TArray<ASlime*> Slimes);
 
 public:
-	// Functions for blueprints to respond to round state changes. Mostly for updating visuals and UI. Easier for BP to read than having blueprints switch on an enum.
+	// Blueprint driven logic to determine which slime forgets things
+	UFUNCTION(BlueprintCallable)
+	virtual ASlime* DetermineSlimeToForgetAbility(TArray<ASlime*> CandidateSlimes);
 
+	// Functions for blueprints to respond to round state changes. Mostly for updating visuals and UI. Easier for BP to read than having blueprints switch on an enum.
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnRoundStart();
 	UFUNCTION(BlueprintImplementableEvent)
@@ -83,6 +86,11 @@ public:
 	void OnCombatEnd();
 
 	FTeam GetNextEnemyTeam();
+
+	UFUNCTION(BlueprintPure)
+	TArray<ASlime*> GetSpawnedPlayerSlimes();
+	UFUNCTION(BlueprintPure)
+	TArray<ASlime*> GetSpawnedEnemySlimes();
 
 	// Debug only! Use this 
 	UFUNCTION(BlueprintCallable)

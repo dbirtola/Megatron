@@ -115,7 +115,7 @@ void AMegatronGameModeBase::StartPlayerTurn()
 {
 	RoundState = ERoundState::PLAYER_TURN;
 	// All player slimes spawned will get a chance to take their turn
-	SlimesWithTurnPending = PlayerSpawner->GetSpawnedSlimeActors();
+	SlimesWithTurnPending = GetSpawnedPlayerSlimes();
 	ResetSlimesTurns(SlimesWithTurnPending);
 	OnTurnStart(true);
 }
@@ -130,7 +130,7 @@ void AMegatronGameModeBase::StartEnemyTurn()
 {
 	RoundState = ERoundState::ENEMY_TURN;
 	// All enemy slimes spawned will get a chance to take their turn
-	SlimesWithTurnPending = EnemySpawner->GetSpawnedSlimeActors();
+	SlimesWithTurnPending = GetSpawnedEnemySlimes();
 	ResetSlimesTurns(SlimesWithTurnPending);
 	OnTurnStart(false);
 }
@@ -156,6 +156,19 @@ void AMegatronGameModeBase::FinishLearnAbilitySegment()
 void AMegatronGameModeBase::StartForgetAbilitySegment()
 {
 	RoundState = ERoundState::FORGET_ABILITIES;
+
+	TArray<ASlime*> CandidateSlimes;
+	CandidateSlimes.Append(GetSpawnedPlayerSlimes());
+	CandidateSlimes.Append(GetSpawnedEnemySlimes());
+
+	// Pick which slime is going to forget the abilities
+	if (ASlime* ForgettingSlime = DetermineSlimeToForgetAbility(CandidateSlimes))
+	{
+		ForgettingSlime->ForgetRandomAbility();
+		UE_LOG(LogTemp, Log, TEXT("Selected %s to forget an ability"), *ForgettingSlime->GetName());
+	}
+	// TODO: Blueprints should probably call this after the proper effects. Alternatively, set up timers for each of the "non-gameplay segments" and blueprints can control game pace that way
+	FinishForgetAbilitySegment();
 }
 
 void AMegatronGameModeBase::FinishForgetAbilitySegment()
@@ -191,6 +204,13 @@ void AMegatronGameModeBase::Tick(float DeltaSeconds)
 }
 
 
+
+ASlime* AMegatronGameModeBase::DetermineSlimeToForgetAbility(TArray<ASlime*> CandidateSlimes)
+{
+	ASlime* SelectedSlime = nullptr;
+	return nullptr;
+}
+
 FTeam AMegatronGameModeBase::GetNextEnemyTeam()
 {
 	// Generate a random team for now. TODO: Add a way to influence their load out to make them stronger as time goes on. And perhaps follow slime "archetypes"
@@ -204,6 +224,16 @@ FTeam AMegatronGameModeBase::GetNextEnemyTeam()
 	}
 
 	return EnemyTeam;
+}
+
+TArray<ASlime*> AMegatronGameModeBase::GetSpawnedPlayerSlimes()
+{
+	return PlayerSpawner->GetSpawnedSlimeActors();
+}
+
+TArray<ASlime*> AMegatronGameModeBase::GetSpawnedEnemySlimes()
+{
+	return EnemySpawner->GetSpawnedSlimeActors();
 }
 
 void AMegatronGameModeBase::DEBUG_ForceNextRoundState()

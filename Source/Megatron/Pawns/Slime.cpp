@@ -47,3 +47,9 @@ void ASlime::OnAbilityUsedCallback(ASlime* User, UAbilityBase* Ability, ASlime* 
 	bHasTurnAvailable = false;
 	return;
 }
+
+void ASlime::ForgetRandomAbility()
+{
+	// select random ability and forget
+
+}

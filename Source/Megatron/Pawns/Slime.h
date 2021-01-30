@@ -12,7 +12,6 @@ class UHealthComponent;
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_ThreeParams(FAbilityUsedSignature, ASlime, OnAbilityUsed, ASlime*, User, UAbilityBase*, Ability, ASlime*, Target);
 
 
-
 UCLASS(Blueprintable, BlueprintType)
 class ASlime : public APawn, public IHealthInterface
 {
@@ -37,6 +36,8 @@ public:
 	ASlime(const FObjectInitializer& ObjectInitializer);
 
 	void BeginPlay() override;
+
+	void ForgetRandomAbility();
 
 	UPROPERTY(BlueprintReadOnly)
 	bool bHasTurnAvailable;
