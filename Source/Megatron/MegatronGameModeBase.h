@@ -61,7 +61,7 @@ private:
 	void StartForgetAbilitySegment();
 	void FinishForgetAbilitySegment();
 
-
+	bool SideHasTurnsPending();
 
 public:
 	// Functions for blueprints to respond to round state changes. Mostly for updating visuals and UI. Easier for BP to read than having blueprints switch on an enum.
@@ -90,6 +90,9 @@ public:
 public:
 	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)
 	int32 EnemyTeamSize = 3;
+
+	// Array of all slimes that still need to act before this turn is over.
+	TArray<ASlime*> SlimesWithTurnPending;
 
 	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)
 	TSubclassOf<ASlime> DefaultEnemySlimeClass;

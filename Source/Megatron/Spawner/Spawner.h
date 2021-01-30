@@ -67,6 +67,8 @@ public:
 	// Spawns the currently assigned team. Be sure you use SetTeam to assign a team before calling this.
 	void SpawnTeam();
 	void RespawnTeam();
+	TArray<ASlime*> GetSpawnedSlimeActors();
+
 	ASlime* SpawnSlime(FSlimeInfo& SlimeInfo, const FVector& Location);
 	FSpawnLocation* GetNextAvailableSpawnLocation();
 
