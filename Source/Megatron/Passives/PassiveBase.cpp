@@ -16,7 +16,8 @@ UPassiveBase::~UPassiveBase()
 void UPassiveBase::PassiveCreated()
 {
 	if (PassiveAbility != nullptr) PassiveAbility->Destroy();
-	PassiveAbility = AAbility::InstantiateAbility(PassiveAbilityClass, Owner);
+	if(PassiveAbilityClass != nullptr)
+		PassiveAbility = AAbility::InstantiateAbility(PassiveAbilityClass, Owner);
 	OnPassiveApplied();
 }
 

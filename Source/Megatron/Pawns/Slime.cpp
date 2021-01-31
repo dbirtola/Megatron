@@ -2,10 +2,16 @@
 #include "Components/HealthComponent.h"
 #include "Components/AbilitiesComponent.h"
 #include "Abilities/AbilityBase.h"
+#include "Passives/PassiveBase.h"
 #include "Framework/MegatronTypes.h"
 
 void ASlime::OnDamage_Implementation(FDamage Damage)
 {
+	for(UPassiveBase* Passive : GetPassives())
+	{
+		Damage.BaseDamage += Passive->PassiveSets.AttackDamageModifier;
+		Damage.BaseDamage -= Passive->PassiveSets.DefenseDamageModifiers;
+	}
 	if (Damage.BaseDamage < 1) Damage.BaseDamage = 1;
 	HealthComponent->TakeDamage(Damage);
 }
@@ -97,6 +103,11 @@ TSubclassOf<UPassiveBase> ASlime::GetPassiveClassAtIndex(int index)
 TSubclassOf<AAbility>  ASlime::ForgetAbilityAtIndex(int index) 
 {
 	return AbilityComponent->ForgetAbilityAtIndex(index);
+}
+
+TSubclassOf<AAbility> ASlime::ForgetAbilityByReference(AAbility* reference)
+{
+	return AbilityComponent->ForgetAbilityByReference(reference);
 }
 
 TSubclassOf<AAbility>  ASlime::ForgetRandomAbility()
