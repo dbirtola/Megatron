@@ -18,8 +18,10 @@ class UAbilitiesComponent : public UActorComponent
 private:
 	ASlime* Owner;
 
-	TArray<AAbility*> Abilities;
-
+	UPROPERTY()
+	TArray<UAbilityBase*> Abilities;
+	
+	UPROPERTY()
 	TArray<UPassiveBase*> Passives;
 
 protected:
