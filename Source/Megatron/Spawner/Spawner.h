@@ -13,7 +13,7 @@ struct FSlimeInfo
 
 	AController* OwningController;
 
-	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	UClass* SlimeClass;
 	// The current slime spawned from this info, if one exists.
 	ASlime* Slime;
@@ -29,8 +29,13 @@ struct FTeam
 	UPROPERTY(BlueprintReadWrite)
 	AController* OwningController;
 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere);
+	int32 MinimumPossibleRound;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere);
+	int32 MaximumPossibleRound;
+
 	// Spawn info's used to spawn or respawn this team at the start of combat.
-	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	TArray<FSlimeInfo> SlimeInfos;
 };
 
@@ -59,10 +64,15 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly)
 	FTeam DebugTeam;
 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	TArray<FTeam> PossibleTeams;
+
 	void BeginPlay() override;
 
 	// Assigns a team to this spawner.
 	void SetTeam(FTeam InTeam);
+
+	void RandomizeTeam();
 
 	// Spawns the currently assigned team. Be sure you use SetTeam to assign a team before calling this.
 	void SpawnTeam();
