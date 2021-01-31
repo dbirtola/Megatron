@@ -123,6 +123,17 @@ TSubclassOf<AAbility> UAbilitiesComponent::ForgetAbilityAtIndex(int index)
 	}
 }
 
+TSubclassOf<AAbility> UAbilitiesComponent::ForgetAbilityByReference(AAbility* reference)
+{
+	if(Abilities.Remove(reference) > 0)
+		return reference->StaticClass();
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Ability was not in array"));
+		return AAbilityEmpty::StaticClass();
+	}
+}
+
 TSubclassOf<AAbility> UAbilitiesComponent::ForgetRandomAbility()
 {
 	TArray<int> indices;

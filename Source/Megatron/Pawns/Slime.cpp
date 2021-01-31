@@ -105,6 +105,11 @@ TSubclassOf<AAbility>  ASlime::ForgetAbilityAtIndex(int index)
 	return AbilityComponent->ForgetAbilityAtIndex(index);
 }
 
+TSubclassOf<AAbility> ASlime::ForgetAbilityByReference(AAbility* reference)
+{
+	return AbilityComponent->ForgetAbilityByReference(reference);
+}
+
 TSubclassOf<AAbility>  ASlime::ForgetRandomAbility()
 {
 	TSubclassOf<AAbility> out = AbilityComponent->ForgetRandomAbility();
