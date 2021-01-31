@@ -24,7 +24,7 @@
 *.la
 *.a
 *.lib
-!Plugins/Wwise/ThirdParty/*.lib
+!Plugins/Wwise/ThirdParty/*/*/*/*.lib
 
 # Executables
 *.exe
