@@ -18,7 +18,6 @@ class ASlime : public APawn, public IHealthInterface
 {
 	GENERATED_BODY()
 
-	int32 FactionID = 0;
 
 protected: 
 	virtual void OnDamage_Implementation(FDamage Damage) override;
@@ -31,6 +30,7 @@ protected:
 
 	virtual float OnGetHealthRatio_Implementation() override;
 
+	UFUNCTION()
 	virtual void OnAbilityUsedCallback(ASlime* User, UAbilityBase* Ability, ASlime* Target);
 
 public:
@@ -39,6 +39,9 @@ public:
 	void BeginPlay() override;
 
 	void ForgetRandomAbility();
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere);
+	int32 FactionID = 0;
 
 	UPROPERTY(BlueprintReadOnly)
 	bool bHasTurnAvailable;

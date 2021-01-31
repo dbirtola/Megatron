@@ -64,6 +64,7 @@ UAbilityBase* ASlime::GetAbilityAtIndex(int index)
 	return AbilityComponent->GetAbilityAtIndex(index);
 }
 
+
 TSubclassOf<UAbilityBase> ASlime::GetAbilityClassAtIndex(int index)
 {
 	return AbilityComponent->GetAbilityClassAtIndex(index);
