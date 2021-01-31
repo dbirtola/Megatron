@@ -8,6 +8,7 @@
 
 class UAbilityBase;
 class UHealthComponent;
+class UAbilitiesComponent;
 
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_ThreeParams(FAbilityUsedSignature, ASlime, OnAbilityUsed, ASlime*, User, UAbilityBase*, Ability, ASlime*, Target);
 
@@ -53,4 +54,16 @@ public:
 
 	UPROPERTY(BlueprintAssignable)
 	FAbilityUsedSignature OnAbilityUsed;
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	TArray<UAbilityBase*> GetAbilities();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	TArray<TSubclassOf<UAbilityBase>> GetAbilityClasses();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	UAbilityBase* GetAbilityAtIndex(int index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	TSubclassOf<UAbilityBase> GetAbilityClassAtIndex(int index);
 };
