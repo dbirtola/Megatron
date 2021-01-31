@@ -11,7 +11,7 @@ void UHealthComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, 
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 }
 
-void UHealthComponent::TakeDamage(AActor* DamageCauser, FDamage Damage)
+void UHealthComponent::TakeDamage(FDamage Damage)
 {
 	bool bIsHeal = Damage.BaseDamage < 0;
 
@@ -20,9 +20,9 @@ void UHealthComponent::TakeDamage(AActor* DamageCauser, FDamage Damage)
 	CurrentHealth -= FinalDamage;
 
 	FString DamageCauserName("An Unknown Source");
-	if (ensureMsgf(DamageCauser, TEXT("For debugging purposes, a valid damage causer is required for all sources of damage taken. Ensure the damage causer isn't being destroyed before it deals its damage")))
+	if (ensureMsgf(Damage.Instigator, TEXT("For debugging purposes, a valid damage causer is required for all sources of damage taken. Ensure the damage causer isn't being destroyed before it deals its damage")))
 	{
-		DamageCauserName = DamageCauser->GetName();
+		DamageCauserName = Damage.Instigator->GetName();
 	}
 	UE_LOG(LogTemp, Log, TEXT("%s took %d damage from %s"), *GetOwner()->GetName(), FinalDamage, *DamageCauserName);
 
@@ -35,12 +35,18 @@ void UHealthComponent::TakeDamage(AActor* DamageCauser, FDamage Damage)
 	}
 
 	// Make sure to announce damage was taken before we announce if something has died or not.
-	OnTakeDamage.Broadcast(GetOwner(), DamageCauser, Damage);
+	OnTakeDamage.Broadcast(GetOwner(), Damage.Instigator, Damage);
 
 	if (CurrentHealth <= 0)
 	{
-		Die(DamageCauser);
+		Die(Damage.Instigator);
 	}
+}
+
+void UHealthComponent::TakeHealing(FDamage Damage)
+{
+	Damage.BaseDamage *= -1;
+	TakeDamage(Damage);
 }
 
 void UHealthComponent::ResetHealth()

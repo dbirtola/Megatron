@@ -7,9 +7,45 @@
 #include "MegatronTypes.generated.h"
 
 UENUM(BlueprintType)
-enum class BuildConfig : uint8
+enum class EBuildConfig : uint8
 {
 	SHIPPING,
 	DEVELOPMENT,
 	EDITOR
+};
+
+UENUM(BlueprintType)
+enum class EAttribute : uint8
+{
+	SLIME, 
+	ACID,
+	WATER
+};
+
+UENUM(BlueprintType)
+enum class ETargetType : uint8
+{
+	ENEMY,
+	TEAM,
+	SELF,
+	TEAMANDSELF,
+	PASSIVE
+};
+
+USTRUCT(BlueprintType)
+struct FDamage
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadWrite)
+	AActor* Instigator;
+		
+	UPROPERTY(BlueprintReadWrite)
+	int32 BaseDamage;
+
+	UPROPERTY(BlueprintReadWrite)
+	EAttribute Attribute;
+
+	UPROPERTY(BlueprintReadWrite)
+	FString DebugInfo;
 };
