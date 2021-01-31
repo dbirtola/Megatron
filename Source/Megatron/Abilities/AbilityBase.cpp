@@ -3,61 +3,61 @@
 
 #include "Abilities/AbilityBase.h"
 
-FName UAbilityBase::GetAbilityName()
+FName AAbility::GetAbilityName()
 {
 	return Name;
 }
 
-FText UAbilityBase::GetAbilityDescription()
+FText AAbility::GetAbilityDescription()
 {
 	return Description;
 }
 
-EAttribute UAbilityBase::GetAbilityAttribute()
+EAttribute AAbility::GetAbilityAttribute()
 {
 	return Attribute;
 }
 
-void UAbilityBase::SetOwner(ASlime * NewOwner)
+void AAbility::SetOwnerSlime(ASlime * NewOwner)
 {
-	Owner = NewOwner;
+	OwnerSlime = NewOwner;
 }
 
-bool UAbilityBase::CanExecuteAbility() const
+bool AAbility::CanExecuteAbility() const
 {
-	if (ensure(Owner))
+	if (ensure(OwnerSlime))
 	{
-		return Owner->bHasTurnAvailable;
+		return OwnerSlime->bHasTurnAvailable;
 	}
 	return false;
 }
 
-bool UAbilityBase::TryExecuteAbility(ASlime* Target)
+bool AAbility::TryExecuteAbility(ASlime* Target)
 {
 	if (CanExecuteAbility())
 	{
 		ExecuteAbility(Target);
-		if (ensure(Owner))
+		if (ensure(OwnerSlime))
 		{
-			Owner->OnAbilityUsed.Broadcast(Owner, this, Target);
+			OwnerSlime->OnAbilityUsed.Broadcast(OwnerSlime, this, Target);
 			return true;
 		}
 	}
 	return false;
 }
 
-UAbilityBase * UAbilityBase::InstantiateAbility(TSubclassOf<UAbilityBase> AbilityClass, ASlime* InOwner)
+AAbility * AAbility::InstantiateAbility(TSubclassOf<AAbility> AbilityClass, ASlime* InOwner)
 {
 	
-	UAbilityBase* out = NewObject<UAbilityBase>(InOwner, *AbilityClass);
-	out->SetOwner(InOwner);
+	AAbility* out = InOwner->GetWorld()->SpawnActor<AAbility>(*AbilityClass);
+	out->SetOwnerSlime(InOwner);
 	return out; //later
 }
 
-void UAbilityBase::ExecuteAbility_Implementation(ASlime* Target)
+void AAbility::ExecuteAbility_Implementation(ASlime* Target)
 {
 }
 
-void UAbilityBase::OnAbilityFinished()
+void AAbility::OnAbilityFinished()
 {
 }

@@ -44,29 +44,29 @@ void ASlime::BeginPlay()
 }
 
 
-void ASlime::OnAbilityUsedCallback(ASlime* User, UAbilityBase* Ability, ASlime* Target)
+void ASlime::OnAbilityUsedCallback(ASlime* User, AAbility* Ability, ASlime* Target)
 {
 	bHasTurnAvailable = false;
 	return;
 }
 
-TArray<UAbilityBase*> ASlime::GetAbilities()
+TArray<AAbility*> ASlime::GetAbilities()
 {
 	return AbilityComponent->GetAbilities();
 }
 
-TArray<TSubclassOf<UAbilityBase>> ASlime::GetAbilityClasses()
+TArray<TSubclassOf<AAbility>> ASlime::GetAbilityClasses()
 {
 	return AbilityComponent->GetAbilityClasses();
 }
 
-UAbilityBase* ASlime::GetAbilityAtIndex(int index)
+AAbility* ASlime::GetAbilityAtIndex(int index)
 {
 	return AbilityComponent->GetAbilityAtIndex(index);
 }
 
 
-TSubclassOf<UAbilityBase> ASlime::GetAbilityClassAtIndex(int index)
+TSubclassOf<AAbility> ASlime::GetAbilityClassAtIndex(int index)
 {
 	return AbilityComponent->GetAbilityClassAtIndex(index);
 }

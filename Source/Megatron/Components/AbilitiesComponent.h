@@ -3,7 +3,7 @@
 #include "Components/ActorComponent.h"
 #include "AbilitiesComponent.generated.h"
 
-class UAbilityBase;
+class AAbility;
 class ASlime;
 
 UCLASS(Blueprintable, BlueprintType, meta = (BlueprintSpawnableComponent))
@@ -17,11 +17,11 @@ class UAbilitiesComponent : public UActorComponent
 private:
 	ASlime* Owner;
 
-	TArray<UAbilityBase*> Abilities;
+	TArray<AAbility*> Abilities;
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<TSubclassOf<UAbilityBase>> AbilityClasses;
+	TArray<TSubclassOf<AAbility>> AbilityClasses;
 
 public:
 	void BeginPlay() override;
@@ -29,24 +29,24 @@ public:
 	void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	TArray<UAbilityBase*> GetAbilities();
+	TArray<AAbility*> GetAbilities();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	TArray<TSubclassOf<UAbilityBase>> GetAbilityClasses();
+	TArray<TSubclassOf<AAbility>> GetAbilityClasses();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	UAbilityBase* GetAbilityAtIndex(int index);
+	AAbility* GetAbilityAtIndex(int index);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	TSubclassOf<UAbilityBase> GetAbilityClassAtIndex(int index);
+	TSubclassOf<AAbility> GetAbilityClassAtIndex(int index);
 
 
 	UFUNCTION(BlueprintCallable)
-	TSubclassOf<UAbilityBase> ForgetAbilityAtIndex(int index);
+	TSubclassOf<AAbility> ForgetAbilityAtIndex(int index);
 
 	UFUNCTION(BlueprintCallable)
-	TSubclassOf<UAbilityBase> ForgetRandomAbility();
+	TSubclassOf<AAbility> ForgetRandomAbility();
 
 	UFUNCTION(BlueprintCallable, meta = (DeterminesOutputType = "AbilityClass"))
-	UAbilityBase* LearnNewAbility(int index, TSubclassOf<UAbilityBase> AbilityClass);
+	AAbility* LearnNewAbility(int index, TSubclassOf<AAbility> AbilityClass);
 };

@@ -16,17 +16,17 @@ void UAbilitiesComponent::TickComponent(float DeltaTime, enum ELevelTick TickTyp
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 }
 
-TArray<UAbilityBase*> UAbilitiesComponent::GetAbilities()
+TArray<AAbility*> UAbilitiesComponent::GetAbilities()
 {
 	return Abilities;
 }
 
-TArray<TSubclassOf<UAbilityBase>> UAbilitiesComponent::GetAbilityClasses()
+TArray<TSubclassOf<AAbility>> UAbilitiesComponent::GetAbilityClasses()
 {
 	return AbilityClasses;
 }
 
-UAbilityBase* UAbilitiesComponent::GetAbilityAtIndex(int index)
+AAbility* UAbilitiesComponent::GetAbilityAtIndex(int index)
 {
 	if (0 <= index && index < Abilities.Num())
 	{
@@ -39,7 +39,7 @@ UAbilityBase* UAbilitiesComponent::GetAbilityAtIndex(int index)
 	}
 }
 
-TSubclassOf<UAbilityBase> UAbilitiesComponent::GetAbilityClassAtIndex(int index)
+TSubclassOf<AAbility> UAbilitiesComponent::GetAbilityClassAtIndex(int index)
 {
 	if (0 <= index && index < Abilities.Num())
 	{
@@ -48,7 +48,7 @@ TSubclassOf<UAbilityBase> UAbilitiesComponent::GetAbilityClassAtIndex(int index)
 	else
 	{
 		UE_LOG(LogTemp, Warning, TEXT("No ability in this slot"));
-		return UAbilityEmpty::StaticClass();
+		return AAbilityEmpty::StaticClass();
 	}
 }
 
@@ -59,51 +59,51 @@ void UAbilitiesComponent::BeginPlay()
 	Super::BeginPlay();
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
-	for (TSubclassOf<UAbilityBase> AbilityClass : AbilityClasses)
+	for (TSubclassOf<AAbility> AbilityClass : AbilityClasses)
 	{
-		Abilities.Add(UAbilityBase::InstantiateAbility(AbilityClass, Owner));
+		Abilities.Add(AAbility::InstantiateAbility(AbilityClass, Owner));
 	}
 }
 
-TSubclassOf<UAbilityBase> UAbilitiesComponent::ForgetAbilityAtIndex(int index)
+TSubclassOf<AAbility> UAbilitiesComponent::ForgetAbilityAtIndex(int index)
 {
 	if (0 <= index && index < Abilities.Num())
 	{
-		TSubclassOf<UAbilityBase> out = Abilities[index]->StaticClass();
-		Abilities[index] = UAbilityBase::InstantiateAbility(UAbilityEmpty::StaticClass(), Owner);
-		AbilityClasses[index] = UAbilityEmpty::StaticClass();
+		TSubclassOf<AAbility> out = Abilities[index]->StaticClass();
+		Abilities[index] = AAbility::InstantiateAbility(AAbilityEmpty::StaticClass(), Owner);
+		AbilityClasses[index] = AAbilityEmpty::StaticClass();
 		return out;
 	}
 	else
 	{
 		UE_LOG(LogTemp, Warning, TEXT("No ability in this slot"));
-		return UAbilityEmpty::StaticClass();
+		return AAbilityEmpty::StaticClass();
 	}
 }
 
-TSubclassOf<UAbilityBase> UAbilitiesComponent::ForgetRandomAbility()
+TSubclassOf<AAbility> UAbilitiesComponent::ForgetRandomAbility()
 {
 	TArray<int> indices;
 	for(int i = 0; i < AbilityClasses.Num(); ++i)
 	{
-		if (AbilityClasses[i] != UAbilityEmpty::StaticClass())
+		if (AbilityClasses[i] != AAbilityEmpty::StaticClass())
 			indices.Add(i);
 	}
 	if (indices.Num() > 0)
 	{
 		return ForgetAbilityAtIndex(indices[FMath::RandRange(0, indices.Num() - 1)]);
 	}
-	return UAbilityEmpty::StaticClass();
+	return AAbilityEmpty::StaticClass();
 }
 
-UAbilityBase* UAbilitiesComponent::LearnNewAbility(int index, TSubclassOf<UAbilityBase> AbilityClass)
+AAbility* UAbilitiesComponent::LearnNewAbility(int index, TSubclassOf<AAbility> AbilityClass)
 {
 	for (int i = 0; i < AbilityClasses.Num(); ++i)
 	{
-		if (AbilityClasses[i] != UAbilityEmpty::StaticClass())
+		if (AbilityClasses[i] != AAbilityEmpty::StaticClass())
 		{
 			AbilityClasses[i] = *AbilityClass;
-			Abilities[i] = UAbilityBase::InstantiateAbility(*AbilityClass, Owner);
+			Abilities[i] = AAbility::InstantiateAbility(*AbilityClass, Owner);
 			return Abilities[i];
 		}	
 	}
