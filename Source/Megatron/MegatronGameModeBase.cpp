@@ -258,7 +258,7 @@ void AMegatronGameModeBase::StartLearnAbilitySegment()
 		{
 			// Learn the ability this slime used this round
 			UClass* AbilityToLearn = Slime->AbilityComponent->LastUsedAbilityClass;
-			Slime->AbilityComponent->LearnNewAbility(0, AbilityToLearn);
+			Slime->AbilityComponent->LearnNewAbility(AbilityToLearn);
 			Slime->SlimeToLearnFrom = false;
 		}
 	}
