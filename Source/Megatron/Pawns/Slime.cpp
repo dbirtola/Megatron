@@ -77,4 +77,5 @@ TSubclassOf<AAbility> ASlime::GetAbilityClassAtIndex(int index)
 void ASlime::ForgetRandomAbility()
 {
 	AbilityComponent->ForgetRandomAbility();
+	OnForgotAbility();
 }

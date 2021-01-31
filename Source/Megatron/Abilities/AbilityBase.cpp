@@ -44,6 +44,7 @@ bool AAbility::TryExecuteAbility(ASlime* Target)
 		ExecuteAbility(Target);
 		if (ensure(OwnerSlime))
 		{
+			OwnerSlime->AbilityComponent->LastUsedAbilityClass = StaticClass();
 			OwnerSlime->OnAbilityUsed.Broadcast(OwnerSlime, this, Target);
 			return true;
 		}

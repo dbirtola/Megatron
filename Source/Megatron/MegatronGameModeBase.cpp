@@ -247,6 +247,22 @@ void AMegatronGameModeBase::StartLearnAbilitySegment()
 {
 	EnterRoundState(ERoundState::LEARN_ABILITIES);
 
+	// Check each slime for abilities they should learn
+	TArray<ASlime*> Slimes;
+	Slimes.Append(GetSpawnedPlayerSlimes());
+	//Slimes.Append(GetSpawnedEnemySlimes());
+
+	for (ASlime* Slime : Slimes)
+	{
+		if (Slime->SlimeToLearnFrom)
+		{
+			// Learn the ability this slime used this round
+			UClass* AbilityToLearn = Slime->AbilityComponent->LastUsedAbilityClass;
+			Slime->AbilityComponent->LearnNewAbility(0, AbilityToLearn);
+			Slime->SlimeToLearnFrom = false;
+		}
+	}
+
 	GetWorld()->GetTimerManager().SetTimer(LearnAbilityTimerHandle, this, &AMegatronGameModeBase::FinishLearnAbilitySegment, LearnAbilitySegmentSeconds, false);
 }
 
@@ -262,7 +278,7 @@ void AMegatronGameModeBase::StartForgetAbilitySegment()
 
 	TArray<ASlime*> CandidateSlimes;
 	CandidateSlimes.Append(GetSpawnedPlayerSlimes());
-	CandidateSlimes.Append(GetSpawnedEnemySlimes());
+	//CandidateSlimes.Append(GetSpawnedEnemySlimes());
 
 	// Pick which slime is going to forget the abilities
 	if (ASlime* ForgettingSlime = DetermineSlimeToForgetAbility(CandidateSlimes))
@@ -425,13 +441,20 @@ void AMegatronGameModeBase::Tick(float DeltaSeconds)
 }
 
 
+/*
 
-ASlime* AMegatronGameModeBase::DetermineSlimeToForgetAbility(TArray<ASlime*> CandidateSlimes)
+void AMegatronGameModeBase::DetermineSlimeToForgetAbility(const TArray<ASlime*>& CandidateSlimes, ASlime*& Slime)
 {
 	ASlime* SelectedSlime = nullptr;
 
-	return nullptr;
+	Slime = SelectedSlime;
 }
+
+void AMegatronGameModeBase::DetermineSlimeToForgetAbility_Implementation(TArray<ASlime*> CandidateSlimes, ASlime* Slime)
+{
+
+}
+*/
 
 FTeam AMegatronGameModeBase::GetNextEnemyTeam()
 {
@@ -451,6 +474,12 @@ FTeam AMegatronGameModeBase::GetNextEnemyTeam()
 void AMegatronGameModeBase::StartGame()
 {
 	MegatronGameState = EGameState::INTERMISSION;
+}
+
+ASlime* AMegatronGameModeBase::DetermineSlimeToForgetAbility(const TArray <ASlime*> CandidateSlimes)
+{
+	int32 Index = FMath::RandRange(0, CandidateSlimes.Num() - 1);
+	return CandidateSlimes[Index];
 }
 
 TArray<ASlime*> AMegatronGameModeBase::GetSpawnedPlayerSlimes()
