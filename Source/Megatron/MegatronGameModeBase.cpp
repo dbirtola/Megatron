@@ -81,11 +81,22 @@ void AMegatronGameModeBase::PrepareCombat()
 		FTeam Team = MegatronPlayerController->GetTeam();
 		PlayerSpawner->SetTeam(Team);
 		PlayerSpawner->SpawnTeam();
+		TArray<ASlime*> PlayerSlimes = GetSpawnedPlayerSlimes();
+		for (ASlime* Slime : PlayerSlimes)
+		{
+			Slime->FactionID = UMegatronFunctionLibrary::GetPlayerFactionID();
+		}
 	}
 
 	FTeam EnemyTeam = GetNextEnemyTeam();
 	EnemySpawner->SetTeam(EnemyTeam);
 	EnemySpawner->SpawnTeam();
+
+	TArray<ASlime*> EnemySlimes = GetSpawnedEnemySlimes();
+	for (ASlime* Slime : EnemySlimes)
+	{
+		Slime->FactionID = UMegatronFunctionLibrary::GetEnemyFactionID();
+	}
 }
 
 void AMegatronGameModeBase::StartCombat()
