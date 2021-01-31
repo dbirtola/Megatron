@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
 #include "Spawner/Spawner.h"
+#include "Framework/MegatronTypes.h"
 #include "Pawns/Slime.h"
 #include "MegatronGameModeBase.generated.h"
 
@@ -111,6 +112,13 @@ public:
 	TArray<ASlime*> GetSpawnedPlayerSlimes();
 	UFUNCTION(BlueprintPure)
 	TArray<ASlime*> GetSpawnedEnemySlimes();
+
+
+	UFUNCTION(BlueprintPure, BlueprintCallable)
+	TArray<ASlime*> GetSlimesToTarget(ASlime* SourceSlime, ETargetType TargetType);
+
+	UFUNCTION(BlueprintPure, BlueprintCallable)
+	TArray<ASlime*> GetSlimesToTargetWithAbility(AAbility* Ability);
 
 
 	// Functions for blueprints to respond to round state changes. Mostly for updating visuals and UI. Easier for BP to read than having blueprints switch on an enum.

@@ -258,7 +258,7 @@ void AMegatronGameModeBase::StartLearnAbilitySegment()
 		{
 			// Learn the ability this slime used this round
 			UClass* AbilityToLearn = Slime->AbilityComponent->LastUsedAbilityClass;
-			Slime->AbilityComponent->LearnNewAbility(0, AbilityToLearn);
+			Slime->AbilityComponent->LearnNewAbility(AbilityToLearn);
 			Slime->SlimeToLearnFrom = false;
 		}
 	}
@@ -380,14 +380,14 @@ void AMegatronGameModeBase::SimulateNextEnemyTurn()
 		ASlime* SelectedSlime = SlimesWithMoves[index];
 
 		// select random ability
-		UAbilityBase* Ability = nullptr;
-		TArray<UAbilityBase*> Abilities = SelectedSlime->GetAbilities();
+		AAbility* Ability = nullptr;
+		TArray<AAbility*> Abilities = SelectedSlime->GetAbilities();
 		index = FMath::RandRange(0, Abilities.Num() - 1);
 		Ability = Abilities[index];
 
 		// Select a random target. TODO: Make sure slimes filter for reasonable targets, and don't cast buffs on enemies
 		ASlime* Target = nullptr;
-		TArray<ASlime*> TargetSlimes = GetSpawnedPlayerSlimes();
+		TArray<ASlime*> TargetSlimes = GetSlimesToTargetWithAbility(Ability);
 		index = FMath::RandRange(0, TargetSlimes.Num() - 1);
 		Target = TargetSlimes[index];
 
@@ -492,6 +492,52 @@ TArray<ASlime*> AMegatronGameModeBase::GetSpawnedEnemySlimes()
 	return EnemySpawner ? EnemySpawner->GetSpawnedSlimeActors(true) : TArray<ASlime*>();
 }
 
+#define ValidatedEnemySlimes() (EnemySpawner ? EnemySpawner->GetSpawnedSlimeActors(true) : TArray<ASlime*>())
+#define ValidatedPlayerSlimes() (PlayerSpawner ? PlayerSpawner->GetSpawnedSlimeActors(true) : TArray<ASlime*>())
+
+
+TArray<ASlime*> AMegatronGameModeBase::GetSlimesToTarget(ASlime* SourceSlime, ETargetType TargetType)
+{
+	TArray<ASlime*> out;
+	bool player = (SourceSlime->FactionID == UMegatronFunctionLibrary::GetPlayerFactionID());
+	switch (TargetType)
+	{
+	case ETargetType::ENEMY:
+		if (player)
+			out.Append(ValidatedEnemySlimes());
+		else
+			out.Append(ValidatedPlayerSlimes());
+		break;
+	case ETargetType::TEAM:
+		if (player)
+			out.Append(ValidatedPlayerSlimes());
+		else
+			out.Append(ValidatedEnemySlimes());
+		out.Remove(SourceSlime);
+		break;
+	case ETargetType::SELF:
+		out.Add(SourceSlime);
+		break;
+	case ETargetType::TEAMANDSELF:
+		if (player)
+			out.Append(ValidatedPlayerSlimes());
+		else
+			out.Append(ValidatedEnemySlimes());
+		break;
+	case ETargetType::PASSIVE:
+		out.Add(SourceSlime);
+		break;
+	default:
+		return TArray<ASlime*>();
+		break;
+	}
+	return out;
+}
+
+TArray<ASlime*> AMegatronGameModeBase::GetSlimesToTargetWithAbility(AAbility * Ability)
+{
+	return GetSlimesToTarget(Ability->GetOwningSlime(), Ability->GetAbilityTargetType());
+}
 void AMegatronGameModeBase::DEBUG_ForceNextRoundState()
 {
 	switch (RoundState)

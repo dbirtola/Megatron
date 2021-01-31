@@ -3,8 +3,9 @@
 #include "Components/ActorComponent.h"
 #include "AbilitiesComponent.generated.h"
 
-class UAbilityBase;
+class AAbility;
 class ASlime;
+class UPassiveBase;
 
 UCLASS(Blueprintable, BlueprintType, meta = (BlueprintSpawnableComponent))
 class UAbilitiesComponent : public UActorComponent
@@ -18,11 +19,17 @@ private:
 	ASlime* Owner;
 
 	UPROPERTY()
-	TArray<UAbilityBase*> Abilities;
+	TArray<AAbility*> Abilities;
+	
+	UPROPERTY()
+	TArray<UPassiveBase*> Passives;
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<TSubclassOf<UAbilityBase>> AbilityClasses;
+	TArray<TSubclassOf<AAbility>> AbilityClasses;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TArray<TSubclassOf<UPassiveBase>> PassiveClasses;
 
 public:
 	UClass* LastUsedAbilityClass;
@@ -32,24 +39,42 @@ public:
 	void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	TArray<UAbilityBase*> GetAbilities();
+	TArray<AAbility*> GetAbilities();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	TArray<TSubclassOf<UAbilityBase>> GetAbilityClasses();
+	TArray<UPassiveBase*> GetPassives();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	UAbilityBase* GetAbilityAtIndex(int index);
+	TArray<TSubclassOf<AAbility>> GetAbilityClasses();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	TSubclassOf<UAbilityBase> GetAbilityClassAtIndex(int index);
+	TArray<TSubclassOf<UPassiveBase>> GetPassiveClasses();
 
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	AAbility* GetAbilityAtIndex(int index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	UPassiveBase* GetPassiveAtIndex(int index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	TSubclassOf<AAbility> GetAbilityClassAtIndex(int index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	TSubclassOf<UPassiveBase> GetPassiveClassAtIndex(int index);
 
 	UFUNCTION(BlueprintCallable)
-	TSubclassOf<UAbilityBase> ForgetAbilityAtIndex(int index);
+	TSubclassOf<AAbility> ForgetAbilityAtIndex(int index);
 
 	UFUNCTION(BlueprintCallable)
-	TSubclassOf<UAbilityBase> ForgetRandomAbility();
+	TSubclassOf<AAbility> ForgetRandomAbility();
 
 	UFUNCTION(BlueprintCallable, meta = (DeterminesOutputType = "AbilityClass"))
-	UAbilityBase* LearnNewAbility(int index, TSubclassOf<UAbilityBase> AbilityClass);
+	AAbility* LearnNewAbility(TSubclassOf<AAbility> AbilityClass);
+
+	UFUNCTION(BlueprintCallable, meta = (DeterminesOutputType = "PassiveClass"))
+	UPassiveBase* GainPassive(TSubclassOf<UPassiveBase> PassiveClass);
+
+	UFUNCTION(BlueprintCallable)
+	void LosePassive(UPassiveBase* PassiveToLose);
+
 };

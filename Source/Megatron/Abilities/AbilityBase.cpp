@@ -3,62 +3,72 @@
 
 #include "Abilities/AbilityBase.h"
 
-FName UAbilityBase::GetAbilityName()
+ASlime* AAbility::GetOwningSlime()
+{
+	return OwnerSlime;
+}
+
+FName AAbility::GetAbilityName()
 {
 	return Name;
 }
 
-FText UAbilityBase::GetAbilityDescription()
+FText AAbility::GetAbilityDescription()
 {
 	return Description;
 }
 
-EAttribute UAbilityBase::GetAbilityAttribute()
+EAttribute AAbility::GetAbilityAttribute()
 {
 	return Attribute;
 }
 
-void UAbilityBase::SetOwner(ASlime * NewOwner)
+ETargetType AAbility::GetAbilityTargetType()
 {
-	Owner = NewOwner;
+	return TargetType;
 }
 
-bool UAbilityBase::CanExecuteAbility() const
+void AAbility::SetOwnerSlime(ASlime * NewOwner)
 {
-	if (ensure(Owner))
+	OwnerSlime = NewOwner;
+}
+
+bool AAbility::CanExecuteAbility() const
+{
+	if (ensure(OwnerSlime))
 	{
-		return Owner->bHasTurnAvailable;
+		return OwnerSlime->bHasTurnAvailable;
 	}
 	return false;
 }
 
-bool UAbilityBase::TryExecuteAbility(ASlime* Target)
+bool AAbility::TryExecuteAbility(ASlime* Target)
 {
 	if (CanExecuteAbility())
 	{
 		ExecuteAbility(Target);
-		if (ensure(Owner))
+		if (IsValid(OwnerSlime))
 		{
-			Owner->AbilityComponent->LastUsedAbilityClass = StaticClass();
-			Owner->OnAbilityUsed.Broadcast(Owner, this, Target);
+			OwnerSlime->AbilityComponent->LastUsedAbilityClass = StaticClass();
+			OwnerSlime->OnAbilityUsed.Broadcast(OwnerSlime, this, Target);
 			return true;
 		}
 	}
 	return false;
 }
 
-UAbilityBase * UAbilityBase::InstantiateAbility(TSubclassOf<UAbilityBase> AbilityClass, ASlime* InOwner)
+AAbility * AAbility::InstantiateAbility(TSubclassOf<AAbility> AbilityClass, ASlime* InOwner)
 {
 	
-	UAbilityBase* out = NewObject<UAbilityBase>(InOwner, *AbilityClass);
-	out->SetOwner(InOwner);
+	AAbility* out = InOwner->GetWorld()->SpawnActor<AAbility>(*AbilityClass);
+	out->SetOwnerSlime(InOwner);
 	return out; //later
 }
 
-void UAbilityBase::ExecuteAbility_Implementation(ASlime* Target)
+void AAbility::ExecuteAbility_Implementation(ASlime* Target)
 {
 }
 
-void UAbilityBase::OnAbilityFinished()
+void AAbility::OnAbilityFinished()
 {
 }

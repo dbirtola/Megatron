@@ -1,6 +1,8 @@
 #include "Slime.h"
 #include "Components/HealthComponent.h"
 #include "Components/AbilitiesComponent.h"
+#include "Abilities/AbilityBase.h"
+#include "Framework/MegatronTypes.h"
 
 void ASlime::OnDamage_Implementation(FDamage Damage)
 {
@@ -44,31 +46,62 @@ void ASlime::BeginPlay()
 }
 
 
-void ASlime::OnAbilityUsedCallback(ASlime* User, UAbilityBase* Ability, ASlime* Target)
+void ASlime::OnAbilityUsedCallback(ASlime* User, AAbility* Ability, ASlime* Target)
 {
-	bHasTurnAvailable = false;
+	if(Ability->GetAbilityTargetType() != ETargetType::PASSIVE)
+		bHasTurnAvailable = false;
 	return;
 }
 
-TArray<UAbilityBase*> ASlime::GetAbilities()
+TArray<AAbility*> ASlime::GetAbilities()
 {
 	return AbilityComponent->GetAbilities();
 }
 
-TArray<TSubclassOf<UAbilityBase>> ASlime::GetAbilityClasses()
+TArray<UPassiveBase*> ASlime::GetPassives()
+{
+	return AbilityComponent->GetPassives();
+}
+
+TArray<TSubclassOf<AAbility>> ASlime::GetAbilityClasses()
 {
 	return AbilityComponent->GetAbilityClasses();
 }
 
-UAbilityBase* ASlime::GetAbilityAtIndex(int index)
+TArray<TSubclassOf<UPassiveBase>> ASlime::GetPassiveClasses()
+{
+	return AbilityComponent->GetPassiveClasses();
+}
+
+AAbility* ASlime::GetAbilityAtIndex(int index)
 {
 	return AbilityComponent->GetAbilityAtIndex(index);
 }
 
+UPassiveBase * ASlime::GetPassiveAtIndex(int index)
+{
+	return AbilityComponent->GetPassiveAtIndex(index);
+}
 
-TSubclassOf<UAbilityBase> ASlime::GetAbilityClassAtIndex(int index)
+
+TSubclassOf<AAbility> ASlime::GetAbilityClassAtIndex(int index)
 {
 	return AbilityComponent->GetAbilityClassAtIndex(index);
+}
+
+TSubclassOf<UPassiveBase> ASlime::GetPassiveClassAtIndex(int index)
+{
+	return AbilityComponent->GetPassiveClassAtIndex(index);
+}
+
+UPassiveBase * ASlime::GainPassive(TSubclassOf<UPassiveBase> PassiveClass)
+{
+	return AbilityComponent->GainPassive(PassiveClass);
+}
+
+void ASlime::LosePassive(UPassiveBase * PassiveToLose)
+{
+	return AbilityComponent->LosePassive(PassiveToLose);
 }
 
 void ASlime::ForgetRandomAbility()

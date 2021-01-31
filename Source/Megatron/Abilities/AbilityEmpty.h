@@ -10,9 +10,9 @@
  * 
  */
 UCLASS(BlueprintType)
-class MEGATRON_API UAbilityEmpty : public UAbilityBase
+class MEGATRON_API AAbilityEmpty : public AAbility
 {
 	GENERATED_BODY()
 
-	UAbilityEmpty();
+	AAbilityEmpty();
 };

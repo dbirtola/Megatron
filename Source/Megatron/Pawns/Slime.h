@@ -6,11 +6,11 @@
 
 #include "Slime.generated.h"
 
-class UAbilityBase;
+class AAbility;
 class UHealthComponent;
 class UAbilitiesComponent;
 
-DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_ThreeParams(FAbilityUsedSignature, ASlime, OnAbilityUsed, ASlime*, User, UAbilityBase*, Ability, ASlime*, Target);
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_ThreeParams(FAbilityUsedSignature, ASlime, OnAbilityUsed, ASlime*, User, AAbility*, Ability, ASlime*, Target);
 
 
 UCLASS(Blueprintable, BlueprintType)
@@ -31,7 +31,7 @@ protected:
 	virtual float OnGetHealthRatio_Implementation() override;
 
 	UFUNCTION()
-	virtual void OnAbilityUsedCallback(ASlime* User, UAbilityBase* Ability, ASlime* Target);
+	virtual void OnAbilityUsedCallback(ASlime* User, AAbility* Ability, ASlime* Target);
 
 public:
 	ASlime(const FObjectInitializer& ObjectInitializer);
@@ -63,14 +63,32 @@ public:
 	FAbilityUsedSignature OnAbilityUsed;
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	TArray<UAbilityBase*> GetAbilities();
+	TArray<AAbility*> GetAbilities();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	TArray<TSubclassOf<UAbilityBase>> GetAbilityClasses();
+	TArray<UPassiveBase*> GetPassives();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	UAbilityBase* GetAbilityAtIndex(int index);
+	TArray<TSubclassOf<AAbility>> GetAbilityClasses();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	TSubclassOf<UAbilityBase> GetAbilityClassAtIndex(int index);
+	TArray<TSubclassOf<UPassiveBase>> GetPassiveClasses();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	AAbility* GetAbilityAtIndex(int index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	UPassiveBase* GetPassiveAtIndex(int index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	TSubclassOf<AAbility> GetAbilityClassAtIndex(int index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	TSubclassOf<UPassiveBase> GetPassiveClassAtIndex(int index);
+
+	UFUNCTION(BlueprintCallable, meta = (DeterminesOutputType = "PassiveClass"))
+		UPassiveBase* GainPassive(TSubclassOf<UPassiveBase> PassiveClass);
+
+	UFUNCTION(BlueprintCallable)
+		void LosePassive(UPassiveBase* PassiveToLose);
 };
