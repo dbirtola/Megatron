@@ -1,6 +1,8 @@
 #include "Spawner.h"
 #include "../Pawns/Slime.h"
 #include "../Components/HealthComponent.h"
+#include "../MegatronGameModeBase.h"
+#include "../FunctionLibraries/MegatronFunctionLibrary.h"
 
 
 void ASpawner::BeginPlay()
@@ -15,6 +17,26 @@ void ASpawner::BeginPlay()
 void ASpawner::SetTeam(FTeam InTeam)
 {
 	Team = InTeam;
+}
+
+void ASpawner::RandomizeTeam()
+{
+	if (AMegatronGameModeBase* MegatronGameMode = UMegatronFunctionLibrary::GetMegatronGameMode(this))
+	{
+		int32 Round = MegatronGameMode->CurrentLevel;
+		
+		TArray<FTeam> FilteredTeams;
+		for (FTeam CandidateTeam : PossibleTeams)
+		{
+			if (CandidateTeam.MinimumPossibleRound < Round && CandidateTeam.MaximumPossibleRound > Round)
+			{
+				FilteredTeams.Add(CandidateTeam);
+			}
+		}
+
+		int32 Index = FMath::RandRange(0, FilteredTeams.Num() - 1);
+		SetTeam(FilteredTeams[Index]);
+	}
 }
 
 void ASpawner::SpawnTeam()
