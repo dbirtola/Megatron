@@ -70,5 +70,9 @@ Saved/*
 Intermediate/*
 Plugins/*/Intermediate/*
 
+Plugins/WWise/*
+
+Content/WWiseAudio/*
+
 # Cache files for the editor to use
 DerivedDataCache/*
