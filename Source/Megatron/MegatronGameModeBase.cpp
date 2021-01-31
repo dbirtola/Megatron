@@ -146,14 +146,14 @@ void AMegatronGameModeBase::TickCombat()
 		break;
 	case ERoundState::PLAYER_TURN:
 		// Only check for finish this way if the player spawner exists, so we don't skip this segment on debug maps.
-		if (PlayerSpawner && !SideHasTurnsPending())
+		if (PlayerSpawner && !SideHasTurnsPending() || GetSpawnedEnemySlimes().Num() > 0)
 		{
 			FinishPlayerTurn();
 		}
 		break;
 	case ERoundState::ENEMY_TURN:
 		// Only check for finish this way if the enemy spawner exists, so we don't skip this segment on debug maps.
-		if (EnemySpawner && !SideHasTurnsPending())
+		if (EnemySpawner && !SideHasTurnsPending() || GetSpawnedPlayerSlimes().Num() > 0)
 		{
 			//FinishEnemyTurn();
 		}
