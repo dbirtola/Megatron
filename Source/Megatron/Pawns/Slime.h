@@ -66,11 +66,29 @@ public:
 	TArray<AAbility*> GetAbilities();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
+	TArray<UPassiveBase*> GetPassives();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
 	TArray<TSubclassOf<AAbility>> GetAbilityClasses();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	TArray<TSubclassOf<UPassiveBase>> GetPassiveClasses();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	AAbility* GetAbilityAtIndex(int index);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
+	UPassiveBase* GetPassiveAtIndex(int index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
 	TSubclassOf<AAbility> GetAbilityClassAtIndex(int index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	TSubclassOf<UPassiveBase> GetPassiveClassAtIndex(int index);
+
+	UFUNCTION(BlueprintCallable, meta = (DeterminesOutputType = "PassiveClass"))
+		UPassiveBase* GainPassive(TSubclassOf<UPassiveBase> PassiveClass);
+
+	UFUNCTION(BlueprintCallable)
+		void LosePassive(UPassiveBase* PassiveToLose);
 };

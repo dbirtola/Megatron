@@ -3,6 +3,11 @@
 
 #include "Abilities/AbilityBase.h"
 
+ASlime* AAbility::GetOwningSlime()
+{
+	return OwnerSlime;
+}
+
 FName AAbility::GetAbilityName()
 {
 	return Name;

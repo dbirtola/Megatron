@@ -37,6 +37,9 @@ protected:
 public:
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
+	ASlime* GetOwningSlime();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
 	FName GetAbilityName();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)

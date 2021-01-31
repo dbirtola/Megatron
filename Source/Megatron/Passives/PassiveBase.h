@@ -21,15 +21,15 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Offense")
 		int AttackDamageModifier;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Offense")
-		int AttackPriorityModifier;
+	//UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Offense")
+	//	int AttackPriorityModifier;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Offense")
-		int TargetsToHit;
+	//UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Offense")
+	//	int TargetsToHit;
 
-	//changes who you can target
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Offense")
-		int TargetFactionOverride;
+	////changes who you can target
+	//UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Offense")
+	//	int TargetFactionOverride;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Defense")
 		int DefenseDamageModifiers;
@@ -74,9 +74,9 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	int TurnTimer{5};
 
-	//
-	UPROPERTY(BlueprintReadWrite,EditAnywhere)
-	int CurrentTurnTimer;
+	////
+	//UPROPERTY(BlueprintReadWrite,EditAnywhere)
+	//int CurrentTurnTimer;
 
 	UFUNCTION(BlueprintCallable, meta = (DeterminesOutputType = "PassiveClass"))
 	static UPassiveBase* InstantiatePassive(TSubclassOf<UPassiveBase> PassiveClass, ASlime* InOwner);

@@ -58,9 +58,19 @@ TArray<AAbility*> ASlime::GetAbilities()
 	return AbilityComponent->GetAbilities();
 }
 
+TArray<UPassiveBase*> ASlime::GetPassives()
+{
+	return AbilityComponent->GetPassives();
+}
+
 TArray<TSubclassOf<AAbility>> ASlime::GetAbilityClasses()
 {
 	return AbilityComponent->GetAbilityClasses();
+}
+
+TArray<TSubclassOf<UPassiveBase>> ASlime::GetPassiveClasses()
+{
+	return AbilityComponent->GetPassiveClasses();
 }
 
 AAbility* ASlime::GetAbilityAtIndex(int index)
@@ -68,10 +78,30 @@ AAbility* ASlime::GetAbilityAtIndex(int index)
 	return AbilityComponent->GetAbilityAtIndex(index);
 }
 
+UPassiveBase * ASlime::GetPassiveAtIndex(int index)
+{
+	return AbilityComponent->GetPassiveAtIndex(index);
+}
+
 
 TSubclassOf<AAbility> ASlime::GetAbilityClassAtIndex(int index)
 {
 	return AbilityComponent->GetAbilityClassAtIndex(index);
+}
+
+TSubclassOf<UPassiveBase> ASlime::GetPassiveClassAtIndex(int index)
+{
+	return AbilityComponent->GetPassiveClassAtIndex(index);
+}
+
+UPassiveBase * ASlime::GainPassive(TSubclassOf<UPassiveBase> PassiveClass)
+{
+	return AbilityComponent->GainPassive(PassiveClass);
+}
+
+void ASlime::LosePassive(UPassiveBase * PassiveToLose)
+{
+	return AbilityComponent->LosePassive(PassiveToLose);
 }
 
 void ASlime::ForgetRandomAbility()
