@@ -20,40 +20,56 @@ class MEGATRON_API UAbilityBase : public UObject
 protected:
 
 	UPROPERTY(BlueprintReadOnly)
-	ASlime* Owner;
+		ASlime* Owner;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	FName Name;
+		FName Name;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	FText Description;
+		FText Description;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	EAttribute Attribute = EAttribute::SLIME;
+		EAttribute Attribute = EAttribute::SLIME;
 
 public:
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	FName GetAbilityName();
+		FName GetAbilityName();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	FText GetAbilityDescription();
+		FText GetAbilityDescription();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	EAttribute GetAbilityAttribute();
+		EAttribute GetAbilityAttribute();
 
 	UFUNCTION(BlueprintCallable)
-	void SetOwner(ASlime* NewOwner);
+		void SetOwner(ASlime* NewOwner);
 
 	bool CanExecuteAbility() const;
 
 	// Checks if the owning slime still has a turn available and executes the ability if possible.
 	UFUNCTION(BlueprintCallable)
-	bool TryExecuteAbility(ASlime* Target);
+		bool TryExecuteAbility(ASlime* Target);
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	bool ExecuteAbility(ASlime* Target);
+		bool ExecuteAbility(ASlime* Target);
 
 	UFUNCTION(BlueprintCallable)
-	static UAbilityBase* InstantiateAbility(TSubclassOf<UAbilityBase> AbilityClass, ASlime* InOwner);
+		static UAbilityBase* InstantiateAbility(TSubclassOf<UAbilityBase> AbilityClass, ASlime* InOwner);
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		int baseDamage;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		int finalDamage;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		int priority;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		int hitEnemies;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		int lossChance{15};
 };
+
