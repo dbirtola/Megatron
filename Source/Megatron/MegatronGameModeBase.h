@@ -97,10 +97,15 @@ public:
 	// Called when the player presses Play. Starts our first intermission, which will go into combat.
 	UFUNCTION(BlueprintCallable)
 	void StartGame();
+	/*
 
 	// Blueprint driven logic to determine which slime forgets things
-	UFUNCTION(BlueprintCallable)
-	virtual ASlime* DetermineSlimeToForgetAbility(TArray<ASlime*> CandidateSlimes);
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	void DetermineSlimeToForgetAbility(const TArray<ASlime*> CandidateSlimes, UPARAM(Ref) ASlime* Slime);*/
+
+	ASlime* DetermineSlimeToForgetAbility(const TArray <ASlime*> CandidateSlimes);
+
+
 
 	UFUNCTION(BlueprintPure)
 	TArray<ASlime*> GetSpawnedPlayerSlimes();
@@ -148,10 +153,10 @@ public:
 	int32 EnemyTeamSize = 3;
 
 	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)
-	float LearnAbilitySegmentSeconds = 3.0f;
+	float LearnAbilitySegmentSeconds = 1.5f;
 
 	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)
-	float ForgetAbilitySegmentSeconds = 3.0f;
+	float ForgetAbilitySegmentSeconds = 1.5f;
 
 	// Array of all slimes that still need to act before this turn is over.
 	TArray<ASlime*> SlimesWithTurnPending;

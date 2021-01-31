@@ -39,6 +39,7 @@ bool UAbilityBase::TryExecuteAbility(ASlime* Target)
 		ExecuteAbility(Target);
 		if (ensure(Owner))
 		{
+			Owner->AbilityComponent->LastUsedAbilityClass = StaticClass();
 			Owner->OnAbilityUsed.Broadcast(Owner, this, Target);
 			return true;
 		}
