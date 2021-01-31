@@ -166,6 +166,9 @@ public:
 	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)
 	float ForgetAbilitySegmentSeconds = 1.5f;
 
+	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)
+	int32 CurrentLevel = 0;
+
 	// Array of all slimes that still need to act before this turn is over.
 	TArray<ASlime*> SlimesWithTurnPending;
 
