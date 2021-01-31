@@ -25,6 +25,8 @@ protected:
 	TArray<TSubclassOf<UAbilityBase>> AbilityClasses;
 
 public:
+	UClass* LastUsedAbilityClass;
+
 	void BeginPlay() override;
 
 	void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;

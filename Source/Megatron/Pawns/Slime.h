@@ -40,6 +40,8 @@ public:
 
 	void ForgetRandomAbility();
 
+	ASlime* SlimeToLearnFrom = nullptr;
+
 	UPROPERTY(BlueprintReadOnly, EditAnywhere);
 	int32 FactionID = 0;
 
