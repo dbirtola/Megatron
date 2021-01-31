@@ -29,6 +29,7 @@ protected:
 
 	virtual float OnGetHealthRatio_Implementation() override;
 
+	UFUNCTION()
 	virtual void OnAbilityUsedCallback(ASlime* User, UAbilityBase* Ability, ASlime* Target);
 
 public:
