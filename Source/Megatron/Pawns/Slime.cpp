@@ -4,6 +4,7 @@
 
 void ASlime::OnDamage_Implementation(FDamage Damage)
 {
+	if (Damage.BaseDamage < 1) Damage.BaseDamage = 1;
 	HealthComponent->TakeDamage(Damage);
 }
 
