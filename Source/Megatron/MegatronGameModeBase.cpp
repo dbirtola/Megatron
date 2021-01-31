@@ -52,6 +52,7 @@ FString GetRoundStateString(ERoundState RoundState)
 
 void AMegatronGameModeBase::PrepareCombat()
 {
+	CurrentLevel++;
 
 	TArray<AActor*> Spawners;
 	UGameplayStatics::GetAllActorsOfClass(this, ASpawner::StaticClass(), Spawners);
@@ -106,9 +107,13 @@ void AMegatronGameModeBase::PrepareCombat()
 		}
 	}
 
-	FTeam EnemyTeam = GetNextEnemyTeam();
-	EnemySpawner->SetTeam(EnemyTeam);
-	EnemySpawner->SpawnTeam();
+	if (EnemySpawner)
+	{
+		/*FTeam EnemyTeam = GetNextEnemyTeam();
+		EnemySpawner->SetTeam(EnemyTeam);*/
+		EnemySpawner->RandomizeTeam();
+		EnemySpawner->SpawnTeam();
+	}
 
 	TArray<ASlime*> EnemySlimes = GetSpawnedEnemySlimes();
 	for (ASlime* Slime : EnemySlimes)
