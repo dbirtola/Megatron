@@ -104,6 +104,7 @@ UAbilityBase* UAbilitiesComponent::LearnNewAbility(int index, TSubclassOf<UAbili
 		{
 			AbilityClasses[i] = *AbilityClass;
 			Abilities[i] = UAbilityBase::InstantiateAbility(*AbilityClass, Owner);
+			Owner->OnLearnedAbility();
 			return Abilities[i];
 		}	
 	}

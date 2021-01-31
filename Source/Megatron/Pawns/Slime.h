@@ -40,6 +40,11 @@ public:
 
 	void ForgetRandomAbility();
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnForgotAbility();
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnLearnedAbility();
+
 	ASlime* SlimeToLearnFrom = nullptr;
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere);
