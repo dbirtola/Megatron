@@ -94,6 +94,23 @@ TSubclassOf<UPassiveBase> ASlime::GetPassiveClassAtIndex(int index)
 	return AbilityComponent->GetPassiveClassAtIndex(index);
 }
 
+TSubclassOf<AAbility>  ASlime::ForgetAbilityAtIndex(int index) 
+{
+	return AbilityComponent->ForgetAbilityAtIndex(index);
+}
+
+TSubclassOf<AAbility>  ASlime::ForgetRandomAbility()
+{
+	TSubclassOf<AAbility> out = AbilityComponent->ForgetRandomAbility();
+	OnForgotAbility();
+	return out;
+}
+
+AAbility*  ASlime::LearnNewAbility(TSubclassOf<AAbility> AbilityClass)
+{
+	return AbilityComponent->LearnNewAbility(AbilityClass);
+}
+
 UPassiveBase * ASlime::GainPassive(TSubclassOf<UPassiveBase> PassiveClass)
 {
 	return AbilityComponent->GainPassive(PassiveClass);
@@ -104,8 +121,7 @@ void ASlime::LosePassive(UPassiveBase * PassiveToLose)
 	return AbilityComponent->LosePassive(PassiveToLose);
 }
 
-void ASlime::ForgetRandomAbility()
+TSubclassOf<AAbility> ASlime::GetLastUsedAbilityClass()
 {
-	AbilityComponent->ForgetRandomAbility();
-	OnForgotAbility();
+	return AbilityComponent->LastUsedAbilityClass;
 }

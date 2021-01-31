@@ -15,4 +15,8 @@ class MEGATRON_API AAbilityEmpty : public AAbility
 	GENERATED_BODY()
 
 	AAbilityEmpty();
+
+	ETargetType TargetType = ETargetType::ENEMY;
+
+	virtual void ExecuteAbility_Implementation(ASlime* Target) override;
 };

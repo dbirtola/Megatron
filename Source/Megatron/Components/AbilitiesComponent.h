@@ -32,7 +32,7 @@ protected:
 	TArray<TSubclassOf<UPassiveBase>> PassiveClasses;
 
 public:
-	UClass* LastUsedAbilityClass;
+	TSubclassOf<AAbility> LastUsedAbilityClass;
 
 	void BeginPlay() override;
 
