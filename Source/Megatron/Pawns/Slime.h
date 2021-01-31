@@ -6,11 +6,11 @@
 
 #include "Slime.generated.h"
 
-class UAbilityBase;
+class AAbility;
 class UHealthComponent;
 class UAbilitiesComponent;
 
-DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_ThreeParams(FAbilityUsedSignature, ASlime, OnAbilityUsed, ASlime*, User, UAbilityBase*, Ability, ASlime*, Target);
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_ThreeParams(FAbilityUsedSignature, ASlime, OnAbilityUsed, ASlime*, User, AAbility*, Ability, ASlime*, Target);
 
 
 UCLASS(Blueprintable, BlueprintType)
@@ -31,7 +31,7 @@ protected:
 	virtual float OnGetHealthRatio_Implementation() override;
 
 	UFUNCTION()
-	virtual void OnAbilityUsedCallback(ASlime* User, UAbilityBase* Ability, ASlime* Target);
+	virtual void OnAbilityUsedCallback(ASlime* User, AAbility* Ability, ASlime* Target);
 
 public:
 	ASlime(const FObjectInitializer& ObjectInitializer);
@@ -56,14 +56,14 @@ public:
 	FAbilityUsedSignature OnAbilityUsed;
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	TArray<UAbilityBase*> GetAbilities();
+	TArray<AAbility*> GetAbilities();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	TArray<TSubclassOf<UAbilityBase>> GetAbilityClasses();
+	TArray<TSubclassOf<AAbility>> GetAbilityClasses();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	UAbilityBase* GetAbilityAtIndex(int index);
+	AAbility* GetAbilityAtIndex(int index);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	TSubclassOf<UAbilityBase> GetAbilityClassAtIndex(int index);
+	TSubclassOf<AAbility> GetAbilityClassAtIndex(int index);
 };

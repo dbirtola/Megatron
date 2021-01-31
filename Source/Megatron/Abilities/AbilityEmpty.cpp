@@ -3,7 +3,7 @@
 
 #include "Abilities/AbilityEmpty.h"
 
-UAbilityEmpty::UAbilityEmpty()
+AAbilityEmpty::AAbilityEmpty()
 {
 	Name = FName(TEXT("Empty"));
 	Description = FText::FromString("Empty Ability Slot");

@@ -12,7 +12,7 @@
  * 
  */
 UCLASS(Blueprintable, BlueprintType)
-class MEGATRON_API UAbilityBase : public UObject
+class MEGATRON_API AAbility : public AActor
 {
 	GENERATED_BODY()
 
@@ -20,7 +20,7 @@ class MEGATRON_API UAbilityBase : public UObject
 protected:
 
 	UPROPERTY(BlueprintReadOnly)
-	ASlime* Owner;
+	ASlime* OwnerSlime;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	FName Name;
@@ -43,7 +43,7 @@ public:
 	EAttribute GetAbilityAttribute();
 
 	UFUNCTION(BlueprintCallable)
-	void SetOwner(ASlime* NewOwner);
+	void SetOwnerSlime(ASlime* NewOwner);
 
 	bool CanExecuteAbility() const;
 
@@ -58,5 +58,5 @@ public:
 	void OnAbilityFinished();
 
 	UFUNCTION(BlueprintCallable, meta = (DeterminesOutputType = "AbilityClass"))
-	static UAbilityBase* InstantiateAbility(TSubclassOf<UAbilityBase> AbilityClass, ASlime* InOwner);
+	static AAbility* InstantiateAbility(TSubclassOf<AAbility> AbilityClass, ASlime* InOwner);
 };
