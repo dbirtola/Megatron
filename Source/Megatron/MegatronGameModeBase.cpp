@@ -145,15 +145,17 @@ void AMegatronGameModeBase::TickCombat()
 		ensureMsgf(true, TEXT("Combat should never be ticked if a round is not started"));
 		break;
 	case ERoundState::PLAYER_TURN:
+		OnPlayerTurnTick();
 		// Only check for finish this way if the player spawner exists, so we don't skip this segment on debug maps.
-		if (PlayerSpawner && !SideHasTurnsPending() || GetSpawnedEnemySlimes().Num() > 0)
+		if (PlayerSpawner && !SideHasTurnsPending() || GetSpawnedEnemySlimes().Num() == 0)
 		{
 			FinishPlayerTurn();
 		}
 		break;
 	case ERoundState::ENEMY_TURN:
+		OnEnemyTurnTick();
 		// Only check for finish this way if the enemy spawner exists, so we don't skip this segment on debug maps.
-		if (EnemySpawner && !SideHasTurnsPending() || GetSpawnedPlayerSlimes().Num() > 0)
+		if (EnemySpawner && !SideHasTurnsPending() || GetSpawnedPlayerSlimes().Num() == 0)
 		{
 			//FinishEnemyTurn();
 		}

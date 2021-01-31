@@ -120,6 +120,11 @@ public:
 	void OnTurnEnd(bool bWasPlayerTurn);
 
 	UFUNCTION(BlueprintImplementableEvent)
+	void OnPlayerTurnTick();
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnEnemyTurnTick();
+
+	UFUNCTION(BlueprintImplementableEvent)
 	void OnCombatStart();
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnCombatEnd();
