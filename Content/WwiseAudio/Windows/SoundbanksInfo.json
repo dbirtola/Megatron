@@ -1,0 +1,1774 @@
+{
+ "SoundBanksInfo": {
+  "Platform": "Windows",
+  "BasePlatform": "Windows",
+  "SchemaVersion": "12",
+  "SoundbankVersion": "135",
+  "RootPaths": {
+   "ProjectRoot": "A:\\Users\\Matt\\Desktop\\NEW-Slime\\Slime-Game\\Slime-Game_WwiseProject\\",
+   "SourceFilesRoot": "A:\\Users\\Matt\\Desktop\\NEW-Slime\\Slime-Game\\Slime-Game_WwiseProject\\.cache\\Windows\\",
+   "SoundBanksRoot": "A:\\Users\\Matt\\Desktop\\NEW-Slime\\Slime-Game\\Content\\WwiseAudio\\Windows\\",
+   "ExternalSourcesInputFile": "",
+   "ExternalSourcesOutputRoot": "A:\\Users\\Matt\\Desktop\\SlimeJam\\SJ_Game\\Content\\WwiseAudio\\Windows"
+  },
+  "DialogueEvents": [],
+  "StreamedFiles": [],
+  "MediaFilesNotInAnyBank": [],
+  "SoundBanks": [
+   {
+    "Id": "1355168291",
+    "Language": "SFX",
+    "Hash": "645499642",
+    "ObjectPath": "Init",
+    "ShortName": "Init",
+    "Path": "Init.bnk",
+    "GameParameters": [
+     {
+      "Id": "1006694123",
+      "Name": "Music_Volume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\Music_Volume"
+     },
+     {
+      "Id": "1564184899",
+      "Name": "SFX_Volume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\SFX_Volume"
+     },
+     {
+      "Id": "1924415737",
+      "Name": "Wwise_Sidechain",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\Wwise_Sidechain"
+     },
+     {
+      "Id": "4179668880",
+      "Name": "Master_Volume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\Master_Volume"
+     }
+    ]
+   },
+   {
+    "Id": "3161908922",
+    "Language": "SFX",
+    "Hash": "2426093216",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main",
+    "ShortName": "Main",
+    "Path": "Main.bnk",
+    "IncludedEvents": [
+     {
+      "Id": "1251616711",
+      "Name": "Initialize_Music",
+      "ObjectPath": "\\Events\\Default Work Unit\\Initialize_Music",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "51766611",
+        "Language": "SFX",
+        "ShortName": "Bridge-Choir1-95bpm_4-4_8M.wav",
+        "Path": "SFX\\Bridge-Choir1-95bpm_4-4_8M_D3BD6159.wem"
+       },
+       {
+        "Id": "107576255",
+        "Language": "SFX",
+        "ShortName": "slime game jam main menu track.wav",
+        "Path": "SFX\\slime game jam main menu track_D79FB2B7.wem"
+       },
+       {
+        "Id": "127202362",
+        "Language": "SFX",
+        "ShortName": "Dead-Intro-80bpm_4-4_3M.wav",
+        "Path": "SFX\\Dead-Intro-80bpm_4-4_3M_F7AFB84C.wem"
+       },
+       {
+        "Id": "216212409",
+        "Language": "SFX",
+        "ShortName": "VerseA-Harp3-95bpm_4-4_1M.wav",
+        "Path": "SFX\\VerseA-Harp3-95bpm_4-4_1M_D3BD6159.wem"
+       },
+       {
+        "Id": "227163353",
+        "Language": "SFX",
+        "ShortName": "Battle-VerseB-Flute-95bpm_4-4_8M.wav",
+        "Path": "SFX\\Battle-VerseB-Flute-95bpm_4-4_8M_D3BD6159.wem"
+       },
+       {
+        "Id": "231627898",
+        "Language": "SFX",
+        "ShortName": "Battle-VerseB-Drums3-95bpm_4-4_4M.wav",
+        "Path": "SFX\\Battle-VerseB-Drums3-95bpm_4-4_4M_D3BD6159.wem"
+       },
+       {
+        "Id": "245535331",
+        "Language": "SFX",
+        "ShortName": "Battle-VerseB-Drums1-95bpm_4-4_4M.wav",
+        "Path": "SFX\\Battle-VerseB-Drums1-95bpm_4-4_4M_D3BD6159.wem"
+       },
+       {
+        "Id": "313939498",
+        "Language": "SFX",
+        "ShortName": "VerseA-Drums1-95bpm_4-4_4M.wav",
+        "Path": "SFX\\VerseA-Drums1-95bpm_4-4_4M_D3BD6159.wem"
+       },
+       {
+        "Id": "321703486",
+        "Language": "SFX",
+        "ShortName": "Battle-VerseB-Drums2-95bpm_4-4_4M.wav",
+        "Path": "SFX\\Battle-VerseB-Drums2-95bpm_4-4_4M_D3BD6159.wem"
+       },
+       {
+        "Id": "329699213",
+        "Language": "SFX",
+        "ShortName": "Battle-VerseB-Strings2-95bpm_4-4_8M.wav",
+        "Path": "SFX\\Battle-VerseB-Strings2-95bpm_4-4_8M_D3BD6159.wem"
+       },
+       {
+        "Id": "349183089",
+        "Language": "SFX",
+        "ShortName": "Chorus-95bpm_4-4_1P8M.wav",
+        "Path": "SFX\\Chorus-95bpm_4-4_1P8M_D3BD6159.wem"
+       },
+       {
+        "Id": "354452242",
+        "Language": "SFX",
+        "ShortName": "Bridge-Violin-95bpm_4-4_8M.wav",
+        "Path": "SFX\\Bridge-Violin-95bpm_4-4_8M_D3BD6159.wem"
+       },
+       {
+        "Id": "403969517",
+        "Language": "SFX",
+        "ShortName": "VerseA-Harp1-95bpm_4-4_8M.wav",
+        "Path": "SFX\\VerseA-Harp1-95bpm_4-4_8M_D3BD6159.wem"
+       },
+       {
+        "Id": "421216516",
+        "Language": "SFX",
+        "ShortName": "Transit-95bpm_4-4_somethignbars.alp.wav",
+        "Path": "SFX\\Transit-95bpm_4-4_somethignbars.alp_D79FB2B7.wem"
+       },
+       {
+        "Id": "422528246",
+        "Language": "SFX",
+        "ShortName": "VerseA-Harp2-95bpm_4-4_2M.wav",
+        "Path": "SFX\\VerseA-Harp2-95bpm_4-4_2M_D3BD6159.wem"
+       },
+       {
+        "Id": "444001655",
+        "Language": "SFX",
+        "ShortName": "Bridge-Choir2-95bpm_4-4_8M.wav",
+        "Path": "SFX\\Bridge-Choir2-95bpm_4-4_8M_D3BD6159.wem"
+       },
+       {
+        "Id": "475978852",
+        "Language": "SFX",
+        "ShortName": "Battle-VerseB-Harp1-95bpm_4-4_8M.wav",
+        "Path": "SFX\\Battle-VerseB-Harp1-95bpm_4-4_8M_D3BD6159.wem"
+       },
+       {
+        "Id": "481730502",
+        "Language": "SFX",
+        "ShortName": "Bridge-Strings2-95bpm_4-4_8M.wav",
+        "Path": "SFX\\Bridge-Strings2-95bpm_4-4_8M_D3BD6159.wem"
+       },
+       {
+        "Id": "483426990",
+        "Language": "SFX",
+        "ShortName": "Battle-VerseB-Viola2-95bpm_4-4_8M.wav",
+        "Path": "SFX\\Battle-VerseB-Viola2-95bpm_4-4_8M_D3BD6159.wem"
+       },
+       {
+        "Id": "494423484",
+        "Language": "SFX",
+        "ShortName": "VerseA-Strings2-95bpm_4-4_8M.wav",
+        "Path": "SFX\\VerseA-Strings2-95bpm_4-4_8M_D3BD6159.wem"
+       },
+       {
+        "Id": "520676619",
+        "Language": "SFX",
+        "ShortName": "Battle-VerseB-Strings1-95bpm_4-4_8M.wav",
+        "Path": "SFX\\Battle-VerseB-Strings1-95bpm_4-4_8M_D3BD6159.wem"
+       },
+       {
+        "Id": "626292487",
+        "Language": "SFX",
+        "ShortName": "intro-95bpm_4-4_4M.wav",
+        "Path": "SFX\\intro-95bpm_4-4_4M_D3BD6159.wem"
+       },
+       {
+        "Id": "635603460",
+        "Language": "SFX",
+        "ShortName": "Dead-Loop-80bpm_4-4_8M.wav",
+        "Path": "SFX\\Dead-Loop-80bpm_4-4_8M_F7AFB84C.wem"
+       },
+       {
+        "Id": "649900851",
+        "Language": "SFX",
+        "ShortName": "Bridge-Drums-95bpm_4-4_8M.wav",
+        "Path": "SFX\\Bridge-Drums-95bpm_4-4_8M_D3BD6159.wem"
+       },
+       {
+        "Id": "657804553",
+        "Language": "SFX",
+        "ShortName": "Bridge-Harp-95bpm_4-4_8M.wav",
+        "Path": "SFX\\Bridge-Harp-95bpm_4-4_8M_D3BD6159.wem"
+       },
+       {
+        "Id": "661223371",
+        "Language": "SFX",
+        "ShortName": "Bridge-Strings1-95bpm_4-4_8M.wav",
+        "Path": "SFX\\Bridge-Strings1-95bpm_4-4_8M_D3BD6159.wem"
+       },
+       {
+        "Id": "809427688",
+        "Language": "SFX",
+        "ShortName": "VerseA-Horn-95bpm_4-4_8M.wav",
+        "Path": "SFX\\VerseA-Horn-95bpm_4-4_8M_D3BD6159.wem"
+       },
+       {
+        "Id": "815795083",
+        "Language": "SFX",
+        "ShortName": "Battle-VerseB-Violin-95bpm_4-4_8M.wav",
+        "Path": "SFX\\Battle-VerseB-Violin-95bpm_4-4_8M_D3BD6159.wem"
+       },
+       {
+        "Id": "890321508",
+        "Language": "SFX",
+        "ShortName": "VerseA-Strings1-95bpm_4-4_8M.wav",
+        "Path": "SFX\\VerseA-Strings1-95bpm_4-4_8M_D3BD6159.wem"
+       },
+       {
+        "Id": "898678018",
+        "Language": "SFX",
+        "ShortName": "VerseA-Violin-95bpm_4-4_8M.wav",
+        "Path": "SFX\\VerseA-Violin-95bpm_4-4_8M_D3BD6159.wem"
+       },
+       {
+        "Id": "1036898983",
+        "Language": "SFX",
+        "ShortName": "Battle-VerseB-Chello1-95bpm_4-4_8M.wav",
+        "Path": "SFX\\Battle-VerseB-Chello1-95bpm_4-4_8M_D3BD6159.wem"
+       },
+       {
+        "Id": "1053492037",
+        "Language": "SFX",
+        "ShortName": "VerseA-Drums2-95bpm_4-4_4M.wav",
+        "Path": "SFX\\VerseA-Drums2-95bpm_4-4_4M_D3BD6159.wem"
+       },
+       {
+        "Id": "1053789397",
+        "Language": "SFX",
+        "ShortName": "slime game jam credits.wav",
+        "Path": "SFX\\slime game jam credits_D79FB2B7.wem"
+       },
+       {
+        "Id": "1065279459",
+        "Language": "SFX",
+        "ShortName": "Battle-VerseB-Viola1-95bpm_4-4_8M.wav",
+        "Path": "SFX\\Battle-VerseB-Viola1-95bpm_4-4_8M_D3BD6159.wem"
+       }
+      ],
+      "SwitchContainers": [
+       {
+        "SwitchValue": "{BB597644-13B0-4505-95A5-ABDCD43862EB}",
+        "Media": [
+         {
+          "Id": "51766611"
+         },
+         {
+          "Id": "216212409"
+         },
+         {
+          "Id": "227163353"
+         },
+         {
+          "Id": "231627898"
+         },
+         {
+          "Id": "245535331"
+         },
+         {
+          "Id": "313939498"
+         },
+         {
+          "Id": "321703486"
+         },
+         {
+          "Id": "329699213"
+         },
+         {
+          "Id": "349183089"
+         },
+         {
+          "Id": "354452242"
+         },
+         {
+          "Id": "403969517"
+         },
+         {
+          "Id": "422528246"
+         },
+         {
+          "Id": "444001655"
+         },
+         {
+          "Id": "475978852"
+         },
+         {
+          "Id": "481730502"
+         },
+         {
+          "Id": "483426990"
+         },
+         {
+          "Id": "494423484"
+         },
+         {
+          "Id": "520676619"
+         },
+         {
+          "Id": "626292487"
+         },
+         {
+          "Id": "649900851"
+         },
+         {
+          "Id": "657804553"
+         },
+         {
+          "Id": "661223371"
+         },
+         {
+          "Id": "809427688"
+         },
+         {
+          "Id": "815795083"
+         },
+         {
+          "Id": "890321508"
+         },
+         {
+          "Id": "898678018"
+         },
+         {
+          "Id": "1036898983"
+         },
+         {
+          "Id": "1053492037"
+         },
+         {
+          "Id": "1065279459"
+         }
+        ]
+       },
+       {
+        "SwitchValue": "{D7213C40-68B9-4F8D-A074-F55552A97F49}",
+        "Media": [
+         {
+          "Id": "127202362"
+         },
+         {
+          "Id": "635603460"
+         }
+        ]
+       },
+       {
+        "SwitchValue": "{B73A8B49-3851-40F9-BF38-A8A41EA6E1AE}",
+        "Media": [
+         {
+          "Id": "421216516"
+         }
+        ]
+       },
+       {
+        "SwitchValue": "{B4DE9733-442B-45F4-9F43-8F4683FA0DD3}",
+        "Media": [
+         {
+          "Id": "1053789397"
+         }
+        ]
+       },
+       {
+        "SwitchValue": "{D5DB45EF-7D60-4EA9-BD7E-73F1DD9D489C}",
+        "Media": [
+         {
+          "Id": "107576255"
+         }
+        ]
+       },
+       {
+        "SwitchValue": "{9BE03801-2FD1-4B6B-A4E8-3960B2725584}",
+        "Media": [
+         {
+          "Id": "421216516"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "Id": "2002011469",
+      "Name": "Move_Forgotten",
+      "ObjectPath": "\\Events\\Default Work Unit\\Move_Forgotten",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "85603682",
+        "Language": "SFX",
+        "ShortName": "SlimeA4.wav",
+        "Path": "SFX\\SlimeA4_10C4C929.wem"
+       },
+       {
+        "Id": "133734146",
+        "Language": "SFX",
+        "ShortName": "SlimeA2.wav",
+        "Path": "SFX\\SlimeA2_10C4C929.wem"
+       },
+       {
+        "Id": "182116513",
+        "Language": "SFX",
+        "ShortName": "SlimeA7.wav",
+        "Path": "SFX\\SlimeA7_10C4C929.wem"
+       },
+       {
+        "Id": "184533164",
+        "Language": "SFX",
+        "ShortName": "SlimeB6.wav",
+        "Path": "SFX\\SlimeB6_10C4C929.wem"
+       },
+       {
+        "Id": "250740810",
+        "Language": "SFX",
+        "ShortName": "SlimeA1.wav",
+        "Path": "SFX\\SlimeA1_10C4C929.wem"
+       },
+       {
+        "Id": "270519472",
+        "Language": "SFX",
+        "ShortName": "SlimeB3.wav",
+        "Path": "SFX\\SlimeB3_10C4C929.wem"
+       },
+       {
+        "Id": "311038577",
+        "Language": "SFX",
+        "ShortName": "SlimeB9.wav",
+        "Path": "SFX\\SlimeB9_10C4C929.wem"
+       },
+       {
+        "Id": "321016885",
+        "Language": "SFX",
+        "ShortName": "SlimeB8.wav",
+        "Path": "SFX\\SlimeB8_10C4C929.wem"
+       },
+       {
+        "Id": "404207436",
+        "Language": "SFX",
+        "ShortName": "SlimeB7.wav",
+        "Path": "SFX\\SlimeB7_10C4C929.wem"
+       },
+       {
+        "Id": "510717250",
+        "Language": "SFX",
+        "ShortName": "SlimeB5.wav",
+        "Path": "SFX\\SlimeB5_10C4C929.wem"
+       },
+       {
+        "Id": "567420178",
+        "Language": "SFX",
+        "ShortName": "SlimeA3.wav",
+        "Path": "SFX\\SlimeA3_10C4C929.wem"
+       },
+       {
+        "Id": "627318850",
+        "Language": "SFX",
+        "ShortName": "SlimeA9.wav",
+        "Path": "SFX\\SlimeA9_10C4C929.wem"
+       },
+       {
+        "Id": "723558067",
+        "Language": "SFX",
+        "ShortName": "SlimeB1.wav",
+        "Path": "SFX\\SlimeB1_10C4C929.wem"
+       },
+       {
+        "Id": "792350846",
+        "Language": "SFX",
+        "ShortName": "Forgotton.wav",
+        "Path": "SFX\\Forgotton_10C4C929.wem"
+       },
+       {
+        "Id": "825536483",
+        "Language": "SFX",
+        "ShortName": "SlimeA5.wav",
+        "Path": "SFX\\SlimeA5_10C4C929.wem"
+       },
+       {
+        "Id": "881652026",
+        "Language": "SFX",
+        "ShortName": "SlimeB4.wav",
+        "Path": "SFX\\SlimeB4_10C4C929.wem"
+       },
+       {
+        "Id": "913409691",
+        "Language": "SFX",
+        "ShortName": "SlimeB2.wav",
+        "Path": "SFX\\SlimeB2_10C4C929.wem"
+       },
+       {
+        "Id": "934424158",
+        "Language": "SFX",
+        "ShortName": "SlimeA8.wav",
+        "Path": "SFX\\SlimeA8_10C4C929.wem"
+       },
+       {
+        "Id": "1013502068",
+        "Language": "SFX",
+        "ShortName": "SlimeA6.wav",
+        "Path": "SFX\\SlimeA6_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "826065011",
+      "Name": "Slime_Basic_Attack",
+      "ObjectPath": "\\Events\\Default Work Unit\\Slime_Basic_Attack",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "75462678",
+        "Language": "SFX",
+        "ShortName": "Voice3-3.wav",
+        "Path": "SFX\\Voice3-3_10C4C929.wem"
+       },
+       {
+        "Id": "85603682",
+        "Language": "SFX",
+        "ShortName": "SlimeA4.wav",
+        "Path": "SFX\\SlimeA4_10C4C929.wem"
+       },
+       {
+        "Id": "119170021",
+        "Language": "SFX",
+        "ShortName": "Voice2-4.wav",
+        "Path": "SFX\\Voice2-4_10C4C929.wem"
+       },
+       {
+        "Id": "133734146",
+        "Language": "SFX",
+        "ShortName": "SlimeA2.wav",
+        "Path": "SFX\\SlimeA2_10C4C929.wem"
+       },
+       {
+        "Id": "182116513",
+        "Language": "SFX",
+        "ShortName": "SlimeA7.wav",
+        "Path": "SFX\\SlimeA7_10C4C929.wem"
+       },
+       {
+        "Id": "184533164",
+        "Language": "SFX",
+        "ShortName": "SlimeB6.wav",
+        "Path": "SFX\\SlimeB6_10C4C929.wem"
+       },
+       {
+        "Id": "250740810",
+        "Language": "SFX",
+        "ShortName": "SlimeA1.wav",
+        "Path": "SFX\\SlimeA1_10C4C929.wem"
+       },
+       {
+        "Id": "270519472",
+        "Language": "SFX",
+        "ShortName": "SlimeB3.wav",
+        "Path": "SFX\\SlimeB3_10C4C929.wem"
+       },
+       {
+        "Id": "311038577",
+        "Language": "SFX",
+        "ShortName": "SlimeB9.wav",
+        "Path": "SFX\\SlimeB9_10C4C929.wem"
+       },
+       {
+        "Id": "321016885",
+        "Language": "SFX",
+        "ShortName": "SlimeB8.wav",
+        "Path": "SFX\\SlimeB8_10C4C929.wem"
+       },
+       {
+        "Id": "349596837",
+        "Language": "SFX",
+        "ShortName": "Voice1-1.wav",
+        "Path": "SFX\\Voice1-1_10C4C929.wem"
+       },
+       {
+        "Id": "385317535",
+        "Language": "SFX",
+        "ShortName": "Voice4-3.wav",
+        "Path": "SFX\\Voice4-3_10C4C929.wem"
+       },
+       {
+        "Id": "404207436",
+        "Language": "SFX",
+        "ShortName": "SlimeB7.wav",
+        "Path": "SFX\\SlimeB7_10C4C929.wem"
+       },
+       {
+        "Id": "407542396",
+        "Language": "SFX",
+        "ShortName": "Voice1-3.wav",
+        "Path": "SFX\\Voice1-3_10C4C929.wem"
+       },
+       {
+        "Id": "417371188",
+        "Language": "SFX",
+        "ShortName": "Voice2-1.wav",
+        "Path": "SFX\\Voice2-1_10C4C929.wem"
+       },
+       {
+        "Id": "424616778",
+        "Language": "SFX",
+        "ShortName": "Voice3-1.wav",
+        "Path": "SFX\\Voice3-1_10C4C929.wem"
+       },
+       {
+        "Id": "510717250",
+        "Language": "SFX",
+        "ShortName": "SlimeB5.wav",
+        "Path": "SFX\\SlimeB5_10C4C929.wem"
+       },
+       {
+        "Id": "526377972",
+        "Language": "SFX",
+        "ShortName": "Voice2-2.wav",
+        "Path": "SFX\\Voice2-2_10C4C929.wem"
+       },
+       {
+        "Id": "567420178",
+        "Language": "SFX",
+        "ShortName": "SlimeA3.wav",
+        "Path": "SFX\\SlimeA3_10C4C929.wem"
+       },
+       {
+        "Id": "627318850",
+        "Language": "SFX",
+        "ShortName": "SlimeA9.wav",
+        "Path": "SFX\\SlimeA9_10C4C929.wem"
+       },
+       {
+        "Id": "677481265",
+        "Language": "SFX",
+        "ShortName": "Voice3-2.wav",
+        "Path": "SFX\\Voice3-2_10C4C929.wem"
+       },
+       {
+        "Id": "701213152",
+        "Language": "SFX",
+        "ShortName": "Voice1-2.wav",
+        "Path": "SFX\\Voice1-2_10C4C929.wem"
+       },
+       {
+        "Id": "707074889",
+        "Language": "SFX",
+        "ShortName": "Voice4-1.wav",
+        "Path": "SFX\\Voice4-1_10C4C929.wem"
+       },
+       {
+        "Id": "717988417",
+        "Language": "SFX",
+        "ShortName": "Voice4-2.wav",
+        "Path": "SFX\\Voice4-2_10C4C929.wem"
+       },
+       {
+        "Id": "723558067",
+        "Language": "SFX",
+        "ShortName": "SlimeB1.wav",
+        "Path": "SFX\\SlimeB1_10C4C929.wem"
+       },
+       {
+        "Id": "774579105",
+        "Language": "SFX",
+        "ShortName": "Voice1-4.wav",
+        "Path": "SFX\\Voice1-4_10C4C929.wem"
+       },
+       {
+        "Id": "825536483",
+        "Language": "SFX",
+        "ShortName": "SlimeA5.wav",
+        "Path": "SFX\\SlimeA5_10C4C929.wem"
+       },
+       {
+        "Id": "881652026",
+        "Language": "SFX",
+        "ShortName": "SlimeB4.wav",
+        "Path": "SFX\\SlimeB4_10C4C929.wem"
+       },
+       {
+        "Id": "913409691",
+        "Language": "SFX",
+        "ShortName": "SlimeB2.wav",
+        "Path": "SFX\\SlimeB2_10C4C929.wem"
+       },
+       {
+        "Id": "934424158",
+        "Language": "SFX",
+        "ShortName": "SlimeA8.wav",
+        "Path": "SFX\\SlimeA8_10C4C929.wem"
+       },
+       {
+        "Id": "1013502068",
+        "Language": "SFX",
+        "ShortName": "SlimeA6.wav",
+        "Path": "SFX\\SlimeA6_10C4C929.wem"
+       },
+       {
+        "Id": "1053922087",
+        "Language": "SFX",
+        "ShortName": "Voice2-3.wav",
+        "Path": "SFX\\Voice2-3_10C4C929.wem"
+       },
+       {
+        "Id": "1070223107",
+        "Language": "SFX",
+        "ShortName": "Voice3-4.wav",
+        "Path": "SFX\\Voice3-4_10C4C929.wem"
+       }
+      ],
+      "DefaultSwitchValue": "{8AA4E1F1-CCBD-4A7B-B600-8BBBEB8B18A9}",
+      "SwitchContainers": [
+       {
+        "SwitchValue": "{A71A8A74-BD77-4F16-9D24-55D051092190}",
+        "Media": [
+         {
+          "Id": "349596837"
+         },
+         {
+          "Id": "407542396"
+         },
+         {
+          "Id": "701213152"
+         },
+         {
+          "Id": "774579105"
+         }
+        ]
+       },
+       {
+        "SwitchValue": "{9EB1C74E-AC44-4687-8FFB-BC2596FB9941}",
+        "Media": [
+         {
+          "Id": "119170021"
+         },
+         {
+          "Id": "417371188"
+         },
+         {
+          "Id": "526377972"
+         },
+         {
+          "Id": "1053922087"
+         }
+        ]
+       },
+       {
+        "SwitchValue": "{8AA4E1F1-CCBD-4A7B-B600-8BBBEB8B18A9}",
+        "Media": [
+         {
+          "Id": "75462678"
+         },
+         {
+          "Id": "424616778"
+         },
+         {
+          "Id": "677481265"
+         },
+         {
+          "Id": "1070223107"
+         }
+        ]
+       },
+       {
+        "SwitchValue": "{FA9850A6-EE9A-4B8E-BB1C-F9B2A774DBBE}",
+        "Media": [
+         {
+          "Id": "385317535"
+         },
+         {
+          "Id": "707074889"
+         },
+         {
+          "Id": "717988417"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "Id": "1429535468",
+      "Name": "Slime_Dead",
+      "ObjectPath": "\\Events\\Default Work Unit\\Slime_Dead",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "1406206",
+        "Language": "SFX",
+        "ShortName": "Voice2-dead.wav",
+        "Path": "SFX\\Voice2-dead_2B92C234.wem"
+       },
+       {
+        "Id": "277167451",
+        "Language": "SFX",
+        "ShortName": "Voice1-dead.wav",
+        "Path": "SFX\\Voice1-dead_2B92C234.wem"
+       },
+       {
+        "Id": "346552598",
+        "Language": "SFX",
+        "ShortName": "Voice4-dead.wav",
+        "Path": "SFX\\Voice4-dead_2B92C234.wem"
+       },
+       {
+        "Id": "710486648",
+        "Language": "SFX",
+        "ShortName": "Voice3-DEAD.wav",
+        "Path": "SFX\\Voice3-DEAD_2B92C234.wem"
+       }
+      ],
+      "DefaultSwitchValue": "{8AA4E1F1-CCBD-4A7B-B600-8BBBEB8B18A9}",
+      "SwitchContainers": [
+       {
+        "SwitchValue": "{A71A8A74-BD77-4F16-9D24-55D051092190}",
+        "Media": [
+         {
+          "Id": "277167451"
+         }
+        ]
+       },
+       {
+        "SwitchValue": "{9EB1C74E-AC44-4687-8FFB-BC2596FB9941}",
+        "Media": [
+         {
+          "Id": "1406206"
+         }
+        ]
+       },
+       {
+        "SwitchValue": "{8AA4E1F1-CCBD-4A7B-B600-8BBBEB8B18A9}",
+        "Media": [
+         {
+          "Id": "710486648"
+         }
+        ]
+       },
+       {
+        "SwitchValue": "{FA9850A6-EE9A-4B8E-BB1C-F9B2A774DBBE}",
+        "Media": [
+         {
+          "Id": "346552598"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "Id": "1041647507",
+      "Name": "Slime_Healed",
+      "ObjectPath": "\\Events\\Default Work Unit\\Slime_Healed",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "85603682",
+        "Language": "SFX",
+        "ShortName": "SlimeA4.wav",
+        "Path": "SFX\\SlimeA4_10C4C929.wem"
+       },
+       {
+        "Id": "133734146",
+        "Language": "SFX",
+        "ShortName": "SlimeA2.wav",
+        "Path": "SFX\\SlimeA2_10C4C929.wem"
+       },
+       {
+        "Id": "182116513",
+        "Language": "SFX",
+        "ShortName": "SlimeA7.wav",
+        "Path": "SFX\\SlimeA7_10C4C929.wem"
+       },
+       {
+        "Id": "184533164",
+        "Language": "SFX",
+        "ShortName": "SlimeB6.wav",
+        "Path": "SFX\\SlimeB6_10C4C929.wem"
+       },
+       {
+        "Id": "250740810",
+        "Language": "SFX",
+        "ShortName": "SlimeA1.wav",
+        "Path": "SFX\\SlimeA1_10C4C929.wem"
+       },
+       {
+        "Id": "270519472",
+        "Language": "SFX",
+        "ShortName": "SlimeB3.wav",
+        "Path": "SFX\\SlimeB3_10C4C929.wem"
+       },
+       {
+        "Id": "301703859",
+        "Language": "SFX",
+        "ShortName": "Healing.wav",
+        "Path": "SFX\\Healing_10C4C929.wem"
+       },
+       {
+        "Id": "311038577",
+        "Language": "SFX",
+        "ShortName": "SlimeB9.wav",
+        "Path": "SFX\\SlimeB9_10C4C929.wem"
+       },
+       {
+        "Id": "321016885",
+        "Language": "SFX",
+        "ShortName": "SlimeB8.wav",
+        "Path": "SFX\\SlimeB8_10C4C929.wem"
+       },
+       {
+        "Id": "404207436",
+        "Language": "SFX",
+        "ShortName": "SlimeB7.wav",
+        "Path": "SFX\\SlimeB7_10C4C929.wem"
+       },
+       {
+        "Id": "510717250",
+        "Language": "SFX",
+        "ShortName": "SlimeB5.wav",
+        "Path": "SFX\\SlimeB5_10C4C929.wem"
+       },
+       {
+        "Id": "567420178",
+        "Language": "SFX",
+        "ShortName": "SlimeA3.wav",
+        "Path": "SFX\\SlimeA3_10C4C929.wem"
+       },
+       {
+        "Id": "627318850",
+        "Language": "SFX",
+        "ShortName": "SlimeA9.wav",
+        "Path": "SFX\\SlimeA9_10C4C929.wem"
+       },
+       {
+        "Id": "723558067",
+        "Language": "SFX",
+        "ShortName": "SlimeB1.wav",
+        "Path": "SFX\\SlimeB1_10C4C929.wem"
+       },
+       {
+        "Id": "825536483",
+        "Language": "SFX",
+        "ShortName": "SlimeA5.wav",
+        "Path": "SFX\\SlimeA5_10C4C929.wem"
+       },
+       {
+        "Id": "881652026",
+        "Language": "SFX",
+        "ShortName": "SlimeB4.wav",
+        "Path": "SFX\\SlimeB4_10C4C929.wem"
+       },
+       {
+        "Id": "913409691",
+        "Language": "SFX",
+        "ShortName": "SlimeB2.wav",
+        "Path": "SFX\\SlimeB2_10C4C929.wem"
+       },
+       {
+        "Id": "934424158",
+        "Language": "SFX",
+        "ShortName": "SlimeA8.wav",
+        "Path": "SFX\\SlimeA8_10C4C929.wem"
+       },
+       {
+        "Id": "1013502068",
+        "Language": "SFX",
+        "ShortName": "SlimeA6.wav",
+        "Path": "SFX\\SlimeA6_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "1809814649",
+      "Name": "Slime_Hurt",
+      "ObjectPath": "\\Events\\Default Work Unit\\Slime_Hurt",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "85603682",
+        "Language": "SFX",
+        "ShortName": "SlimeA4.wav",
+        "Path": "SFX\\SlimeA4_10C4C929.wem"
+       },
+       {
+        "Id": "133734146",
+        "Language": "SFX",
+        "ShortName": "SlimeA2.wav",
+        "Path": "SFX\\SlimeA2_10C4C929.wem"
+       },
+       {
+        "Id": "182116513",
+        "Language": "SFX",
+        "ShortName": "SlimeA7.wav",
+        "Path": "SFX\\SlimeA7_10C4C929.wem"
+       },
+       {
+        "Id": "184533164",
+        "Language": "SFX",
+        "ShortName": "SlimeB6.wav",
+        "Path": "SFX\\SlimeB6_10C4C929.wem"
+       },
+       {
+        "Id": "250740810",
+        "Language": "SFX",
+        "ShortName": "SlimeA1.wav",
+        "Path": "SFX\\SlimeA1_10C4C929.wem"
+       },
+       {
+        "Id": "270519472",
+        "Language": "SFX",
+        "ShortName": "SlimeB3.wav",
+        "Path": "SFX\\SlimeB3_10C4C929.wem"
+       },
+       {
+        "Id": "311038577",
+        "Language": "SFX",
+        "ShortName": "SlimeB9.wav",
+        "Path": "SFX\\SlimeB9_10C4C929.wem"
+       },
+       {
+        "Id": "321016885",
+        "Language": "SFX",
+        "ShortName": "SlimeB8.wav",
+        "Path": "SFX\\SlimeB8_10C4C929.wem"
+       },
+       {
+        "Id": "404207436",
+        "Language": "SFX",
+        "ShortName": "SlimeB7.wav",
+        "Path": "SFX\\SlimeB7_10C4C929.wem"
+       },
+       {
+        "Id": "504226701",
+        "Language": "SFX",
+        "ShortName": "Hurt.wav",
+        "Path": "SFX\\Hurt_267316A6.wem"
+       },
+       {
+        "Id": "510717250",
+        "Language": "SFX",
+        "ShortName": "SlimeB5.wav",
+        "Path": "SFX\\SlimeB5_10C4C929.wem"
+       },
+       {
+        "Id": "567420178",
+        "Language": "SFX",
+        "ShortName": "SlimeA3.wav",
+        "Path": "SFX\\SlimeA3_10C4C929.wem"
+       },
+       {
+        "Id": "627318850",
+        "Language": "SFX",
+        "ShortName": "SlimeA9.wav",
+        "Path": "SFX\\SlimeA9_10C4C929.wem"
+       },
+       {
+        "Id": "723558067",
+        "Language": "SFX",
+        "ShortName": "SlimeB1.wav",
+        "Path": "SFX\\SlimeB1_10C4C929.wem"
+       },
+       {
+        "Id": "825536483",
+        "Language": "SFX",
+        "ShortName": "SlimeA5.wav",
+        "Path": "SFX\\SlimeA5_10C4C929.wem"
+       },
+       {
+        "Id": "881652026",
+        "Language": "SFX",
+        "ShortName": "SlimeB4.wav",
+        "Path": "SFX\\SlimeB4_10C4C929.wem"
+       },
+       {
+        "Id": "913409691",
+        "Language": "SFX",
+        "ShortName": "SlimeB2.wav",
+        "Path": "SFX\\SlimeB2_10C4C929.wem"
+       },
+       {
+        "Id": "934424158",
+        "Language": "SFX",
+        "ShortName": "SlimeA8.wav",
+        "Path": "SFX\\SlimeA8_10C4C929.wem"
+       },
+       {
+        "Id": "1013502068",
+        "Language": "SFX",
+        "ShortName": "SlimeA6.wav",
+        "Path": "SFX\\SlimeA6_10C4C929.wem"
+       }
+      ]
+     },
+     {
+      "Id": "4122948419",
+      "Name": "State_Combat",
+      "ObjectPath": "\\Events\\Default Work Unit\\State_Combat",
+      "ActionSetState": [
+       {
+        "Id": "2764240573",
+        "Name": "Combat",
+        "ObjectPath": "\\States\\Default Work Unit\\GameState\\Combat"
+       }
+      ]
+     },
+     {
+      "Id": "2052296799",
+      "Name": "State_Credits",
+      "ObjectPath": "\\Events\\Default Work Unit\\State_Credits",
+      "ActionSetState": [
+       {
+        "Id": "2201105581",
+        "Name": "Credits",
+        "ObjectPath": "\\States\\Default Work Unit\\GameState\\Credits"
+       }
+      ]
+     },
+     {
+      "Id": "3816219269",
+      "Name": "State_Dead",
+      "ObjectPath": "\\Events\\Default Work Unit\\State_Dead",
+      "ActionSetState": [
+       {
+        "Id": "2044049779",
+        "Name": "Dead",
+        "ObjectPath": "\\States\\Default Work Unit\\GameState\\Dead"
+       }
+      ]
+     },
+     {
+      "Id": "3900992838",
+      "Name": "State_Menu",
+      "ObjectPath": "\\Events\\Default Work Unit\\State_Menu",
+      "ActionSetState": [
+       {
+        "Id": "2607556080",
+        "Name": "Menu",
+        "ObjectPath": "\\States\\Default Work Unit\\GameState\\Menu"
+       }
+      ]
+     },
+     {
+      "Id": "2574017140",
+      "Name": "State_Transit",
+      "ObjectPath": "\\Events\\Default Work Unit\\State_Transit",
+      "ActionSetState": [
+       {
+        "Id": "2208612570",
+        "Name": "Transit",
+        "ObjectPath": "\\States\\Default Work Unit\\GameState\\Transit"
+       }
+      ]
+     },
+     {
+      "Id": "2249769530",
+      "Name": "UI_Click",
+      "ObjectPath": "\\Events\\Default Work Unit\\UI_Click",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "468323375",
+        "Language": "SFX",
+        "ShortName": "UI_Click.wav",
+        "Path": "SFX\\UI_Click_C75D3D26.wem"
+       }
+      ]
+     },
+     {
+      "Id": "2118900976",
+      "Name": "UI_Hover",
+      "ObjectPath": "\\Events\\Default Work Unit\\UI_Hover",
+      "IncludedMemoryFiles": [
+       {
+        "Id": "505739925",
+        "Language": "SFX",
+        "ShortName": "UI_Hover.wav",
+        "Path": "SFX\\UI_Hover_76F0D676.wem"
+       }
+      ]
+     }
+    ],
+    "IncludedMemoryFiles": [
+     {
+      "Id": "1406206",
+      "Language": "SFX",
+      "ShortName": "Voice2-dead.wav",
+      "Path": "SFX\\Voice2-dead_2B92C234.wem"
+     },
+     {
+      "Id": "51766611",
+      "Language": "SFX",
+      "ShortName": "Bridge-Choir1-95bpm_4-4_8M.wav",
+      "Path": "SFX\\Bridge-Choir1-95bpm_4-4_8M_D3BD6159.wem"
+     },
+     {
+      "Id": "75462678",
+      "Language": "SFX",
+      "ShortName": "Voice3-3.wav",
+      "Path": "SFX\\Voice3-3_10C4C929.wem"
+     },
+     {
+      "Id": "85603682",
+      "Language": "SFX",
+      "ShortName": "SlimeA4.wav",
+      "Path": "SFX\\SlimeA4_10C4C929.wem"
+     },
+     {
+      "Id": "107576255",
+      "Language": "SFX",
+      "ShortName": "slime game jam main menu track.wav",
+      "Path": "SFX\\slime game jam main menu track_D79FB2B7.wem"
+     },
+     {
+      "Id": "119170021",
+      "Language": "SFX",
+      "ShortName": "Voice2-4.wav",
+      "Path": "SFX\\Voice2-4_10C4C929.wem"
+     },
+     {
+      "Id": "127202362",
+      "Language": "SFX",
+      "ShortName": "Dead-Intro-80bpm_4-4_3M.wav",
+      "Path": "SFX\\Dead-Intro-80bpm_4-4_3M_F7AFB84C.wem"
+     },
+     {
+      "Id": "133734146",
+      "Language": "SFX",
+      "ShortName": "SlimeA2.wav",
+      "Path": "SFX\\SlimeA2_10C4C929.wem"
+     },
+     {
+      "Id": "182116513",
+      "Language": "SFX",
+      "ShortName": "SlimeA7.wav",
+      "Path": "SFX\\SlimeA7_10C4C929.wem"
+     },
+     {
+      "Id": "184533164",
+      "Language": "SFX",
+      "ShortName": "SlimeB6.wav",
+      "Path": "SFX\\SlimeB6_10C4C929.wem"
+     },
+     {
+      "Id": "216212409",
+      "Language": "SFX",
+      "ShortName": "VerseA-Harp3-95bpm_4-4_1M.wav",
+      "Path": "SFX\\VerseA-Harp3-95bpm_4-4_1M_D3BD6159.wem"
+     },
+     {
+      "Id": "227163353",
+      "Language": "SFX",
+      "ShortName": "Battle-VerseB-Flute-95bpm_4-4_8M.wav",
+      "Path": "SFX\\Battle-VerseB-Flute-95bpm_4-4_8M_D3BD6159.wem"
+     },
+     {
+      "Id": "231627898",
+      "Language": "SFX",
+      "ShortName": "Battle-VerseB-Drums3-95bpm_4-4_4M.wav",
+      "Path": "SFX\\Battle-VerseB-Drums3-95bpm_4-4_4M_D3BD6159.wem"
+     },
+     {
+      "Id": "245535331",
+      "Language": "SFX",
+      "ShortName": "Battle-VerseB-Drums1-95bpm_4-4_4M.wav",
+      "Path": "SFX\\Battle-VerseB-Drums1-95bpm_4-4_4M_D3BD6159.wem"
+     },
+     {
+      "Id": "250740810",
+      "Language": "SFX",
+      "ShortName": "SlimeA1.wav",
+      "Path": "SFX\\SlimeA1_10C4C929.wem"
+     },
+     {
+      "Id": "270519472",
+      "Language": "SFX",
+      "ShortName": "SlimeB3.wav",
+      "Path": "SFX\\SlimeB3_10C4C929.wem"
+     },
+     {
+      "Id": "277167451",
+      "Language": "SFX",
+      "ShortName": "Voice1-dead.wav",
+      "Path": "SFX\\Voice1-dead_2B92C234.wem"
+     },
+     {
+      "Id": "301703859",
+      "Language": "SFX",
+      "ShortName": "Healing.wav",
+      "Path": "SFX\\Healing_10C4C929.wem"
+     },
+     {
+      "Id": "311038577",
+      "Language": "SFX",
+      "ShortName": "SlimeB9.wav",
+      "Path": "SFX\\SlimeB9_10C4C929.wem"
+     },
+     {
+      "Id": "313939498",
+      "Language": "SFX",
+      "ShortName": "VerseA-Drums1-95bpm_4-4_4M.wav",
+      "Path": "SFX\\VerseA-Drums1-95bpm_4-4_4M_D3BD6159.wem"
+     },
+     {
+      "Id": "321016885",
+      "Language": "SFX",
+      "ShortName": "SlimeB8.wav",
+      "Path": "SFX\\SlimeB8_10C4C929.wem"
+     },
+     {
+      "Id": "321703486",
+      "Language": "SFX",
+      "ShortName": "Battle-VerseB-Drums2-95bpm_4-4_4M.wav",
+      "Path": "SFX\\Battle-VerseB-Drums2-95bpm_4-4_4M_D3BD6159.wem"
+     },
+     {
+      "Id": "329699213",
+      "Language": "SFX",
+      "ShortName": "Battle-VerseB-Strings2-95bpm_4-4_8M.wav",
+      "Path": "SFX\\Battle-VerseB-Strings2-95bpm_4-4_8M_D3BD6159.wem"
+     },
+     {
+      "Id": "346552598",
+      "Language": "SFX",
+      "ShortName": "Voice4-dead.wav",
+      "Path": "SFX\\Voice4-dead_2B92C234.wem"
+     },
+     {
+      "Id": "349183089",
+      "Language": "SFX",
+      "ShortName": "Chorus-95bpm_4-4_1P8M.wav",
+      "Path": "SFX\\Chorus-95bpm_4-4_1P8M_D3BD6159.wem"
+     },
+     {
+      "Id": "349596837",
+      "Language": "SFX",
+      "ShortName": "Voice1-1.wav",
+      "Path": "SFX\\Voice1-1_10C4C929.wem"
+     },
+     {
+      "Id": "354452242",
+      "Language": "SFX",
+      "ShortName": "Bridge-Violin-95bpm_4-4_8M.wav",
+      "Path": "SFX\\Bridge-Violin-95bpm_4-4_8M_D3BD6159.wem"
+     },
+     {
+      "Id": "385317535",
+      "Language": "SFX",
+      "ShortName": "Voice4-3.wav",
+      "Path": "SFX\\Voice4-3_10C4C929.wem"
+     },
+     {
+      "Id": "403969517",
+      "Language": "SFX",
+      "ShortName": "VerseA-Harp1-95bpm_4-4_8M.wav",
+      "Path": "SFX\\VerseA-Harp1-95bpm_4-4_8M_D3BD6159.wem"
+     },
+     {
+      "Id": "404207436",
+      "Language": "SFX",
+      "ShortName": "SlimeB7.wav",
+      "Path": "SFX\\SlimeB7_10C4C929.wem"
+     },
+     {
+      "Id": "407542396",
+      "Language": "SFX",
+      "ShortName": "Voice1-3.wav",
+      "Path": "SFX\\Voice1-3_10C4C929.wem"
+     },
+     {
+      "Id": "417371188",
+      "Language": "SFX",
+      "ShortName": "Voice2-1.wav",
+      "Path": "SFX\\Voice2-1_10C4C929.wem"
+     },
+     {
+      "Id": "421216516",
+      "Language": "SFX",
+      "ShortName": "Transit-95bpm_4-4_somethignbars.alp.wav",
+      "Path": "SFX\\Transit-95bpm_4-4_somethignbars.alp_D79FB2B7.wem"
+     },
+     {
+      "Id": "422528246",
+      "Language": "SFX",
+      "ShortName": "VerseA-Harp2-95bpm_4-4_2M.wav",
+      "Path": "SFX\\VerseA-Harp2-95bpm_4-4_2M_D3BD6159.wem"
+     },
+     {
+      "Id": "424616778",
+      "Language": "SFX",
+      "ShortName": "Voice3-1.wav",
+      "Path": "SFX\\Voice3-1_10C4C929.wem"
+     },
+     {
+      "Id": "444001655",
+      "Language": "SFX",
+      "ShortName": "Bridge-Choir2-95bpm_4-4_8M.wav",
+      "Path": "SFX\\Bridge-Choir2-95bpm_4-4_8M_D3BD6159.wem"
+     },
+     {
+      "Id": "468323375",
+      "Language": "SFX",
+      "ShortName": "UI_Click.wav",
+      "Path": "SFX\\UI_Click_C75D3D26.wem"
+     },
+     {
+      "Id": "475978852",
+      "Language": "SFX",
+      "ShortName": "Battle-VerseB-Harp1-95bpm_4-4_8M.wav",
+      "Path": "SFX\\Battle-VerseB-Harp1-95bpm_4-4_8M_D3BD6159.wem"
+     },
+     {
+      "Id": "481730502",
+      "Language": "SFX",
+      "ShortName": "Bridge-Strings2-95bpm_4-4_8M.wav",
+      "Path": "SFX\\Bridge-Strings2-95bpm_4-4_8M_D3BD6159.wem"
+     },
+     {
+      "Id": "483426990",
+      "Language": "SFX",
+      "ShortName": "Battle-VerseB-Viola2-95bpm_4-4_8M.wav",
+      "Path": "SFX\\Battle-VerseB-Viola2-95bpm_4-4_8M_D3BD6159.wem"
+     },
+     {
+      "Id": "494423484",
+      "Language": "SFX",
+      "ShortName": "VerseA-Strings2-95bpm_4-4_8M.wav",
+      "Path": "SFX\\VerseA-Strings2-95bpm_4-4_8M_D3BD6159.wem"
+     },
+     {
+      "Id": "504226701",
+      "Language": "SFX",
+      "ShortName": "Hurt.wav",
+      "Path": "SFX\\Hurt_267316A6.wem"
+     },
+     {
+      "Id": "505739925",
+      "Language": "SFX",
+      "ShortName": "UI_Hover.wav",
+      "Path": "SFX\\UI_Hover_76F0D676.wem"
+     },
+     {
+      "Id": "510717250",
+      "Language": "SFX",
+      "ShortName": "SlimeB5.wav",
+      "Path": "SFX\\SlimeB5_10C4C929.wem"
+     },
+     {
+      "Id": "520676619",
+      "Language": "SFX",
+      "ShortName": "Battle-VerseB-Strings1-95bpm_4-4_8M.wav",
+      "Path": "SFX\\Battle-VerseB-Strings1-95bpm_4-4_8M_D3BD6159.wem"
+     },
+     {
+      "Id": "526377972",
+      "Language": "SFX",
+      "ShortName": "Voice2-2.wav",
+      "Path": "SFX\\Voice2-2_10C4C929.wem"
+     },
+     {
+      "Id": "567420178",
+      "Language": "SFX",
+      "ShortName": "SlimeA3.wav",
+      "Path": "SFX\\SlimeA3_10C4C929.wem"
+     },
+     {
+      "Id": "626292487",
+      "Language": "SFX",
+      "ShortName": "intro-95bpm_4-4_4M.wav",
+      "Path": "SFX\\intro-95bpm_4-4_4M_D3BD6159.wem"
+     },
+     {
+      "Id": "627318850",
+      "Language": "SFX",
+      "ShortName": "SlimeA9.wav",
+      "Path": "SFX\\SlimeA9_10C4C929.wem"
+     },
+     {
+      "Id": "635603460",
+      "Language": "SFX",
+      "ShortName": "Dead-Loop-80bpm_4-4_8M.wav",
+      "Path": "SFX\\Dead-Loop-80bpm_4-4_8M_F7AFB84C.wem"
+     },
+     {
+      "Id": "649900851",
+      "Language": "SFX",
+      "ShortName": "Bridge-Drums-95bpm_4-4_8M.wav",
+      "Path": "SFX\\Bridge-Drums-95bpm_4-4_8M_D3BD6159.wem"
+     },
+     {
+      "Id": "657804553",
+      "Language": "SFX",
+      "ShortName": "Bridge-Harp-95bpm_4-4_8M.wav",
+      "Path": "SFX\\Bridge-Harp-95bpm_4-4_8M_D3BD6159.wem"
+     },
+     {
+      "Id": "661223371",
+      "Language": "SFX",
+      "ShortName": "Bridge-Strings1-95bpm_4-4_8M.wav",
+      "Path": "SFX\\Bridge-Strings1-95bpm_4-4_8M_D3BD6159.wem"
+     },
+     {
+      "Id": "677481265",
+      "Language": "SFX",
+      "ShortName": "Voice3-2.wav",
+      "Path": "SFX\\Voice3-2_10C4C929.wem"
+     },
+     {
+      "Id": "701213152",
+      "Language": "SFX",
+      "ShortName": "Voice1-2.wav",
+      "Path": "SFX\\Voice1-2_10C4C929.wem"
+     },
+     {
+      "Id": "707074889",
+      "Language": "SFX",
+      "ShortName": "Voice4-1.wav",
+      "Path": "SFX\\Voice4-1_10C4C929.wem"
+     },
+     {
+      "Id": "710486648",
+      "Language": "SFX",
+      "ShortName": "Voice3-DEAD.wav",
+      "Path": "SFX\\Voice3-DEAD_2B92C234.wem"
+     },
+     {
+      "Id": "717988417",
+      "Language": "SFX",
+      "ShortName": "Voice4-2.wav",
+      "Path": "SFX\\Voice4-2_10C4C929.wem"
+     },
+     {
+      "Id": "723558067",
+      "Language": "SFX",
+      "ShortName": "SlimeB1.wav",
+      "Path": "SFX\\SlimeB1_10C4C929.wem"
+     },
+     {
+      "Id": "774579105",
+      "Language": "SFX",
+      "ShortName": "Voice1-4.wav",
+      "Path": "SFX\\Voice1-4_10C4C929.wem"
+     },
+     {
+      "Id": "792350846",
+      "Language": "SFX",
+      "ShortName": "Forgotton.wav",
+      "Path": "SFX\\Forgotton_10C4C929.wem"
+     },
+     {
+      "Id": "809427688",
+      "Language": "SFX",
+      "ShortName": "VerseA-Horn-95bpm_4-4_8M.wav",
+      "Path": "SFX\\VerseA-Horn-95bpm_4-4_8M_D3BD6159.wem"
+     },
+     {
+      "Id": "815795083",
+      "Language": "SFX",
+      "ShortName": "Battle-VerseB-Violin-95bpm_4-4_8M.wav",
+      "Path": "SFX\\Battle-VerseB-Violin-95bpm_4-4_8M_D3BD6159.wem"
+     },
+     {
+      "Id": "825536483",
+      "Language": "SFX",
+      "ShortName": "SlimeA5.wav",
+      "Path": "SFX\\SlimeA5_10C4C929.wem"
+     },
+     {
+      "Id": "881652026",
+      "Language": "SFX",
+      "ShortName": "SlimeB4.wav",
+      "Path": "SFX\\SlimeB4_10C4C929.wem"
+     },
+     {
+      "Id": "890321508",
+      "Language": "SFX",
+      "ShortName": "VerseA-Strings1-95bpm_4-4_8M.wav",
+      "Path": "SFX\\VerseA-Strings1-95bpm_4-4_8M_D3BD6159.wem"
+     },
+     {
+      "Id": "898678018",
+      "Language": "SFX",
+      "ShortName": "VerseA-Violin-95bpm_4-4_8M.wav",
+      "Path": "SFX\\VerseA-Violin-95bpm_4-4_8M_D3BD6159.wem"
+     },
+     {
+      "Id": "913409691",
+      "Language": "SFX",
+      "ShortName": "SlimeB2.wav",
+      "Path": "SFX\\SlimeB2_10C4C929.wem"
+     },
+     {
+      "Id": "934424158",
+      "Language": "SFX",
+      "ShortName": "SlimeA8.wav",
+      "Path": "SFX\\SlimeA8_10C4C929.wem"
+     },
+     {
+      "Id": "1013502068",
+      "Language": "SFX",
+      "ShortName": "SlimeA6.wav",
+      "Path": "SFX\\SlimeA6_10C4C929.wem"
+     },
+     {
+      "Id": "1036898983",
+      "Language": "SFX",
+      "ShortName": "Battle-VerseB-Chello1-95bpm_4-4_8M.wav",
+      "Path": "SFX\\Battle-VerseB-Chello1-95bpm_4-4_8M_D3BD6159.wem"
+     },
+     {
+      "Id": "1053492037",
+      "Language": "SFX",
+      "ShortName": "VerseA-Drums2-95bpm_4-4_4M.wav",
+      "Path": "SFX\\VerseA-Drums2-95bpm_4-4_4M_D3BD6159.wem"
+     },
+     {
+      "Id": "1053789397",
+      "Language": "SFX",
+      "ShortName": "slime game jam credits.wav",
+      "Path": "SFX\\slime game jam credits_D79FB2B7.wem"
+     },
+     {
+      "Id": "1053922087",
+      "Language": "SFX",
+      "ShortName": "Voice2-3.wav",
+      "Path": "SFX\\Voice2-3_10C4C929.wem"
+     },
+     {
+      "Id": "1065279459",
+      "Language": "SFX",
+      "ShortName": "Battle-VerseB-Viola1-95bpm_4-4_8M.wav",
+      "Path": "SFX\\Battle-VerseB-Viola1-95bpm_4-4_8M_D3BD6159.wem"
+     },
+     {
+      "Id": "1070223107",
+      "Language": "SFX",
+      "ShortName": "Voice3-4.wav",
+      "Path": "SFX\\Voice3-4_10C4C929.wem"
+     }
+    ],
+    "GameParameters": [
+     {
+      "Id": "1006694123",
+      "Name": "Music_Volume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\Music_Volume"
+     },
+     {
+      "Id": "1564184899",
+      "Name": "SFX_Volume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\SFX_Volume"
+     },
+     {
+      "Id": "1924415737",
+      "Name": "Wwise_Sidechain",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\Wwise_Sidechain"
+     },
+     {
+      "Id": "4179668880",
+      "Name": "Master_Volume",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\Master_Volume"
+     }
+    ],
+    "StateGroups": [
+     {
+      "Id": "2044049779",
+      "Name": "Dead",
+      "ObjectPath": "\\States\\Default Work Unit\\GameState\\Dead",
+      "States": []
+     },
+     {
+      "Id": "2201105581",
+      "Name": "Credits",
+      "ObjectPath": "\\States\\Default Work Unit\\GameState\\Credits",
+      "States": []
+     },
+     {
+      "Id": "2208612570",
+      "Name": "Transit",
+      "ObjectPath": "\\States\\Default Work Unit\\GameState\\Transit",
+      "States": []
+     },
+     {
+      "Id": "2607556080",
+      "Name": "Menu",
+      "ObjectPath": "\\States\\Default Work Unit\\GameState\\Menu",
+      "States": []
+     },
+     {
+      "Id": "2764240573",
+      "Name": "Combat",
+      "ObjectPath": "\\States\\Default Work Unit\\GameState\\Combat",
+      "States": []
+     },
+     {
+      "Id": "4091656514",
+      "Name": "GameState",
+      "ObjectPath": "\\States\\Default Work Unit\\GameState",
+      "States": [
+       {
+        "Id": "748895195",
+        "Name": "None",
+        "ObjectPath": "\\States\\Default Work Unit\\GameState\\None"
+       },
+       {
+        "Id": "2764240573",
+        "Name": "Combat",
+        "ObjectPath": "\\States\\Default Work Unit\\GameState\\Combat"
+       },
+       {
+        "Id": "2044049779",
+        "Name": "Dead",
+        "ObjectPath": "\\States\\Default Work Unit\\GameState\\Dead"
+       },
+       {
+        "Id": "2208612570",
+        "Name": "Transit",
+        "ObjectPath": "\\States\\Default Work Unit\\GameState\\Transit"
+       },
+       {
+        "Id": "2607556080",
+        "Name": "Menu",
+        "ObjectPath": "\\States\\Default Work Unit\\GameState\\Menu"
+       },
+       {
+        "Id": "2201105581",
+        "Name": "Credits",
+        "ObjectPath": "\\States\\Default Work Unit\\GameState\\Credits"
+       }
+      ]
+     }
+    ],
+    "SwitchGroups": [
+     {
+      "Id": "3125687090",
+      "Name": "SlimeVoices",
+      "ObjectPath": "\\Switches\\Default Work Unit\\SlimeVoices",
+      "Switches": [
+       {
+        "Id": "3313685170",
+        "Name": "Voice1",
+        "ObjectPath": "\\Switches\\Default Work Unit\\SlimeVoices\\Voice1"
+       },
+       {
+        "Id": "3313685169",
+        "Name": "Voice2",
+        "ObjectPath": "\\Switches\\Default Work Unit\\SlimeVoices\\Voice2"
+       },
+       {
+        "Id": "3313685168",
+        "Name": "Voice3",
+        "ObjectPath": "\\Switches\\Default Work Unit\\SlimeVoices\\Voice3"
+       },
+       {
+        "Id": "3313685175",
+        "Name": "Voice4",
+        "ObjectPath": "\\Switches\\Default Work Unit\\SlimeVoices\\Voice4"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

@@ -72,3 +72,9 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+
+#Wwise Based git ignore
+*.wav
+*.wproj
+*.bnk
+Slime-Game_WwiseProject/
