@@ -5,6 +5,7 @@
 
 class AAbility;
 class ASlime;
+class UPassiveBase;
 
 UCLASS(Blueprintable, BlueprintType, meta = (BlueprintSpawnableComponent))
 class UAbilitiesComponent : public UActorComponent
@@ -19,9 +20,14 @@ private:
 
 	TArray<AAbility*> Abilities;
 
+	TArray<UPassiveBase*> Passives;
+
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<TSubclassOf<AAbility>> AbilityClasses;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TArray<TSubclassOf<UPassiveBase>> PassiveClasses;
 
 public:
 	void BeginPlay() override;
@@ -32,14 +38,25 @@ public:
 	TArray<AAbility*> GetAbilities();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
+	TArray<UPassiveBase*> GetPassives();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
 	TArray<TSubclassOf<AAbility>> GetAbilityClasses();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	TArray<TSubclassOf<UPassiveBase>> GetPassiveClasses();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	AAbility* GetAbilityAtIndex(int index);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
+	UPassiveBase* GetPassiveAtIndex(int index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
 	TSubclassOf<AAbility> GetAbilityClassAtIndex(int index);
 
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	TSubclassOf<UPassiveBase> GetPassiveClassAtIndex(int index);
 
 	UFUNCTION(BlueprintCallable)
 	TSubclassOf<AAbility> ForgetAbilityAtIndex(int index);
@@ -48,5 +65,12 @@ public:
 	TSubclassOf<AAbility> ForgetRandomAbility();
 
 	UFUNCTION(BlueprintCallable, meta = (DeterminesOutputType = "AbilityClass"))
-	AAbility* LearnNewAbility(int index, TSubclassOf<AAbility> AbilityClass);
+	AAbility* LearnNewAbility(TSubclassOf<AAbility> AbilityClass);
+
+	UFUNCTION(BlueprintCallable, meta = (DeterminesOutputType = "PassiveClass"))
+	UPassiveBase* GainPassive(TSubclassOf<UPassiveBase> PassiveClass);
+
+	UFUNCTION(BlueprintCallable)
+	void LosePassive(UPassiveBase* PassiveToLose);
+
 };

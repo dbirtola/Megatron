@@ -6,6 +6,9 @@
 #include "UObject/NoExportTypes.h"
 #include "PassiveBase.generated.h"
 
+class ASlime;
+class AAbility;
+
 /**
  * 
  */
@@ -37,10 +40,32 @@ class MEGATRON_API UPassiveBase : public UObject
 {
 	GENERATED_BODY()
 
+	ASlime* Owner;
+
+	AAbility* PassiveAbility;
+
+	void PassiveCreated();
+
+	~UPassiveBase();
+
+protected:
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<AAbility> PassiveAbilityClass;
+
 public:
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	void ActivateAbility();
-	virtual void ActivateAbility_Implementation();
+
+	UFUNCTION(BlueprintNativeEvent)
+	void OnPassiveApplied();
+
+	UFUNCTION(BlueprintNativeEvent)
+	void PassiveTurnTick();
+
+	UFUNCTION(BlueprintNativeEvent)
+	void OnPassiveRemoved();
+
+	UFUNCTION(BlueprintCallable)
+	void RemovePassive();
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	FPassiveStats PassiveSets;
@@ -52,4 +77,7 @@ public:
 	//
 	UPROPERTY(BlueprintReadWrite,EditAnywhere)
 	int CurrentTurnTimer;
+
+	UFUNCTION(BlueprintCallable, meta = (DeterminesOutputType = "PassiveClass"))
+	static UPassiveBase* InstantiatePassive(TSubclassOf<UPassiveBase> PassiveClass, ASlime* InOwner);
 };
