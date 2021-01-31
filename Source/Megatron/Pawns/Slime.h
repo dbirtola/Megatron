@@ -38,8 +38,6 @@ public:
 
 	void BeginPlay() override;
 
-	void ForgetRandomAbility();
-
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnForgotAbility();
 	UFUNCTION(BlueprintImplementableEvent)
@@ -86,9 +84,24 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	TSubclassOf<UPassiveBase> GetPassiveClassAtIndex(int index);
 
+	UFUNCTION(BlueprintCallable)
+		TSubclassOf<AAbility> ForgetAbilityAtIndex(int index);
+	
+	UFUNCTION(BlueprintCallable)
+	TSubclassOf<AAbility> ForgetAbilityByReference(AAbility* reference);
+
+	UFUNCTION(BlueprintCallable)
+		TSubclassOf<AAbility> ForgetRandomAbility();
+
+	UFUNCTION(BlueprintCallable, meta = (DeterminesOutputType = "AbilityClass"))
+		AAbility* LearnNewAbility(TSubclassOf<AAbility> AbilityClass);
+
 	UFUNCTION(BlueprintCallable, meta = (DeterminesOutputType = "PassiveClass"))
 		UPassiveBase* GainPassive(TSubclassOf<UPassiveBase> PassiveClass);
 
 	UFUNCTION(BlueprintCallable)
 		void LosePassive(UPassiveBase* PassiveToLose);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+		TSubclassOf<AAbility> GetLastUsedAbilityClass();
 };

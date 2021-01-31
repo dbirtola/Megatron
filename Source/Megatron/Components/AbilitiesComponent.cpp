@@ -123,6 +123,17 @@ TSubclassOf<AAbility> UAbilitiesComponent::ForgetAbilityAtIndex(int index)
 	}
 }
 
+TSubclassOf<AAbility> UAbilitiesComponent::ForgetAbilityByReference(AAbility* reference)
+{
+	if(Abilities.Remove(reference) > 0)
+		return reference->StaticClass();
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Ability was not in array"));
+		return AAbilityEmpty::StaticClass();
+	}
+}
+
 TSubclassOf<AAbility> UAbilitiesComponent::ForgetRandomAbility()
 {
 	TArray<int> indices;
@@ -142,7 +153,7 @@ AAbility* UAbilitiesComponent::LearnNewAbility(TSubclassOf<AAbility> AbilityClas
 {
 	for (int i = 0; i < AbilityClasses.Num(); ++i)
 	{
-		if (AbilityClasses[i] != AAbilityEmpty::StaticClass())
+		if (AbilityClasses[i] == AAbilityEmpty::StaticClass())
 		{
 			AbilityClasses[i] = *AbilityClass;
 			Abilities[i] = AAbility::InstantiateAbility(*AbilityClass, Owner);

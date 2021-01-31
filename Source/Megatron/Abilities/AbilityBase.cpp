@@ -2,6 +2,7 @@
 
 
 #include "Abilities/AbilityBase.h"
+#include "Abilities/AbilityEmpty.h"
 
 ASlime* AAbility::GetOwningSlime()
 {
@@ -49,8 +50,11 @@ bool AAbility::TryExecuteAbility(ASlime* Target)
 		ExecuteAbility(Target);
 		if (IsValid(OwnerSlime))
 		{
-			OwnerSlime->AbilityComponent->LastUsedAbilityClass = StaticClass();
-			OwnerSlime->OnAbilityUsed.Broadcast(OwnerSlime, this, Target);
+			if (TargetType != ETargetType::PASSIVE && !IsA(AAbilityEmpty::StaticClass()))
+			{
+				OwnerSlime->AbilityComponent->LastUsedAbilityClass = GetClass();
+				OwnerSlime->OnAbilityUsed.Broadcast(OwnerSlime, this, Target);
+			}
 			return true;
 		}
 	}

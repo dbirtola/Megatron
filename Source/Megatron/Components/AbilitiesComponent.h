@@ -32,7 +32,7 @@ protected:
 	TArray<TSubclassOf<UPassiveBase>> PassiveClasses;
 
 public:
-	UClass* LastUsedAbilityClass;
+	TSubclassOf<AAbility> LastUsedAbilityClass;
 
 	void BeginPlay() override;
 
@@ -64,6 +64,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	TSubclassOf<AAbility> ForgetAbilityAtIndex(int index);
+
+	UFUNCTION(BlueprintCallable)
+	TSubclassOf<AAbility> ForgetAbilityByReference(AAbility* reference);
 
 	UFUNCTION(BlueprintCallable)
 	TSubclassOf<AAbility> ForgetRandomAbility();

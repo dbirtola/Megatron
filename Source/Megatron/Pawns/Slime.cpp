@@ -2,10 +2,16 @@
 #include "Components/HealthComponent.h"
 #include "Components/AbilitiesComponent.h"
 #include "Abilities/AbilityBase.h"
+#include "Passives/PassiveBase.h"
 #include "Framework/MegatronTypes.h"
 
 void ASlime::OnDamage_Implementation(FDamage Damage)
 {
+	for(UPassiveBase* Passive : GetPassives())
+	{
+		Damage.BaseDamage += Passive->PassiveSets.AttackDamageModifier;
+		Damage.BaseDamage -= Passive->PassiveSets.DefenseDamageModifiers;
+	}
 	if (Damage.BaseDamage < 1) Damage.BaseDamage = 1;
 	HealthComponent->TakeDamage(Damage);
 }
@@ -94,6 +100,28 @@ TSubclassOf<UPassiveBase> ASlime::GetPassiveClassAtIndex(int index)
 	return AbilityComponent->GetPassiveClassAtIndex(index);
 }
 
+TSubclassOf<AAbility>  ASlime::ForgetAbilityAtIndex(int index) 
+{
+	return AbilityComponent->ForgetAbilityAtIndex(index);
+}
+
+TSubclassOf<AAbility> ASlime::ForgetAbilityByReference(AAbility* reference)
+{
+	return AbilityComponent->ForgetAbilityByReference(reference);
+}
+
+TSubclassOf<AAbility>  ASlime::ForgetRandomAbility()
+{
+	TSubclassOf<AAbility> out = AbilityComponent->ForgetRandomAbility();
+	OnForgotAbility();
+	return out;
+}
+
+AAbility*  ASlime::LearnNewAbility(TSubclassOf<AAbility> AbilityClass)
+{
+	return AbilityComponent->LearnNewAbility(AbilityClass);
+}
+
 UPassiveBase * ASlime::GainPassive(TSubclassOf<UPassiveBase> PassiveClass)
 {
 	return AbilityComponent->GainPassive(PassiveClass);
@@ -104,8 +132,7 @@ void ASlime::LosePassive(UPassiveBase * PassiveToLose)
 	return AbilityComponent->LosePassive(PassiveToLose);
 }
 
-void ASlime::ForgetRandomAbility()
+TSubclassOf<AAbility> ASlime::GetLastUsedAbilityClass()
 {
-	AbilityComponent->ForgetRandomAbility();
-	OnForgotAbility();
+	return AbilityComponent->LastUsedAbilityClass;
 }
