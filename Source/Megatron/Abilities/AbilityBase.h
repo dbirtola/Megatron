@@ -31,6 +31,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	EAttribute Attribute = EAttribute::SLIME;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	ETargetType TargetType = ETargetType::ENEMY;
+
 public:
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
@@ -41,6 +44,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	EAttribute GetAbilityAttribute();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	ETargetType GetAbilityTargetType();
 
 	UFUNCTION(BlueprintCallable)
 	void SetOwnerSlime(ASlime* NewOwner);

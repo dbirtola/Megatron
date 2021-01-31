@@ -11,8 +11,6 @@
 
 UPassiveBase::~UPassiveBase()
 {
-	if(IsValid(PassiveAbility))
-		PassiveAbility->Destroy();
 }
 
 void UPassiveBase::PassiveCreated()
@@ -43,6 +41,8 @@ void UPassiveBase::PassiveTurnTick_Implementation()
 void UPassiveBase::RemovePassive()
 {
 	OnPassiveRemoved();
+	if (IsValid(PassiveAbility))
+		PassiveAbility->Destroy();
 }
 
 UPassiveBase * UPassiveBase::InstantiatePassive(TSubclassOf<UPassiveBase> PassiveClass, ASlime * InOwner)

@@ -22,6 +22,16 @@ enum class EAttribute : uint8
 	WATER
 };
 
+UENUM(BlueprintType)
+enum class ETargetType : uint8
+{
+	ENEMY,
+	TEAM,
+	SELF,
+	TEAMANDSELF,
+	PASSIVE
+};
+
 USTRUCT(BlueprintType)
 struct FDamage
 {

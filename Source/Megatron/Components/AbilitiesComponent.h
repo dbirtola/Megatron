@@ -19,7 +19,7 @@ private:
 	ASlime* Owner;
 
 	UPROPERTY()
-	TArray<UAbilityBase*> Abilities;
+	TArray<AAbility*> Abilities;
 	
 	UPROPERTY()
 	TArray<UPassiveBase*> Passives;

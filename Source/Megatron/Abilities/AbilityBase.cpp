@@ -18,6 +18,11 @@ EAttribute AAbility::GetAbilityAttribute()
 	return Attribute;
 }
 
+ETargetType AAbility::GetAbilityTargetType()
+{
+	return TargetType;
+}
+
 void AAbility::SetOwnerSlime(ASlime * NewOwner)
 {
 	OwnerSlime = NewOwner;

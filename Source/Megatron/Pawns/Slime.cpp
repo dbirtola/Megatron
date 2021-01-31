@@ -1,6 +1,8 @@
 #include "Slime.h"
 #include "Components/HealthComponent.h"
 #include "Components/AbilitiesComponent.h"
+#include "Abilities/AbilityBase.h"
+#include "Framework/MegatronTypes.h"
 
 void ASlime::OnDamage_Implementation(FDamage Damage)
 {
@@ -46,7 +48,8 @@ void ASlime::BeginPlay()
 
 void ASlime::OnAbilityUsedCallback(ASlime* User, AAbility* Ability, ASlime* Target)
 {
-	bHasTurnAvailable = false;
+	if(Ability->GetAbilityTargetType() != ETargetType::PASSIVE)
+		bHasTurnAvailable = false;
 	return;
 }
 

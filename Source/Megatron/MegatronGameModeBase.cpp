@@ -364,8 +364,8 @@ void AMegatronGameModeBase::SimulateNextEnemyTurn()
 		ASlime* SelectedSlime = SlimesWithMoves[index];
 
 		// select random ability
-		UAbilityBase* Ability = nullptr;
-		TArray<UAbilityBase*> Abilities = SelectedSlime->GetAbilities();
+		AAbility* Ability = nullptr;
+		TArray<AAbility*> Abilities = SelectedSlime->GetAbilities();
 		index = FMath::RandRange(0, Abilities.Num() - 1);
 		Ability = Abilities[index];
 

@@ -58,7 +58,7 @@ public:
 	UFUNCTION(BlueprintNativeEvent)
 	void OnPassiveApplied();
 
-	UFUNCTION(BlueprintNativeEvent)
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	void PassiveTurnTick();
 
 	UFUNCTION(BlueprintNativeEvent)
