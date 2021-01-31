@@ -17,6 +17,7 @@ class UAbilitiesComponent : public UActorComponent
 private:
 	ASlime* Owner;
 
+	UPROPERTY()
 	TArray<UAbilityBase*> Abilities;
 
 protected:

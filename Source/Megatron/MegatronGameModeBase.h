@@ -43,6 +43,7 @@ class MEGATRON_API AMegatronGameModeBase : public AGameModeBase
 private:
 	FTimerHandle LearnAbilityTimerHandle;
 	FTimerHandle ForgetAbilityTimerHandle;
+	FTimerHandle SimulateEnemyTurnTimerHandle;
 
 protected:
 	// Begin AGameModeBase implementation
@@ -83,6 +84,12 @@ private:
 
 	void EnterGameState(EGameState NewGameState);
 	void EnterRoundState(ERoundState NewRoundState);
+
+	// Enemy turn simulations
+	void SimulateEnemyTurns();
+	void SimulateNextEnemyTurn();
+	UFUNCTION()
+	void OnSimulateNextEnemyTurnFinished();
 
 public:
 	FTeam GetNextEnemyTeam();

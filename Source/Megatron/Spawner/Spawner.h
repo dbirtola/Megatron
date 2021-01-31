@@ -67,10 +67,12 @@ public:
 	// Spawns the currently assigned team. Be sure you use SetTeam to assign a team before calling this.
 	void SpawnTeam();
 	void RespawnTeam();
-	TArray<ASlime*> GetSpawnedSlimeActors();
+	TArray<ASlime*> GetSpawnedSlimeActors(bool bAliveOnly);
 
 	ASlime* SpawnSlime(FSlimeInfo& SlimeInfo, const FVector& Location);
 	FSpawnLocation* GetNextAvailableSpawnLocation();
+
+	void CleanupDeadSlimes();
 
 public:
 	// Locations, in order, in which the team will be spawned. TODO: STRETCH: Any team members that do not fit should be queued for when a team member dies.

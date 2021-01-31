@@ -8,6 +8,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Pawns/Slime.h"
 #include "Components/HealthComponent.h"
+#include "Abilities/AbilityBase.h"
 
 FString GetGameStateString(EGameState GameState)
 {
@@ -51,6 +52,7 @@ FString GetRoundStateString(ERoundState RoundState)
 
 void AMegatronGameModeBase::PrepareCombat()
 {
+
 	TArray<AActor*> Spawners;
 	UGameplayStatics::GetAllActorsOfClass(this, ASpawner::StaticClass(), Spawners);
 	for (AActor* Spawner : Spawners)
@@ -75,12 +77,28 @@ void AMegatronGameModeBase::PrepareCombat()
 		return;
 	}
 
+	// Cleanup any dead slimes
+	if (PlayerSpawner)
+	{
+		PlayerSpawner->CleanupDeadSlimes();
+	}
+	if (EnemySpawner)
+	{
+		EnemySpawner->CleanupDeadSlimes();
+	}
+	
+
 	// Spawn player slimes
 	if (AMegatronPlayerController* MegatronPlayerController = UMegatronFunctionLibrary::GetMegatronPlayerController(this))
 	{
-		FTeam Team = MegatronPlayerController->GetTeam();
-		PlayerSpawner->SetTeam(Team);
-		PlayerSpawner->SpawnTeam();
+		// Hack cause im tired. Player is overwriting their team.
+		if (PlayerSpawner->GetSpawnedSlimeActors(false).Num() == 0)
+		{
+			FTeam Team = MegatronPlayerController->GetTeam();
+			PlayerSpawner->SetTeam(Team);
+			PlayerSpawner->SpawnTeam();
+		}
+
 		TArray<ASlime*> PlayerSlimes = GetSpawnedPlayerSlimes();
 		for (ASlime* Slime : PlayerSlimes)
 		{
@@ -137,7 +155,7 @@ void AMegatronGameModeBase::TickCombat()
 		// Only check for finish this way if the enemy spawner exists, so we don't skip this segment on debug maps.
 		if (EnemySpawner && !SideHasTurnsPending())
 		{
-			FinishEnemyTurn();
+			//FinishEnemyTurn();
 		}
  		break;
 	case ERoundState::LEARN_ABILITIES:
@@ -163,10 +181,7 @@ void AMegatronGameModeBase::TickCombat()
 		{
 			GameOver();
 		}
-		if (!EnemyHasSlimesAlive())
-		{
-			FinishCombat();
-		}
+
 	}
 }
 
@@ -177,7 +192,7 @@ void AMegatronGameModeBase::FinishRound()
 
 void AMegatronGameModeBase::StartNextRound()
 {
-	EnterRoundState(ERoundState::PLAYER_TURN);
+	StartPlayerTurn();
 }
 
 void AMegatronGameModeBase::StartPlayerTurn()
@@ -195,7 +210,15 @@ void AMegatronGameModeBase::StartPlayerTurn()
 void AMegatronGameModeBase::FinishPlayerTurn()
 {
 	OnTurnEnd(true);
-	StartEnemyTurn();
+
+	if (!EnemyHasSlimesAlive())
+	{
+		FinishCombat();
+	}
+	else
+	{
+		StartEnemyTurn();
+	}
 }
 
 void AMegatronGameModeBase::StartEnemyTurn()
@@ -206,6 +229,7 @@ void AMegatronGameModeBase::StartEnemyTurn()
 		// All enemy slimes spawned will get a chance to take their turn
 		SlimesWithTurnPending = GetSpawnedEnemySlimes();
 		ResetSlimesTurns(SlimesWithTurnPending);
+		SimulateEnemyTurns();
 	}
 	OnTurnStart(false);
 }
@@ -258,7 +282,7 @@ bool AMegatronGameModeBase::SideHasTurnsPending()
 {
 	for (ASlime* Slime : SlimesWithTurnPending)
 	{
-		if (Slime->bHasTurnAvailable)
+		if (Slime->HealthComponent->CurrentHealth > 0 && Slime->bHasTurnAvailable)
 		{
 			return true;
 		}
@@ -310,6 +334,69 @@ void AMegatronGameModeBase::EnterRoundState(ERoundState NewRoundState)
 {
 	UE_LOG(LogTemp, Log, TEXT("Changing Round State from %s to %s"), *GetRoundStateString(RoundState), *GetRoundStateString(NewRoundState));
 	RoundState = NewRoundState;
+}
+
+void AMegatronGameModeBase::SimulateEnemyTurns()
+{
+	SimulateNextEnemyTurn();
+}
+
+PRAGMA_DISABLE_OPTIMIZATION
+
+void AMegatronGameModeBase::SimulateNextEnemyTurn()
+{
+	// Select a random slime that still has moves
+	TArray<ASlime*> SlimesWithMoves;
+	for (ASlime* Slime : GetSpawnedEnemySlimes())
+	{
+		if (Slime->bHasTurnAvailable && Slime->HealthComponent->CurrentHealth > 0)
+		{
+			SlimesWithMoves.Add(Slime);
+		}
+	}
+
+	if (SlimesWithMoves.Num() > 0)
+	{
+
+		int32 index = FMath::RandRange(0, SlimesWithMoves.Num() - 1);
+		ASlime* SelectedSlime = SlimesWithMoves[index];
+
+		// select random ability
+		UAbilityBase* Ability = nullptr;
+		TArray<UAbilityBase*> Abilities = SelectedSlime->GetAbilities();
+		index = FMath::RandRange(0, Abilities.Num() - 1);
+		Ability = Abilities[index];
+
+		// Select a random target. TODO: Make sure slimes filter for reasonable targets, and don't cast buffs on enemies
+		ASlime* Target = nullptr;
+		TArray<ASlime*> TargetSlimes = GetSpawnedPlayerSlimes();
+		index = FMath::RandRange(0, TargetSlimes.Num() - 1);
+		Target = TargetSlimes[index];
+
+		Abilities[index]->TryExecuteAbility(Target);
+
+		// Wait a little and then check if we have to simulate any other enemy turns
+		GetWorld()->GetTimerManager().SetTimer(SimulateEnemyTurnTimerHandle, this, &AMegatronGameModeBase::OnSimulateNextEnemyTurnFinished, 1.0f, false);
+	}
+	else
+	{
+		FinishEnemyTurn();
+	}
+
+}
+
+PRAGMA_ENABLE_OPTIMIZATION
+
+void AMegatronGameModeBase::OnSimulateNextEnemyTurnFinished()
+{
+	if (SideHasTurnsPending())
+	{
+		SimulateNextEnemyTurn();
+	}
+	else
+	{
+		FinishEnemyTurn();
+	}
 }
 
 void AMegatronGameModeBase::Tick(float DeltaSeconds)
@@ -366,12 +453,12 @@ void AMegatronGameModeBase::StartGame()
 
 TArray<ASlime*> AMegatronGameModeBase::GetSpawnedPlayerSlimes()
 {
-	return PlayerSpawner ? PlayerSpawner->GetSpawnedSlimeActors() : TArray<ASlime*>();
+	return PlayerSpawner ? PlayerSpawner->GetSpawnedSlimeActors(true) : TArray<ASlime*>();
 }
 
 TArray<ASlime*> AMegatronGameModeBase::GetSpawnedEnemySlimes()
 {
-	return EnemySpawner ? EnemySpawner->GetSpawnedSlimeActors() : TArray<ASlime*>();
+	return EnemySpawner ? EnemySpawner->GetSpawnedSlimeActors(true) : TArray<ASlime*>();
 }
 
 void AMegatronGameModeBase::DEBUG_ForceNextRoundState()
