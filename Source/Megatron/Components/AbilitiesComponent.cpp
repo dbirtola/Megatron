@@ -142,7 +142,7 @@ AAbility* UAbilitiesComponent::LearnNewAbility(TSubclassOf<AAbility> AbilityClas
 {
 	for (int i = 0; i < AbilityClasses.Num(); ++i)
 	{
-		if (AbilityClasses[i] != AAbilityEmpty::StaticClass())
+		if (AbilityClasses[i] == AAbilityEmpty::StaticClass())
 		{
 			AbilityClasses[i] = *AbilityClass;
 			Abilities[i] = AAbility::InstantiateAbility(*AbilityClass, Owner);

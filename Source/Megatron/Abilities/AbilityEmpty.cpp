@@ -8,3 +8,8 @@ AAbilityEmpty::AAbilityEmpty()
 	Name = FName(TEXT("Empty"));
 	Description = FText::FromString("Empty Ability Slot");
 }
+
+void AAbilityEmpty::ExecuteAbility_Implementation(ASlime* Target)
+{
+	OwnerSlime->LearnNewAbility(Target->GetLastUsedAbilityClass());
+}
