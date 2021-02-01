@@ -6,7 +6,9 @@
 #include "Framework/MegatronTypes.h"
 #include "UObject/NoExportTypes.h"
 #include "Pawns/Slime.h"
+#include "LevelSequence/Public/LevelSequencePlayer.h"
 #include "AbilityBase.generated.h"
+
 
 /**
  * 
@@ -34,7 +36,36 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	ETargetType TargetType = ETargetType::ENEMY;
 
+
 public:
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UParticleSystem* SelfEmitterTemplate;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UParticleSystem* TargetEmitterTemplate;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	ULevelSequence* SelfLevelSequence;
+
+	UPROPERTY()
+	ULevelSequencePlayer* SelfLevelSequencePlayer;
+
+	UPROPERTY()
+	ALevelSequenceActor* SelfLevelSequenceActor;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	ULevelSequence* TargetLevelSequence;
+
+	UPROPERTY()
+	ULevelSequencePlayer* TargetLevelSequencePlayer;
+
+	UPROPERTY()
+	ALevelSequenceActor* TargetLevelSequenceActor;
+
+
+	UFUNCTION()
+	void PlayLevelSequence(ULevelSequencePlayer* LevelSequencePlayer, ALevelSequenceActor* LevelSequenceActor, ULevelSequence* LevelSequence, AActor* TransformOriginActor);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	ASlime* GetOwningSlime();
