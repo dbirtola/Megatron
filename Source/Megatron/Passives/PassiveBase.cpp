@@ -48,10 +48,14 @@ void UPassiveBase::RemovePassive()
 
 UPassiveBase * UPassiveBase::InstantiatePassive(TSubclassOf<UPassiveBase> PassiveClass, ASlime * InOwner)
 {
-	UPassiveBase* out = NewObject<UPassiveBase>(InOwner, *PassiveClass);
-	out->Owner = InOwner;
-	out->PassiveCreated();
-	return out; //later
+	if (*PassiveClass)
+	{
+		UPassiveBase* out = NewObject<UPassiveBase>(InOwner, *PassiveClass);
+		out->Owner = InOwner;
+		out->PassiveCreated();
+		return out; //later
+	}
+	return nullptr;
 }
 
 void UPassiveBase::OnPassiveRemoved_Implementation()
