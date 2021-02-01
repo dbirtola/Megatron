@@ -103,7 +103,10 @@ void UAbilitiesComponent::BeginPlay()
 
 	for (TSubclassOf<UPassiveBase> PassiveClass : PassiveClasses)
 	{
-		Passives.Add(UPassiveBase::InstantiatePassive(PassiveClass, Owner));
+		if (*PassiveClass)
+		{
+			Passives.Add(UPassiveBase::InstantiatePassive(PassiveClass, Owner));
+		}
 	}
 }
 
