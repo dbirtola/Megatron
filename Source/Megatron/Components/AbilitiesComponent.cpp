@@ -23,7 +23,7 @@ TArray<AAbility*> UAbilitiesComponent::GetAbilities()
 }
 
 
-TArray<UPassiveBase*> UAbilitiesComponent::GetPassives()
+TArray<UPassive*> UAbilitiesComponent::GetPassives()
 {
 	return Passives;
 }
@@ -33,7 +33,7 @@ TArray<TSubclassOf<AAbility>> UAbilitiesComponent::GetAbilityClasses()
 	return AbilityClasses;
 }
 
-TArray<TSubclassOf<UPassiveBase>> UAbilitiesComponent::GetPassiveClasses()
+TArray<TSubclassOf<UPassive>> UAbilitiesComponent::GetPassiveClasses()
 {
 	return PassiveClasses;
 }
@@ -51,7 +51,7 @@ AAbility* UAbilitiesComponent::GetAbilityAtIndex(int index)
 	}
 }
 
-UPassiveBase* UAbilitiesComponent::GetPassiveAtIndex(int index)
+UPassive* UAbilitiesComponent::GetPassiveAtIndex(int index)
 {
 	if (0 <= index && index < Passives.Num())
 	{
@@ -77,7 +77,7 @@ TSubclassOf<AAbility> UAbilitiesComponent::GetAbilityClassAtIndex(int index)
 	}
 }
 
-TSubclassOf<UPassiveBase> UAbilitiesComponent::GetPassiveClassAtIndex(int index)
+TSubclassOf<UPassive> UAbilitiesComponent::GetPassiveClassAtIndex(int index)
 {
 	if (0 <= index && index < Passives.Num())
 	{
@@ -101,11 +101,11 @@ void UAbilitiesComponent::BeginPlay()
 		Abilities.Add(AAbility::InstantiateAbility(AbilityClass, Owner));
 	}
 
-	for (TSubclassOf<UPassiveBase> PassiveClass : PassiveClasses)
+	for (TSubclassOf<UPassive> PassiveClass : PassiveClasses)
 	{
 		if (*PassiveClass)
 		{
-			Passives.Add(UPassiveBase::InstantiatePassive(PassiveClass, Owner));
+			Passives.Add(UPassive::InstantiatePassive(PassiveClass, Owner));
 		}
 	}
 }
@@ -167,15 +167,15 @@ AAbility* UAbilitiesComponent::LearnNewAbility(TSubclassOf<AAbility> AbilityClas
 	return nullptr;
 }
 
-UPassiveBase* UAbilitiesComponent::GainPassive(TSubclassOf<UPassiveBase> PassiveClass)
+UPassive* UAbilitiesComponent::GainPassive(TSubclassOf<UPassive> PassiveClass)
 {
-	UPassiveBase* out = UPassiveBase::InstantiatePassive(*PassiveClass, Owner);
+	UPassive* out = UPassive::InstantiatePassive(*PassiveClass, Owner);
 	PassiveClasses.Add(PassiveClass);
 	Passives.Add(out);
 	return out;
 }
 
-void UAbilitiesComponent::LosePassive(UPassiveBase* PassiveToLose)
+void UAbilitiesComponent::LosePassive(UPassive* PassiveToLose)
 {
 	int index = Passives.Find(PassiveToLose);
 	if (index != INDEX_NONE)

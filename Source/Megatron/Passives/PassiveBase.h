@@ -36,7 +36,7 @@ public:
 };
 
 UCLASS(BlueprintType, Blueprintable)
-class MEGATRON_API UPassiveBase : public UObject
+class MEGATRON_API UPassive : public UObject
 {
 	GENERATED_BODY()
 
@@ -46,7 +46,7 @@ class MEGATRON_API UPassiveBase : public UObject
 
 	void PassiveCreated();
 
-	~UPassiveBase();
+	~UPassive();
 
 protected:
 
@@ -79,5 +79,5 @@ public:
 	//int CurrentTurnTimer;
 
 	UFUNCTION(BlueprintCallable, meta = (DeterminesOutputType = "PassiveClass"))
-	static UPassiveBase* InstantiatePassive(TSubclassOf<UPassiveBase> PassiveClass, ASlime* InOwner);
+	static UPassive* InstantiatePassive(TSubclassOf<UPassive> PassiveClass, ASlime* InOwner);
 };

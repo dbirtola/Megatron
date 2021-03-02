@@ -7,7 +7,7 @@
 
 void ASlime::OnDamage_Implementation(FDamage Damage)
 {
-	for(UPassiveBase* Passive : GetPassives())
+	for(UPassive* Passive : GetPassives())
 	{
 		Damage.BaseDamage += Passive->PassiveSets.AttackDamageModifier;
 		Damage.BaseDamage -= Passive->PassiveSets.DefenseDamageModifiers;
@@ -64,7 +64,7 @@ TArray<AAbility*> ASlime::GetAbilities()
 	return AbilityComponent->GetAbilities();
 }
 
-TArray<UPassiveBase*> ASlime::GetPassives()
+TArray<UPassive*> ASlime::GetPassives()
 {
 	return AbilityComponent->GetPassives();
 }
@@ -74,7 +74,7 @@ TArray<TSubclassOf<AAbility>> ASlime::GetAbilityClasses()
 	return AbilityComponent->GetAbilityClasses();
 }
 
-TArray<TSubclassOf<UPassiveBase>> ASlime::GetPassiveClasses()
+TArray<TSubclassOf<UPassive>> ASlime::GetPassiveClasses()
 {
 	return AbilityComponent->GetPassiveClasses();
 }
@@ -84,7 +84,7 @@ AAbility* ASlime::GetAbilityAtIndex(int index)
 	return AbilityComponent->GetAbilityAtIndex(index);
 }
 
-UPassiveBase * ASlime::GetPassiveAtIndex(int index)
+UPassive * ASlime::GetPassiveAtIndex(int index)
 {
 	return AbilityComponent->GetPassiveAtIndex(index);
 }
@@ -95,7 +95,7 @@ TSubclassOf<AAbility> ASlime::GetAbilityClassAtIndex(int index)
 	return AbilityComponent->GetAbilityClassAtIndex(index);
 }
 
-TSubclassOf<UPassiveBase> ASlime::GetPassiveClassAtIndex(int index)
+TSubclassOf<UPassive> ASlime::GetPassiveClassAtIndex(int index)
 {
 	return AbilityComponent->GetPassiveClassAtIndex(index);
 }
@@ -122,12 +122,12 @@ AAbility*  ASlime::LearnNewAbility(TSubclassOf<AAbility> AbilityClass)
 	return AbilityComponent->LearnNewAbility(AbilityClass);
 }
 
-UPassiveBase * ASlime::GainPassive(TSubclassOf<UPassiveBase> PassiveClass)
+UPassive * ASlime::GainPassive(TSubclassOf<UPassive> PassiveClass)
 {
 	return AbilityComponent->GainPassive(PassiveClass);
 }
 
-void ASlime::LosePassive(UPassiveBase * PassiveToLose)
+void ASlime::LosePassive(UPassive * PassiveToLose)
 {
 	return AbilityComponent->LosePassive(PassiveToLose);
 }

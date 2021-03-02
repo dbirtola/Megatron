@@ -5,7 +5,7 @@
 
 class AAbility;
 class ASlime;
-class UPassiveBase;
+class UPassive;
 
 UCLASS(Blueprintable, BlueprintType, meta = (BlueprintSpawnableComponent))
 class UAbilitiesComponent : public UActorComponent
@@ -22,14 +22,14 @@ private:
 	TArray<AAbility*> Abilities;
 	
 	UPROPERTY()
-	TArray<UPassiveBase*> Passives;
+	TArray<UPassive*> Passives;
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<TSubclassOf<AAbility>> AbilityClasses;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<TSubclassOf<UPassiveBase>> PassiveClasses;
+	TArray<TSubclassOf<UPassive>> PassiveClasses;
 
 public:
 	TSubclassOf<AAbility> LastUsedAbilityClass;
@@ -42,25 +42,25 @@ public:
 	TArray<AAbility*> GetAbilities();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	TArray<UPassiveBase*> GetPassives();
+	TArray<UPassive*> GetPassives();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	TArray<TSubclassOf<AAbility>> GetAbilityClasses();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	TArray<TSubclassOf<UPassiveBase>> GetPassiveClasses();
+	TArray<TSubclassOf<UPassive>> GetPassiveClasses();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	AAbility* GetAbilityAtIndex(int index);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	UPassiveBase* GetPassiveAtIndex(int index);
+	UPassive* GetPassiveAtIndex(int index);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	TSubclassOf<AAbility> GetAbilityClassAtIndex(int index);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	TSubclassOf<UPassiveBase> GetPassiveClassAtIndex(int index);
+	TSubclassOf<UPassive> GetPassiveClassAtIndex(int index);
 
 	UFUNCTION(BlueprintCallable)
 	TSubclassOf<AAbility> ForgetAbilityAtIndex(int index);
@@ -75,9 +75,9 @@ public:
 	AAbility* LearnNewAbility(TSubclassOf<AAbility> AbilityClass);
 
 	UFUNCTION(BlueprintCallable, meta = (DeterminesOutputType = "PassiveClass"))
-	UPassiveBase* GainPassive(TSubclassOf<UPassiveBase> PassiveClass);
+	UPassive* GainPassive(TSubclassOf<UPassive> PassiveClass);
 
 	UFUNCTION(BlueprintCallable)
-	void LosePassive(UPassiveBase* PassiveToLose);
+	void LosePassive(UPassive* PassiveToLose);
 
 };

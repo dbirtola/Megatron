@@ -7,6 +7,7 @@
 #include "Spawner/Spawner.h"
 #include "Framework/MegatronTypes.h"
 #include "Pawns/Slime.h"
+#include <queue>
 #include "MegatronGameModeBase.generated.h"
 
 class ASpawner;
@@ -28,10 +29,27 @@ enum class ERoundState : uint8
 	ENEMY_TURN,
 	LEARN_ABILITIES,
 	FORGET_ABILITIES,
+	DEATH_PASS,
 	FINISHED
 };
 
 
+class AAbility;
+
+struct AbilityComparePriority
+{
+	bool operator()(AAbility* a, AAbility* b);
+};
+
+struct AbilityComparePriorityOwnerOnly
+{
+	bool operator()(AAbility* a, AAbility* b);
+};
+
+struct AbilityComparePriorityAbilityOnly
+{
+	bool operator()(AAbility* a, AAbility* b);
+};
 
 /**
  * 
@@ -91,6 +109,11 @@ private:
 	void SimulateNextEnemyTurn();
 	UFUNCTION()
 	void OnSimulateNextEnemyTurnFinished();
+
+	std::priority_queue<AAbility*, std::vector<AAbility*>, AbilityComparePriority> AbilityQueue;
+
+	// Use this to kill
+	void CheckAndTriggerDeath();
 
 public:
 	FTeam GetNextEnemyTeam();
@@ -189,3 +212,4 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly)
 	ASpawner* EnemySpawner;
 };
+

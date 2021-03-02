@@ -10,6 +10,7 @@
 #include "Components/HealthComponent.h"
 #include "Abilities/AbilityBase.h"
 
+
 FString GetGameStateString(EGameState GameState)
 {
 	switch (GameState)
@@ -422,6 +423,10 @@ void AMegatronGameModeBase::OnSimulateNextEnemyTurnFinished()
 	}
 }
 
+void AMegatronGameModeBase::CheckAndTriggerDeath()
+{
+}
+
 void AMegatronGameModeBase::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
@@ -600,4 +605,22 @@ void AMegatronGameModeBase::DEBUG_ForceGameOver()
 void AMegatronGameModeBase::BeginPlay()
 {
 	Super::BeginPlay();
+}
+
+
+//----------------------------------------------------------------------------
+
+bool AbilityComparePriority::operator()(AAbility* a, AAbility* b)
+{
+	return true;
+}
+
+bool AbilityComparePriorityOwnerOnly::operator()(AAbility* a, AAbility* b)
+{
+	return true;
+}
+
+bool AbilityComparePriorityAbilityOnly::operator()(AAbility* a, AAbility* b)
+{
+	return true;
 }

@@ -9,11 +9,11 @@
 
 
 
-UPassiveBase::~UPassiveBase()
+UPassive::~UPassive()
 {
 }
 
-void UPassiveBase::PassiveCreated()
+void UPassive::PassiveCreated()
 {
 	if (PassiveAbility != nullptr) PassiveAbility->Destroy();
 	if(PassiveAbilityClass != nullptr)
@@ -21,12 +21,12 @@ void UPassiveBase::PassiveCreated()
 	OnPassiveApplied();
 }
 
-void UPassiveBase::OnPassiveApplied_Implementation()
+void UPassive::OnPassiveApplied_Implementation()
 {
 	
 }
 
-void UPassiveBase::PassiveTurnTick_Implementation()
+void UPassive::PassiveTurnTick_Implementation()
 {
 	if (IsValid(PassiveAbility))
 	{
@@ -39,18 +39,18 @@ void UPassiveBase::PassiveTurnTick_Implementation()
 	}
 }
 
-void UPassiveBase::RemovePassive()
+void UPassive::RemovePassive()
 {
 	OnPassiveRemoved();
 	if (IsValid(PassiveAbility))
 		PassiveAbility->Destroy();
 }
 
-UPassiveBase * UPassiveBase::InstantiatePassive(TSubclassOf<UPassiveBase> PassiveClass, ASlime * InOwner)
+UPassive * UPassive::InstantiatePassive(TSubclassOf<UPassive> PassiveClass, ASlime * InOwner)
 {
 	if (*PassiveClass)
 	{
-		UPassiveBase* out = NewObject<UPassiveBase>(InOwner, *PassiveClass);
+		UPassive* out = NewObject<UPassive>(InOwner, *PassiveClass);
 		out->Owner = InOwner;
 		out->PassiveCreated();
 		return out; //later
@@ -58,7 +58,7 @@ UPassiveBase * UPassiveBase::InstantiatePassive(TSubclassOf<UPassiveBase> Passiv
 	return nullptr;
 }
 
-void UPassiveBase::OnPassiveRemoved_Implementation()
+void UPassive::OnPassiveRemoved_Implementation()
 {
 
 }

@@ -13,6 +13,8 @@
 /**
  * 
  */
+
+
 UCLASS(Blueprintable, BlueprintType)
 class MEGATRON_API AAbility : public AActor
 {
@@ -100,3 +102,27 @@ public:
 	UFUNCTION(BlueprintCallable, meta = (DeterminesOutputType = "AbilityClass"))
 	static AAbility* InstantiateAbility(TSubclassOf<AAbility> AbilityClass, ASlime* InOwner);
 };
+
+//struct AbilityComparePriority
+//{
+//	bool operator()(AAbility* a, AAbility* b)
+//	{
+//		return true;
+//	}
+//};
+//
+//struct AbilityComparePriorityOwnerOnly
+//{
+//	bool operator()(AAbility* a, AAbility* b)
+//	{
+//		return true;
+//	}
+//};
+//
+//struct AbilityComparePriorityAbilityOnly
+//{
+//	bool operator()(AAbility* a, AAbility* b)
+//	{
+//		return true;
+//	}
+//};
